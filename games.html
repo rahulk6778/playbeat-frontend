@@ -1,69 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- saved from url=(0049)file:///C:/Users/playb/Downloads/index%20(9).html -->
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Playbeat Digital</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
   <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@400;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap');
 
     :root {
-      --n900: #020a16;
-      --n800: #040e1e;
-      --n700: #071428;
-      --n600: #0c1d38;
-      --n500: #112445;
-      --g500: #f5a623;
-      --g400: #f7b84a;
-      --g300: #f9cc7a;
-      --g200: #fce2b4;
-      --g700: #c07800;
-      --g800: #8a5400;
-      --cy: #00d4ff;
-      --cy2: #60e8ff;
-      --tp: #e2ecff;
-      --ts: #7a9ac8;
-      --tm: #3d5a88;
-      --border0: rgba(245, 166, 35, 0.10);
-      --border1: rgba(245, 166, 35, 0.22);
-      --border2: rgba(245, 166, 35, 0.45);
-      --glow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
-      --glow2: 0 0 12px rgba(0, 212, 255, 0.22)
+      --bg: #0a0b0f;
+      --bg2: #111318;
+      --bg3: #1a1d25;
+      --accent: #f0c040;
+      --accent2: #e85d26;
+      --text: #f0ece4;
+      --muted: #7a7e8c;
+      --border: rgba(255, 255, 255, 0.07);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: 'Exo 2', sans-serif;
-      background: var(--n900);
-      color: var(--tp)
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
+    /* ---- PLAYBEAT HEADER CSS ---- */
     .ticker-bar {
-      background: #2a2a2a;
-      border-bottom: 2px solid #00d4ff;
-      border-top: 2px solid #00d4ff;
-      height: 48px;
+      background: linear-gradient(90deg, var(--bg), #060f22, var(--bg));
+      border-bottom: 1px solid rgba(245, 166, 35, 0.10);
+      height: 30px;
       overflow: hidden;
       position: relative;
-      z-index: 50;
-      box-shadow: 0 0 20px rgba(0, 212, 255, .2)
+    }
+
+    .ticker-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(245, 166, 35, .018) 3px, rgba(245, 166, 35, .018) 6px);
+      pointer-events: none;
     }
 
     .ticker-bar::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, var(--n900) 0%, transparent 90px), linear-gradient(270deg, var(--n900) 0%, transparent 90px);
+      background: linear-gradient(90deg, var(--bg) 0%, transparent 90px), linear-gradient(270deg, var(--bg) 0%, transparent 90px);
       pointer-events: none;
-      z-index: 2
+      z-index: 2;
     }
 
     .ticker-inner {
@@ -71,7 +63,7 @@
       align-items: center;
       height: 100%;
       white-space: nowrap;
-      animation: tickscroll 55s linear infinite
+      animation: tickscroll 55s linear infinite;
     }
 
     @keyframes tickscroll {
@@ -86,34 +78,43 @@
 
     .ticker-inner span {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 13px;
-      letter-spacing: 1px;
-      color: #00d4ff;
-      padding: 0 24px;
-      border-right: 1px solid rgba(0, 212, 255, .2);
+      font-size: 10px;
+      letter-spacing: .8px;
+      color: #3d5a88;
+      padding: 0 18px;
+      border-right: 1px solid rgba(245, 166, 35, 0.10);
       position: relative;
       z-index: 1;
-      font-weight: 500
+      transition: color .2s;
+      cursor: default;
+    }
+
+    .ticker-inner span:hover {
+      color: #f7b84a;
     }
 
     .t-live {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
       letter-spacing: 2.5px;
-      font-weight: 600;
-      color: #00d4ff
+      color: #f5a623;
+      padding: 0 16px 0 18px;
+      border-right: 1px solid rgba(245, 166, 35, 0.10);
+      position: relative;
+      z-index: 1;
     }
 
     .pulse {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: var(--g500);
-      box-shadow: 0 0 8px var(--g500);
+      background: #f5a623;
+      box-shadow: 0 0 8px #f5a623;
       animation: p 1.6s ease infinite;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
     @keyframes p {
@@ -130,42 +131,43 @@
       }
     }
 
-    @keyframes rip {
-      0% {
-        opacity: 1;
-        transform: scale(0)
-      }
-
-      100% {
-        opacity: 0;
-        transform: scale(1)
-      }
-    }
-
-    .site-header {
-      background: linear-gradient(180deg, rgba(4, 14, 30, .98), rgba(7, 20, 40, .97));
-      border-bottom: 1px solid var(--border1);
+    header {
+      background: linear-gradient(180deg, rgba(4, 14, 30, .98) 0%, rgba(7, 20, 40, .97) 100%);
+      border-bottom: 1px solid rgba(245, 166, 35, 0.22);
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(24px);
-      box-shadow: 0 6px 48px rgba(0, 0, 0, .75)
+      box-shadow: 0 1px 0 rgba(245, 166, 35, 0.10), 0 6px 48px rgba(0, 0, 0, .75), inset 0 1px 0 rgba(245, 166, 35, .07);
+      overflow: visible;
     }
 
-    .site-header::before {
+    header::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent 0%, var(--g800) 15%, var(--g500) 40%, var(--g400) 50%, var(--g500) 60%, var(--g800) 85%, transparent 100%);
-      box-shadow: var(--glow)
+      background: linear-gradient(90deg, transparent 0%, #8a5400 15%, #f5a623 40%, #f7b84a 50%, #f5a623 60%, #8a5400 85%, transparent 100%);
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(245, 166, 35, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 166, 35, .025) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .5) 0%, transparent 100%);
     }
 
     .header-top {
-      border-bottom: 1px solid var(--border0);
-      padding: 6px 0
+      border-bottom: 1px solid rgba(245, 166, 35, 0.10);
+      padding: 6px 0;
+      position: relative;
+      z-index: 3;
     }
 
     .header-top-inner {
@@ -175,29 +177,38 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      justify-content: flex-end
+      justify-content: flex-end;
     }
 
     .search-wrap {
       flex: 1;
       max-width: 680px;
+      position: relative;
       margin-left: auto;
-      position: relative
     }
 
     .search-bar {
       display: flex;
       align-items: center;
       background: rgba(8, 20, 44, .85);
-      border: 1px solid var(--border1);
+      border: 1px solid rgba(245, 166, 35, 0.22);
       border-radius: 4px;
       overflow: hidden;
-      transition: border-color .25s, box-shadow .25s
+      position: relative;
+      transition: border-color .25s, box-shadow .25s;
+    }
+
+    .search-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(245, 166, 35, .06) 0%, transparent 50%);
+      pointer-events: none;
     }
 
     .search-bar:focus-within {
-      border-color: var(--g500);
-      box-shadow: 0 0 0 1px rgba(245, 166, 35, .18), var(--glow)
+      border-color: #f5a623;
+      box-shadow: 0 0 0 1px rgba(245, 166, 35, .18), 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
     }
 
     .search-category {
@@ -207,45 +218,56 @@
       text-transform: uppercase;
       background: rgba(4, 12, 28, .95);
       border: none;
-      border-right: 1px solid var(--border1);
-      color: var(--g400);
+      border-right: 1px solid rgba(245, 166, 35, 0.22);
+      color: #f7b84a;
       padding: 0 28px 0 12px;
       height: 36px;
       cursor: pointer;
       outline: none;
       appearance: none;
+      -webkit-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23f5a623'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 9px center;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
     .search-category option {
       background: #07142a;
-      color: var(--tp)
+      color: #e2ecff;
+    }
+
+    .search-ico {
+      display: flex;
+      align-items: center;
+      padding: 0 8px 0 12px;
+      color: #3d5a88;
+      flex-shrink: 0;
     }
 
     .search-input {
       flex: 1;
       background: transparent;
       border: none;
-      color: var(--tp);
+      color: #e2ecff;
       font-family: 'Exo 2', sans-serif;
       font-size: 13px;
+      font-weight: 400;
+      letter-spacing: .3px;
       padding: 0 12px;
       height: 36px;
-      outline: none
+      outline: none;
     }
 
     .search-input::placeholder {
-      color: var(--tm);
-      font-style: italic
+      color: #3d5a88;
+      font-style: italic;
     }
 
     .search-btn {
-      background: linear-gradient(135deg, var(--g800), var(--g700), var(--g500));
+      background: linear-gradient(135deg, #8a5400, #c07800, #f5a623);
       border: none;
-      color: var(--n900);
+      color: #020a16;
       padding: 0 18px;
       height: 36px;
       display: flex;
@@ -257,25 +279,26 @@
       text-transform: uppercase;
       font-weight: 700;
       cursor: pointer;
-      transition: filter .2s
+      flex-shrink: 0;
+      transition: filter .2s, box-shadow .2s;
     }
 
     .search-btn:hover {
       filter: brightness(1.18);
-      box-shadow: var(--glow)
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
     }
 
     .top-actions {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
     .btn-wish {
       background: rgba(8, 20, 44, .85);
-      border: 1px solid var(--border1);
-      color: var(--ts);
+      border: 1px solid rgba(245, 166, 35, 0.22);
+      color: #7a9ac8;
       width: 36px;
       height: 36px;
       border-radius: 3px;
@@ -284,31 +307,33 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      transition: all .2s
+      transition: all .2s;
+      flex-shrink: 0;
     }
 
     .btn-wish:hover {
-      border-color: var(--g500);
-      color: var(--g400);
-      box-shadow: var(--glow)
+      border-color: #f5a623;
+      color: #f7b84a;
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
+      background: rgba(245, 166, 35, .06);
     }
 
     .wish-count {
       position: absolute;
       top: -6px;
       right: -6px;
-      background: linear-gradient(135deg, var(--g800), var(--g500));
-      color: var(--n900);
+      background: linear-gradient(135deg, #8a5400, #f5a623);
+      color: #020a16;
       font-size: 9px;
       font-family: 'Share Tech Mono', monospace;
       font-weight: 700;
       min-width: 16px;
       height: 16px;
       border-radius: 2px;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 3px
+      padding: 0 3px;
     }
 
     .btn-login {
@@ -317,20 +342,35 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       background: transparent;
-      border: 1px solid var(--border1);
-      color: var(--ts);
+      border: 1px solid rgba(245, 166, 35, 0.22);
+      color: #7a9ac8;
       padding: 7px 16px;
       border-radius: 3px;
       height: 36px;
       cursor: pointer;
       transition: all .2s;
+      position: relative;
+      overflow: hidden;
       display: flex;
-      align-items: center
+      align-items: center;
+    }
+
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(245, 166, 35, .06), transparent);
+      opacity: 0;
+      transition: opacity .2s;
     }
 
     .btn-login:hover {
-      border-color: var(--g500);
-      color: var(--g300)
+      border-color: #f5a623;
+      color: #f9cc7a;
+    }
+
+    .btn-login:hover::before {
+      opacity: 1;
     }
 
     .btn-prime {
@@ -339,23 +379,41 @@
       font-weight: 700;
       letter-spacing: 1.8px;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--g800), var(--g700), var(--g500));
-      border: 1px solid var(--g500);
-      color: var(--n900);
+      background: linear-gradient(135deg, #8a5400 0%, #c07800 40%, #f5a623 100%);
+      border: 1px solid #f5a623;
+      color: #020a16;
       padding: 0 18px;
       height: 36px;
       border-radius: 3px;
       cursor: pointer;
-      transition: filter .2s, box-shadow .2s;
+      transition: filter .2s, box-shadow .2s, transform .15s;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
       display: flex;
       align-items: center;
       gap: 6px;
-      white-space: nowrap
+    }
+
+    .btn-prime::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -110%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .28), transparent);
+      transition: left .55s;
+    }
+
+    .btn-prime:hover::before {
+      left: 150%;
     }
 
     .btn-prime:hover {
       filter: brightness(1.15);
-      box-shadow: var(--glow)
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
+      transform: translateY(-1px);
     }
 
     .header-inner {
@@ -365,7 +423,9 @@
       height: 58px;
       display: flex;
       align-items: center;
-      gap: 20px
+      gap: 20px;
+      position: relative;
+      z-index: 3;
     }
 
     .logo {
@@ -374,7 +434,8 @@
       align-items: flex-start;
       text-decoration: none;
       flex-shrink: 0;
-      gap: 1px
+      gap: 1px;
+      position: relative;
     }
 
     .logo-digital {
@@ -386,18 +447,21 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      padding-left: 2px
+      line-height: 1;
+      user-select: none;
+      padding-left: 2px;
     }
 
     .logo-wordmark {
       display: flex;
       align-items: baseline;
+      gap: 0;
       filter: drop-shadow(0 0 10px rgba(245, 166, 35, .38));
-      transition: filter .3s
+      transition: filter .3s;
     }
 
     .logo:hover .logo-wordmark {
-      filter: drop-shadow(0 0 22px rgba(245, 166, 35, .72))
+      filter: drop-shadow(0 0 22px rgba(245, 166, 35, .72));
     }
 
     .logo-play {
@@ -405,8 +469,8 @@
       font-weight: 800;
       font-size: 30px;
       letter-spacing: -1px;
-      color: #fff;
-      line-height: 1
+      color: #ffffff;
+      line-height: 1;
     }
 
     .logo-beat {
@@ -414,32 +478,30 @@
       font-weight: 800;
       font-size: 30px;
       letter-spacing: -1px;
-      background: linear-gradient(170deg, #f9cc7a, #f5a623);
+      background: linear-gradient(170deg, #f9cc7a 0%, #f5a623 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      line-height: 1
+      line-height: 1;
     }
 
     .logo-underline {
       height: 1px;
       width: 100%;
       margin-top: 3px;
-      background: linear-gradient(90deg, var(--g500), transparent 80%);
-      opacity: .55
+      background: linear-gradient(90deg, #f5a623 0%, transparent 80%);
+      opacity: .55;
     }
 
-    .main-nav {
+    .logo::after {
+      display: none;
+    }
+
+    nav {
       display: flex;
       align-items: center;
       gap: 1px;
       flex: 1;
-      flex-wrap: nowrap;
-      overflow-x: auto
-    }
-
-    .main-nav::-webkit-scrollbar {
-      display: none
     }
 
     .nav-item {
@@ -448,354 +510,887 @@
       font-weight: 500;
       letter-spacing: .9px;
       text-transform: uppercase;
-      color: var(--ts);
+      color: #7a9ac8;
       text-decoration: none;
       padding: 7px 10px;
       border-radius: 3px;
       white-space: nowrap;
       border: 1px solid transparent;
-      transition: color .25s, background .25s, border-color .25s, box-shadow .3s, transform .35s;
-      cursor: pointer;
+      transition: color .2s, background .2s, border-color .2s, box-shadow .2s;
       position: relative;
-      overflow: hidden
-    }
-
-    .nav-item::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle 380px at var(--pos-x, 50%) var(--pos-y, 50%), rgba(245, 166, 35, .22), transparent 85%);
-      opacity: 0;
-      transition: opacity .35s;
-      pointer-events: none
-    }
-
-    .nav-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 3px;
-      background: radial-gradient(circle 100px at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(245, 166, 35, .4), transparent 100%);
-      opacity: 0;
-      pointer-events: none
     }
 
     .nav-item:hover {
-      color: var(--g300);
-      background: rgba(245, 166, 35, .08);
-      border-color: var(--border0);
-      transform: translateY(-1px)
-    }
-
-    .nav-item:hover::before {
-      opacity: 1
+      color: #f9cc7a;
+      background: rgba(245, 166, 35, .06);
+      border-color: rgba(245, 166, 35, 0.10);
     }
 
     .nav-item.active {
-      color: var(--g400);
-      background: rgba(245, 166, 35, .12);
-      border-color: var(--g500);
-      box-shadow: 0 0 16px rgba(245, 166, 35, .32), inset 0 0 12px rgba(245, 166, 35, .12);
-      animation: nav-bounce .5s cubic-bezier(.34, .1, .64, .99)
+      color: #f7b84a;
+      background: rgba(245, 166, 35, .08);
+      border-color: rgba(245, 166, 35, 0.22);
     }
 
-    @keyframes nav-bounce {
-      0% {
-        transform: scale(1)
-      }
-
-      50% {
-        transform: scale(1.08)
-      }
-
-      100% {
-        transform: scale(1.03)
-      }
-    }
-
-    .nav-item.active::before {
-      opacity: 1
-    }
-
-    .nav-item.ripple::after {
-      animation: rip .6s ease-out
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 25%;
+      right: 25%;
+      height: 1px;
+      background: #f5a623;
+      box-shadow: 0 0 6px #f5a623;
     }
 
     .nav-special {
-      color: var(--g400) !important;
+      color: #f7b84a !important;
       background: rgba(245, 166, 35, .06) !important;
-      border-color: var(--border0) !important
+      border-color: rgba(245, 166, 35, 0.10) !important;
     }
 
     .nav-special:hover {
-      color: var(--g200) !important;
-      background: rgba(245, 166, 35, .15) !important;
-      box-shadow: 0 0 16px rgba(245, 166, 35, .28) !important
+      color: #fce2b4 !important;
+      background: rgba(245, 166, 35, .13) !important;
+      border-color: rgba(245, 166, 35, 0.45) !important;
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10) !important;
     }
 
     .nav-outsource {
-      color: var(--cy) !important;
+      color: #00d4ff !important;
       background: rgba(0, 212, 255, .05) !important;
-      border-color: rgba(0, 212, 255, .18) !important
+      border-color: rgba(0, 212, 255, .18) !important;
     }
 
     .nav-outsource:hover {
-      color: var(--cy2) !important;
-      background: rgba(0, 212, 255, .12) !important;
-      box-shadow: 0 0 16px rgba(0, 212, 255, .22) !important
-    }
-
-    .nav-live {
-      color: #10b981 !important;
-      background: rgba(16, 185, 129, .06) !important;
-      border-color: rgba(16, 185, 129, .22) !important
-    }
-
-    .nav-live:hover {
-      color: #34d399 !important;
-      background: rgba(16, 185, 129, .15) !important;
-      box-shadow: 0 0 16px rgba(16, 185, 129, .28) !important
+      color: #60e8ff !important;
+      background: rgba(0, 212, 255, .10) !important;
+      border-color: rgba(0, 212, 255, .35) !important;
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.22) !important;
     }
 
     .nav-sep {
       width: 1px;
       height: 18px;
-      background: var(--border0);
+      background: rgba(245, 166, 35, 0.10);
       margin: 0 3px;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
-    .section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--g400);
-      margin-bottom: 20px;
+    .user-chip {
       display: flex;
       align-items: center;
-      gap: 12px
-    }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--border1), transparent)
-    }
-
-    .trend-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      letter-spacing: .8px;
+      gap: 10px;
       background: rgba(8, 20, 44, .85);
-      border: 1px solid var(--border1);
+      border: 1px solid rgba(245, 166, 35, 0.22);
       border-radius: 3px;
-      padding: 8px 14px;
-      color: var(--ts);
+      padding: 5px 14px 5px 8px;
       cursor: pointer;
       transition: all .2s;
-      text-decoration: none
-    }
-
-    .trend-tag:hover {
-      border-color: var(--g500);
-      color: var(--g300);
-      box-shadow: var(--glow)
-    }
-
-    .cat-card {
       position: relative;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--border1);
-      aspect-ratio: 16/10;
-      cursor: pointer;
-      transition: all .3s
     }
 
-    .cat-card:hover {
-      border-color: var(--g500);
-      box-shadow: var(--glow);
-      transform: translateY(-3px)
-    }
-
-    .cat-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .4s
-    }
-
-    .cat-card:hover img {
-      transform: scale(1.05)
-    }
-
-    .cat-label {
+    .user-chip::before {
+      content: '';
       position: absolute;
-      bottom: 0;
       left: 0;
-      right: 0;
-      padding: 12px;
-      background: linear-gradient(0deg, rgba(2, 10, 22, .92), transparent);
-      font-family: 'Exo 2', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .5px;
-      color: var(--tp)
+      top: 20%;
+      bottom: 20%;
+      width: 2px;
+      background: #f5a623;
+      border-radius: 0 2px 2px 0;
     }
 
-    .prod-card {
-      background: rgba(8, 20, 44, .7);
-      border: 1px solid var(--border1);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: all .3s;
-      position: relative
+    .user-chip:hover {
+      border-color: #f5a623;
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
     }
 
-    .prod-card:hover {
-      border-color: var(--g500);
-      box-shadow: var(--glow);
-      transform: translateY(-3px)
-    }
-
-    .prod-card img {
-      width: 100%;
-      aspect-ratio: 16/10;
-      object-fit: cover
-    }
-
-    .prod-badge {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 3px 8px;
+    .u-avatar {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #8a5400, #c07800);
       border-radius: 2px;
-      font-weight: 700;
-      z-index: 2
-    }
-
-    .heart-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 30px;
-      height: 30px;
-      border-radius: 3px;
-      background: rgba(4, 14, 30, .8);
-      border: 1px solid var(--border1);
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      z-index: 2;
-      transition: all .2s;
-      color: var(--ts)
+      color: #020a16;
     }
 
-    .heart-btn:hover {
-      border-color: var(--g500);
-      color: var(--g400)
+    .u-name {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #e2ecff;
+      letter-spacing: .5px;
     }
 
-    .heart-btn.active {
-      color: #ef4444;
-      border-color: #ef4444
+    .hud-c {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .heart-btn.active svg {
-      fill: #ef4444
+    .hc {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: .4;
     }
 
-    .add-cart-btn {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      background: rgba(8, 20, 44, .9);
-      border: 1px solid var(--border1);
-      color: var(--ts);
-      padding: 7px 12px;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: all .2s;
-      flex: 1
+    .hc-tl {
+      top: 5px;
+      left: 5px;
+      border-top: 1px solid #f5a623;
+      border-left: 1px solid #f5a623;
     }
 
-    .add-cart-btn:hover {
-      border-color: var(--g500);
-      color: var(--g300);
-      box-shadow: var(--glow)
+    .hc-tr {
+      top: 5px;
+      right: 5px;
+      border-top: 1px solid #f5a623;
+      border-right: 1px solid #f5a623;
     }
 
-    .buy-btn {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 8px;
-      font-weight: 700;
+    .hc-bl {
+      bottom: 5px;
+      left: 5px;
+      border-bottom: 1px solid #f5a623;
+      border-left: 1px solid #f5a623;
+    }
+
+    .hc-br {
+      bottom: 5px;
+      right: 5px;
+      border-bottom: 1px solid #f5a623;
+      border-right: 1px solid #f5a623;
+    }
+
+    @media(max-width:1200px) {
+      .nav-item {
+        font-size: 10.5px;
+        padding: 7px 8px;
+      }
+    }
+
+    @media(max-width:1050px) {
+      nav {
+        display: none;
+      }
+    }
+
+    @media(max-width:800px) {
+      .btn-prime {
+        display: none;
+      }
+
+      .search-wrap {
+        max-width: 100%;
+      }
+    }
+
+    @media(max-width:640px) {
+      .header-inner {
+        padding: 0 14px;
+        gap: 10px;
+      }
+
+      .header-top-inner {
+        padding: 0 14px;
+      }
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: var(--bg);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240, 192, 64, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(240, 192, 64, 0.1);
+      border: 1px solid rgba(240, 192, 64, 0.25);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--g800), var(--g500));
-      border: 1px solid var(--g500);
-      color: var(--n900);
-      padding: 7px 14px;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: filter .2s
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
     }
 
-    .buy-btn:hover {
-      filter: brightness(1.15)
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 8vw, 96px);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 1rem;
     }
 
-    .drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, .6);
-      z-index: 200;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .3s
+    .hero h1 span {
+      color: var(--accent);
     }
 
-    .drawer-overlay.open {
-      opacity: 1;
-      pointer-events: auto
+    .hero-sub {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
     }
 
-    .drawer-panel {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: 100%;
-      max-width: 400px;
-      background: var(--n800);
-      border-left: 1px solid var(--border1);
-      z-index: 210;
-      transform: translateX(100%);
-      transition: transform .3s;
+    .hero-search {
       display: flex;
-      flex-direction: column
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .drawer-panel.open {
-      transform: translateX(0)
+    .hero-search input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 16px 20px;
+      font-size: 15px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
     }
 
-    .site-footer {
-      background: linear-gradient(180deg, var(--n800), var(--n900));
-      border-top: 1px solid var(--border1);
+    .hero-search input::placeholder {
+      color: var(--muted);
+    }
+
+    .hero-search button {
+      background: var(--accent);
+      border: none;
+      color: #0a0b0f;
+      padding: 0 24px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ---- CATEGORY TABS ---- */
+    .category-bar {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .category-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-tab {
+      padding: 16px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .cat-tab:hover {
+      color: var(--text);
+    }
+
+    .cat-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .cat-tab .tab-icon {
+      font-size: 16px;
+    }
+
+    /* ---- SECTION ---- */
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 1.5px;
+    }
+
+    .section-title span {
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    .section-link {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    .section-link:hover {
+      color: var(--text);
+    }
+
+    /* ---- BANNER / HERO CARDS ---- */
+    .banner-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 16px;
+      margin-bottom: 3rem;
+    }
+
+    .banner-main {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
       position: relative;
-      overflow: hidden
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .banner-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 80% 20%, rgba(232, 93, 38, 0.15) 0%, transparent 60%);
+    }
+
+    .banner-tag {
+      display: inline-block;
+      background: var(--accent2);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .banner-main h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .banner-main p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0b0f;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      width: fit-content;
+      position: relative;
+    }
+
+    .banner-side {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .banner-mini {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .banner-mini:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .banner-mini-left h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .banner-mini-left p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .banner-mini-icon {
+      font-size: 28px;
+      opacity: 0.6;
+    }
+
+    /* ---- PRODUCT GRID ---- */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .product-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.18s, border-color 0.18s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .product-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card-body {
+      padding: 12px 14px 14px;
+    }
+
+    .product-card-game {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+
+    .product-card-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .product-offers {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .badge-hot {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: var(--accent2);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-new {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #1d9e75;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .star-row {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      margin-top: 4px;
+    }
+
+    .star {
+      color: var(--accent);
+      font-size: 11px;
+    }
+
+    .star-count {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ---- GAME LOGO CARDS (icons) ---- */
+    .game-icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .game-icon-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .game-icon-card:hover {
+      background: var(--bg3);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .game-icon-emoji {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .game-icon-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      line-height: 1.3;
+    }
+
+    /* ---- CATEGORY SHOWCASE ---- */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .showcase-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      cursor: pointer;
+      transition: border-color 0.18s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .showcase-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .showcase-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .showcase-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .showcase-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .showcase-offers {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .showcase-accent-orange {
+      border-top: 3px solid var(--accent2);
+    }
+
+    .showcase-accent-yellow {
+      border-top: 3px solid var(--accent);
+    }
+
+    .showcase-accent-green {
+      border-top: 3px solid #1d9e75;
+    }
+
+    .showcase-accent-blue {
+      border-top: 3px solid #378add;
+    }
+
+    .showcase-accent-purple {
+      border-top: 3px solid #7f77dd;
+    }
+
+    .showcase-accent-pink {
+      border-top: 3px solid #d4537e;
+    }
+
+    /* ---- TRENDING ROW ---- */
+    .trending-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+    }
+
+    .trending-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .trending-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 16px;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.15s;
+    }
+
+    .trending-pill:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .trending-pill .tp-icon {
+      font-size: 16px;
+    }
+
+    .trending-pill .tp-count {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ---- TRUST BAR ---- */
+    .trust-bar {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.75rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      margin: 0;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .trust-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(240, 192, 64, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .trust-text h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .trust-text p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ---- DEALS ---- */
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .deal-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color 0.18s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .deal-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .deal-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .deal-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .deal-info p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .deal-price-col {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .deal-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .deal-old-price {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    /* ---- PLAYBEAT FOOTER CSS ---- */
+    .site-footer {
+      background: linear-gradient(180deg, #040e1e 0%, #020a16 100%);
+      border-top: 1px solid rgba(245, 166, 35, 0.22);
+      position: relative;
+      overflow: hidden;
     }
 
     .site-footer::before {
@@ -805,8 +1400,60 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent 0%, var(--g800) 15%, var(--g500) 40%, var(--g400) 50%, var(--g500) 60%, var(--g800) 85%, transparent 100%);
-      box-shadow: var(--glow)
+      background: linear-gradient(90deg, transparent 0%, #8a5400 15%, #f5a623 40%, #f7b84a 50%, #f5a623 60%, #8a5400 85%, transparent 100%);
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
+    }
+
+    .site-footer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(245, 166, 35, .018) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 166, 35, .018) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, transparent 100%);
+    }
+
+    .f-hud {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .f-hc {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: .35;
+    }
+
+    .f-hc-tl {
+      top: 8px;
+      left: 8px;
+      border-top: 1px solid #f5a623;
+      border-left: 1px solid #f5a623;
+    }
+
+    .f-hc-tr {
+      top: 8px;
+      right: 8px;
+      border-top: 1px solid #f5a623;
+      border-right: 1px solid #f5a623;
+    }
+
+    .f-hc-bl {
+      bottom: 8px;
+      left: 8px;
+      border-bottom: 1px solid #f5a623;
+      border-left: 1px solid #f5a623;
+    }
+
+    .f-hc-br {
+      bottom: 8px;
+      right: 8px;
+      border-bottom: 1px solid #f5a623;
+      border-right: 1px solid #f5a623;
     }
 
     .footer-inner {
@@ -814,7 +1461,7 @@
       margin: 0 auto;
       padding: 0 28px;
       position: relative;
-      z-index: 2
+      z-index: 2;
     }
 
     .footer-banner {
@@ -822,9 +1469,184 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border0);
+      border-bottom: 1px solid rgba(245, 166, 35, 0.10);
       gap: 24px;
-      flex-wrap: wrap
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-decoration: none;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .footer-logo-digital {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #8fa8c8, #b8cde8, #7a9ac8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-left: 2px;
+    }
+
+    .footer-logo-wordmark {
+      display: flex;
+      align-items: baseline;
+      filter: drop-shadow(0 0 10px rgba(245, 166, 35, .35));
+      transition: filter .3s;
+    }
+
+    .footer-logo:hover .footer-logo-wordmark {
+      filter: drop-shadow(0 0 22px rgba(245, 166, 35, .7));
+    }
+
+    .footer-logo-play {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      letter-spacing: -1px;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .footer-logo-beat {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      letter-spacing: -1px;
+      line-height: 1;
+      background: linear-gradient(170deg, #f9cc7a 0%, #f5a623 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-logo-pvt {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3d5a88;
+      margin-top: 2px;
+      padding-left: 2px;
+    }
+
+    .footer-logo-line {
+      height: 1px;
+      width: 100%;
+      margin-top: 4px;
+      background: linear-gradient(90deg, #f5a623, transparent 80%);
+      opacity: .5;
+    }
+
+    .footer-tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #3d5a88;
+      margin-top: 8px;
+      padding-left: 2px;
+    }
+
+    .footer-tagline .ft-play {
+      color: #e2ecff;
+    }
+
+    .footer-tagline .ft-beat {
+      color: #f5a623;
+    }
+
+    .footer-support {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .support-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #3d5a88;
+      margin-right: 4px;
+    }
+
+    .btn-support {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      padding: 9px 16px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all .22s;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn-support::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -110%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
+      transition: left .5s;
+    }
+
+    .btn-support:hover::before {
+      left: 150%;
+    }
+
+    .btn-support.email {
+      background: rgba(8, 20, 44, .9);
+      border: 1px solid rgba(245, 166, 35, 0.22);
+      color: #7a9ac8;
+    }
+
+    .btn-support.email:hover {
+      border-color: #f5a623;
+      color: #f9cc7a;
+      box-shadow: 0 0 18px rgba(245, 166, 35, 0.28), 0 0 40px rgba(245, 166, 35, 0.10);
+    }
+
+    .btn-support.whatsapp {
+      background: rgba(7, 46, 20, .85);
+      border: 1px solid rgba(37, 211, 102, .25);
+      color: #25d366;
+    }
+
+    .btn-support.whatsapp:hover {
+      border-color: rgba(37, 211, 102, .6);
+      color: #4ade80;
+      box-shadow: 0 0 16px rgba(37, 211, 102, .2);
+    }
+
+    .btn-support.telegram {
+      background: rgba(4, 22, 50, .85);
+      border: 1px solid rgba(0, 136, 204, .28);
+      color: #29a8e0;
+    }
+
+    .btn-support.telegram:hover {
+      border-color: rgba(0, 136, 204, .6);
+      color: #60d0ff;
+      box-shadow: 0 0 16px rgba(0, 136, 204, .22);
     }
 
     .footer-grid {
@@ -832,7 +1654,7 @@
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 48px 40px;
       padding: 40px 0 36px;
-      border-bottom: 1px solid var(--border0)
+      border-bottom: 1px solid rgba(245, 166, 35, 0.10);
     }
 
     .footer-col-title {
@@ -841,35 +1663,41 @@
       font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--g400);
+      color: #f7b84a;
       margin-bottom: 18px;
       display: flex;
       align-items: center;
-      gap: 10px
+      gap: 10px;
     }
 
     .footer-col-title::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, var(--border1), transparent)
+      background: linear-gradient(90deg, rgba(245, 166, 35, 0.22), transparent);
     }
 
     .footer-nav-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px 16px
+      gap: 4px 16px;
     }
 
     .footer-nav-link {
+      font-family: 'Exo 2', sans-serif;
       font-size: 12px;
-      color: var(--ts);
+      font-weight: 400;
+      letter-spacing: .4px;
+      color: #7a9ac8;
       text-decoration: none;
       padding: 5px 8px;
+      border-radius: 2px;
+      border: 1px solid transparent;
       display: flex;
       align-items: center;
       gap: 7px;
-      transition: color .18s
+      transition: color .18s, border-color .18s, background .18s;
+      position: relative;
     }
 
     .footer-nav-link::before {
@@ -877,43 +1705,72 @@
       width: 3px;
       height: 3px;
       border-radius: 50%;
-      background: var(--tm);
-      flex-shrink: 0
+      background: #3d5a88;
+      flex-shrink: 0;
+      transition: background .18s, box-shadow .18s;
     }
 
     .footer-nav-link:hover {
-      color: var(--g300)
+      color: #f9cc7a;
+      border-color: rgba(245, 166, 35, 0.10);
+      background: rgba(245, 166, 35, .04);
+    }
+
+    .footer-nav-link:hover::before {
+      background: #f5a623;
+      box-shadow: 0 0 6px #f5a623;
+    }
+
+    .footer-nav-link.special {
+      color: #f7b84a;
+    }
+
+    .footer-nav-link.special::before {
+      background: #c07800;
     }
 
     .footer-link-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 4px
+      gap: 4px;
     }
 
-    .footer-link-list a {
+    .footer-link-list li a {
+      font-family: 'Exo 2', sans-serif;
       font-size: 12px;
-      color: var(--ts);
+      font-weight: 400;
+      letter-spacing: .4px;
+      color: #7a9ac8;
       text-decoration: none;
       padding: 5px 8px;
+      border-radius: 2px;
+      border: 1px solid transparent;
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: color .18s
+      transition: color .18s, border-color .18s, background .18s;
     }
 
-    .footer-link-list a::before {
+    .footer-link-list li a::before {
       content: '';
       width: 3px;
       height: 3px;
       border-radius: 50%;
-      background: var(--tm);
-      flex-shrink: 0
+      background: #3d5a88;
+      flex-shrink: 0;
+      transition: background .18s, box-shadow .18s;
     }
 
-    .footer-link-list a:hover {
-      color: var(--g300)
+    .footer-link-list li a:hover {
+      color: #f9cc7a;
+      border-color: rgba(245, 166, 35, 0.10);
+      background: rgba(245, 166, 35, .04);
+    }
+
+    .footer-link-list li a:hover::before {
+      background: #f5a623;
+      box-shadow: 0 0 6px #f5a623;
     }
 
     .footer-social-row {
@@ -921,9 +1778,23 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border0);
+      border-bottom: 1px solid rgba(245, 166, 35, 0.10);
       gap: 20px;
-      flex-wrap: wrap
+      flex-wrap: wrap;
+    }
+
+    .social-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #3d5a88;
+    }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .social-btn {
@@ -934,16 +1805,121 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
+      cursor: pointer;
       background: rgba(8, 20, 44, .85);
-      border: 1px solid var(--border1);
-      color: var(--ts);
-      transition: all .22s
+      border: 1px solid rgba(245, 166, 35, 0.22);
+      color: #7a9ac8;
+      transition: all .22s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .22s;
     }
 
     .social-btn:hover {
       transform: translateY(-2px);
-      border-color: var(--g500);
-      color: var(--g400)
+    }
+
+    .social-btn svg {
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-btn.x:hover {
+      border-color: rgba(255, 255, 255, .4);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(255, 255, 255, .12);
+    }
+
+    .social-btn.x::before {
+      background: rgba(30, 30, 30, .6);
+    }
+
+    .social-btn.x:hover::before {
+      opacity: 1;
+    }
+
+    .social-btn.fb:hover {
+      border-color: rgba(66, 103, 178, .6);
+      color: #4267b2;
+      box-shadow: 0 0 14px rgba(66, 103, 178, .2);
+    }
+
+    .social-btn.fb::before {
+      background: rgba(10, 20, 60, .6);
+    }
+
+    .social-btn.fb:hover::before {
+      opacity: 1;
+    }
+
+    .social-btn.ig:hover {
+      border-color: rgba(225, 48, 108, .5);
+      color: #e1306c;
+      box-shadow: 0 0 14px rgba(225, 48, 108, .18);
+    }
+
+    .social-btn.ig::before {
+      background: rgba(40, 10, 30, .6);
+    }
+
+    .social-btn.ig:hover::before {
+      opacity: 1;
+    }
+
+    .social-btn.yt:hover {
+      border-color: rgba(255, 0, 0, .5);
+      color: #ff0000;
+      box-shadow: 0 0 14px rgba(255, 0, 0, .18);
+    }
+
+    .social-btn.yt::before {
+      background: rgba(40, 0, 0, .6);
+    }
+
+    .social-btn.yt:hover::before {
+      opacity: 1;
+    }
+
+    .social-btn.discord:hover {
+      border-color: rgba(88, 101, 242, .55);
+      color: #5865f2;
+      box-shadow: 0 0 14px rgba(88, 101, 242, .2);
+    }
+
+    .social-btn.discord::before {
+      background: rgba(10, 14, 60, .6);
+    }
+
+    .social-btn.discord:hover::before {
+      opacity: 1;
+    }
+
+    .social-btn.tiktok:hover {
+      border-color: rgba(0, 242, 234, .4);
+      color: #00f2ea;
+      box-shadow: 0 0 14px rgba(0, 242, 234, .15);
+    }
+
+    .social-btn.tiktok::before {
+      background: rgba(0, 20, 30, .6);
+    }
+
+    .social-btn.tiktok:hover::before {
+      opacity: 1;
+    }
+
+    .trust-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .trust-badge {
@@ -951,18 +1927,18 @@
       font-size: 9px;
       letter-spacing: 1.4px;
       text-transform: uppercase;
-      color: var(--tm);
+      color: #3d5a88;
       background: rgba(8, 20, 44, .6);
-      border: 1px solid var(--border0);
+      border: 1px solid rgba(245, 166, 35, 0.10);
       border-radius: 2px;
       padding: 5px 10px;
       display: flex;
       align-items: center;
-      gap: 6px
+      gap: 6px;
     }
 
     .trust-badge svg {
-      color: var(--g500)
+      color: #f5a623;
     }
 
     .footer-bottom {
@@ -971,25 +1947,26 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      flex-wrap: wrap
+      flex-wrap: wrap;
     }
 
     .footer-copy {
       font-family: 'Share Tech Mono', monospace;
       font-size: 9.5px;
       letter-spacing: 1.2px;
-      color: var(--tm)
+      color: #3d5a88;
     }
 
     .footer-copy strong {
-      color: var(--g400);
-      font-weight: 400
+      color: #f7b84a;
+      font-weight: 400;
+      letter-spacing: 1px;
     }
 
     .footer-legal-links {
       display: flex;
       align-items: center;
-      gap: 4px
+      gap: 4px;
     }
 
     .footer-legal-links a {
@@ -997,74 +1974,116 @@
       font-size: 9px;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: var(--tm);
+      color: #3d5a88;
       text-decoration: none;
       padding: 3px 8px;
-      transition: color .18s
+      transition: color .18s;
     }
 
     .footer-legal-links a:hover {
-      color: var(--g300)
+      color: #f9cc7a;
+    }
+
+    .footer-legal-links span {
+      color: rgba(245, 166, 35, 0.22);
+      padding: 0 2px;
     }
 
     @media(max-width:1050px) {
-      .main-nav .nav-item {
-        font-size: 10px;
-        padding: 6px 7px
-      }
-
       .footer-grid {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 32px;
       }
     }
 
-    @media(max-width:800px) {
-      .btn-prime {
-        display: none
+    @media(max-width:680px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
       }
 
-      .footer-grid {
-        grid-template-columns: 1fr
+      .footer-nav-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .footer-banner {
         flex-direction: column;
-        align-items: flex-start
+        align-items: flex-start;
       }
-    }
 
-    @media(max-width:640px) {
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
 
-      .header-top-inner,
-      .header-inner {
-        padding: 0 14px
+      .footer-social-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .footer-inner {
-        padding: 0 14px
+        padding: 0 16px;
       }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/telemetry_sdk.js"></script>
+  <!-- TICKER -->
+  <style>
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: #25D366;
+      color: #fff;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      z-index: 9999;
+      text-decoration: none;
+    }
+
+    .category-bar {
+      position: sticky;
+      top: 88px;
+      z-index: 90;
+    }
+  </style>
 </head>
 
-<body data-template-id="__page-root" style="background: rgb(2, 10, 22);">
+<body>
   <div class="ticker-bar">
     <div class="ticker-inner">
-      <span class="t-live"><span class="pulse"></span>LIVE DEALS</span><span>🔥 Valorant Elderflame Bundle — Rs
-        14,399</span><span>⚡ ChatGPT Plus 1M — Rs 3,209</span><span>🎮 PS Plus 12M — Rs 9,599</span><span>💎 Adobe CC
-        All Apps — Rs 8,819</span><span>🤖 Midjourney Basic — Rs 1,609</span><span>🆓 Free Gift Card on Orders Rs
-        5,000+</span><span>🔒 SSL Secured · Instant Delivery</span><span class="t-live"><span class="pulse"></span>LIVE
-        DEALS</span><span>🔥 Valorant Elderflame Bundle — Rs 14,399</span><span>⚡ ChatGPT Plus 1M — Rs
-        3,209</span><span>🎮 PS Plus 12M — Rs 9,599</span><span>💎 Adobe CC All Apps — Rs 8,819</span><span>🤖
-        Midjourney Basic — Rs 1,609</span><span>🆓 Free Gift Card on Orders Rs 5,000+</span><span>🔒 SSL Secured ·
-        Instant Delivery</span>
+      <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
+      <span>🔥 Valorant Elderflame Bundle — $89</span>
+      <span>⚡ ChatGPT Plus 1M — $20</span>
+      <span>🎮 PS Plus 12M — $59</span>
+      <span>💎 Adobe CC All Apps — $54</span>
+      <span>🤖 Midjourney Basic — $10</span>
+      <span>🆓 Free Gift Card on Orders $50+</span>
+      <span>🔒 SSL Secured · Instant Delivery</span>
+      <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
+      <span>🔥 Valorant Elderflame Bundle — $89</span>
+      <span>⚡ ChatGPT Plus 1M — $20</span>
+      <span>🎮 PS Plus 12M — $59</span>
+      <span>💎 Adobe CC All Apps — $54</span>
+      <span>🤖 Midjourney Basic — $10</span>
+      <span>🆓 Free Gift Card on Orders $50+</span>
+      <span>🔒 SSL Secured · Instant Delivery</span>
     </div>
   </div>
-  <header class="site-header">
+  <!-- HEADER -->
+  <header>
+    <div class="hud-c">
+      <div class="hc hc-tl"></div>
+      <div class="hc hc-tr"></div>
+      <div class="hc hc-bl"></div>
+      <div class="hc hc-br"></div>
+    </div>
+    <!-- TOP ROW: search + actions -->
     <div class="header-top">
       <div class="header-top-inner">
         <div class="search-wrap">
@@ -1077,895 +2096,879 @@
               <option value="giftcards">Gift Cards</option>
               <option value="subs">Subscriptions</option>
               <option value="topup">Top Up</option>
-            </select><input class="search-input" type="text" placeholder="Search games, AI tools, subscriptions…"
-              autocomplete="off"><button class="search-btn">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
+              <option value="items">Game Items</option>
+              <option value="accounts">Accounts</option>
+            </select>
+            <span aria-hidden="true" class="search-ico">
+              <svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2.5" viewbox="0 0 24 24" width="13">
                 <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg> Search</button>
+                <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+              </svg>
+            </span>
+            <input autocomplete="off" class="search-input" placeholder="Search games, AI tools, subscriptions…"
+              type="text" />
+            <button class="search-btn">
+              <svg fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2.5" viewbox="0 0 24 24" width="12">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+              </svg>
+              Search
+            </button>
           </div>
         </div>
-        <div class="top-actions"><button class="btn-wish" id="wishlist-btn" aria-label="Wishlist">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-              </path>
-            </svg><span class="wish-count" id="wishlist-badge">0</span></button> <button class="btn-wish" id="cart-btn"
-            aria-label="Cart">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg><span class="wish-count" id="cart-badge">0</span></button> <button class="btn-login"
-            data-template-id="sign-in-btn" style="color: rgb(122, 154, 200);">Sign In</button> <button class="btn-prime"
-            data-template-id="join-btn" style="color: rgb(2, 10, 22);">✦ Join PlayBeat</button>
+        <div class="top-actions">
+          <div style="display:flex;align-items:center;gap:10px">
+            <button aria-label="Wishlist" class="btn-wish">
+              <svg fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" viewbox="0 0 24 24" width="17">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+              </svg>
+            </button>
+            <button class="btn-login">Sign In</button>
+            <button class="btn-prime">✦ Join PlayBeat</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="header-inner"><a class="logo" href="#" aria-label="PlayBeat Digital home"><span
-          class="logo-digital">Digital</span>
+    <!-- NAV ROW: logo + nav links -->
+    <div class="header-inner">
+      <a aria-label="PlayBeat Digital home" class="logo" href="index.html">
+        <span class="logo-digital">Digital</span>
         <div class="logo-wordmark">
           <span class="logo-play">play</span><span class="logo-beat">beat</span>
         </div>
+        <div
+          style="font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:#3d5a88;margin-top:1px;padding-left:2px;">
+          Digital Pvt Ltd</div>
         <div class="logo-underline"></div>
       </a>
-      <nav class="main-nav" aria-label="Main navigation"><span class="nav-item active">Home</span> <span
-          class="nav-item">Games</span> <span class="nav-item">Gift Cards</span> <span class="nav-item">Software</span>
-        <span class="nav-item">AI Tools</span> <span class="nav-item">Game Items</span> <span
-          class="nav-item">Accounts</span> <span class="nav-item">Subscriptions</span> <span class="nav-item">Top
-          Up</span> <span class="nav-sep" aria-hidden="true"></span> <span class="nav-item nav-special">🔥
-          Trending</span> <span class="nav-item nav-outsource">💎 Global</span> <span class="nav-item nav-live">⚡ Live
-          Marketplace</span>
+      <nav aria-label="Main navigation">
+        <a class="nav-item active" href="index.html">Home</a>
+        <a class="nav-item" href="games.html">Games</a>
+        <a class="nav-item" href="gift-cards.html">Gift Cards</a>
+        <a class="nav-item" href="software.html">Software</a>
+        <a class="nav-item" href="ai-tools.html">AI Tools</a>
+        <a class="nav-item" href="game-items.html">Game Items</a>
+        <a class="nav-item" href="accounts.html">Accounts</a>
+        <a class="nav-item" href="subscriptions.html">Subscriptions</a>
+        <a class="nav-item" href="top-up.html">Top Up</a>
+        <div aria-hidden="true" class="nav-sep"></div>
+        <a class="nav-item nav-special" href="trending.html">🔥 Trending</a>
+        <a class="nav-item nav-outsource" href="best-value.html">💎 Global</a>
       </nav>
     </div>
   </header>
-  <main style="max-width:1440px;margin:0 auto;padding:32px 28px;">
-    <section style="margin-bottom:40px;">
-      <h2 data-template-id="trending-title" class="canva-text section-title"
-        style="color: rgb(247, 184, 74); font-size: 21px;">🔥 Trending Searches</h2>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;"><span data-template-id="trend-1" class="canva-text trend-tag"
-          style="color: rgb(122, 154, 200);">Valorant Points</span> <span data-template-id="trend-2"
-          class="canva-text trend-tag" style="color: rgb(122, 154, 200);">ChatGPT Plus</span> <span
-          data-template-id="trend-3" class="canva-text trend-tag" style="color: rgb(122, 154, 200);">PS Plus 12
-          Month</span> <span data-template-id="trend-4" class="canva-text trend-tag"
-          style="color: rgb(122, 154, 200);">Xbox Game Pass</span> <span data-template-id="trend-5"
-          class="canva-text trend-tag" style="color: rgb(122, 154, 200);">Adobe Creative Cloud</span> <span
-          data-template-id="trend-6" class="canva-text trend-tag" style="color: rgb(122, 154, 200);">Steam Gift
-          Card</span> <span data-template-id="trend-7" class="canva-text trend-tag"
-          style="color: rgb(122, 154, 200);">Midjourney Pro</span> <span data-template-id="trend-8"
-          class="canva-text trend-tag" style="color: rgb(122, 154, 200);">Fortnite V-Bucks</span>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">⚡ Live Marketplace</div>
+    <h1>The Digital<br /><span>Heaven</span></h1>
+    <p class="hero-sub">WORLD WIDE SUBSCRIPTIONS, PREMIUM ACCOUNTS , GAMES HUB AND POPULAR STREAMING APP'S.</p>
+    <div class="hero-search">
+      <input placeholder="Search a game, item, or service…" type="text" />
+      <button>Search</button>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">2.7M+</div>
+        <div class="hero-stat-label">Active Offers</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">850K+</div>
+        <div class="hero-stat-label">Sellers</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">190+</div>
+        <div class="hero-stat-label">Countries</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">4.9★</div>
+        <div class="hero-stat-label">Avg Rating</div>
+      </div>
+    </div>
+  </section>
+  <!-- CATEGORY TABS -->
+  <div class="category-bar">
+    <div class="cat-tab active"><span class="tab-icon">🎮</span> All</div>
+    <div class="cat-tab"><span class="tab-icon">🪙</span> Game Coins</div>
+    <div class="cat-tab"><span class="tab-icon">⚔️</span> Items</div>
+    <div class="cat-tab"><span class="tab-icon">🎴</span> Accounts</div>
+    <div class="cat-tab"><span class="tab-icon">🚀</span> Boosting</div>
+    <div class="cat-tab"><span class="tab-icon">🎓</span> Coaching</div>
+    <div class="cat-tab"><span class="tab-icon">🎁</span> Gift Cards</div>
+    <div class="cat-tab"><span class="tab-icon">💎</span> Skins</div>
+    <div class="cat-tab"><span class="tab-icon">📱</span> Mobile</div>
+    <div class="cat-tab"><span class="tab-icon">💻</span> Software</div>
+    <div class="cat-tab"><span class="tab-icon">💳</span> Payment Cards</div>
+  </div>
+  <!-- MAIN CONTENT -->
+  <div style="background: var(--bg);">
+
+    <body>
+
+      <header>
+        <div class="logo">play<span>beat</span></div>
+
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">Games</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Software</a>
+          <a href="#">AI Tools</a>
+          <a href="#">Game Items</a>
+          <a href="#">Accounts</a>
+          <a href="#">Subscriptions</a>
+          <a href="#">Top Up</a>
+          <a href="#">🔥 Trending</a>
+          <a href="#">💎 Global</a>
+        </nav>
+      </header>
+
+      <!-- TRENDING -->
+      <section class="section">
+        <h2 class="section-title">🔥 Trending</h2>
+
+        <div class="product-grid">
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- GLOBAL -->
+      <section class="section">
+        <h2 class="section-title">💎 Global</h2>
+
+        <div class="product-grid">
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- DISCOUNTS -->
+      <section class="section">
+        <h2 class="section-title">🏷️ Discounts</h2>
+
+        <div class="product-grid">
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+          <div class="product-card"><img src="" alt=""><button class="wishlist-btn">♡</button>
+            <h3>Product Name</h3>
+            <p class="price">Rs 0</p>
+            <div class="actions"><button class="add-cart-btn">Add to Cart</button><button class="buy-btn">Buy
+                Now</button></div>
+          </div>
+
+        </div>
+      </section>
+  </div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="f-hud">
+      <div class="f-hc f-hc-tl"></div>
+      <div class="f-hc f-hc-tr"></div>
+      <div class="f-hc f-hc-bl"></div>
+      <div class="f-hc f-hc-br"></div>
+    </div>
+    <div class="footer-inner">
+      <!-- LOGO BANNER + SUPPORT -->
+      <div class="footer-banner">
+        <a aria-label="PlayBeat Digital home" class="footer-logo" href="index.html">
+          <span class="footer-logo-digital">Digital</span>
+          <div class="footer-logo-wordmark">
+            <span class="footer-logo-play">play</span><span class="footer-logo-beat">beat</span>
+          </div>
+          <div class="footer-logo-pvt">Digital Pvt Ltd</div>
+          <div class="footer-logo-line"></div>
+          <p class="footer-tagline">Driven by <span class="ft-play">Play</span>, Defined by <span
+              class="ft-beat">beat.</span></p>
+        </a>
+        <div class="footer-support">
+          <span class="support-label">Support</span>
+          <a class="btn-support email" href="mailto:support@playbeat.digital">
+            <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewbox="0 0 24 24" width="15">
+              <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            Email
+          </a>
+          <a class="btn-support whatsapp" href="https://wa.me/923390005715" rel="noopener" target="_blank">
+            <svg fill="currentColor" height="15" viewbox="0 0 24 24" width="15">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z">
+              </path>
+            </svg>
+            WhatsApp
+          </a>
+          <a class="btn-support telegram" href="https://t.me/pbeatdigi" rel="noopener" target="_blank">
+            <svg fill="currentColor" height="15" viewbox="0 0 24 24" width="15">
+              <path
+                d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z">
+              </path>
+            </svg>
+            Telegram
+          </a>
+        </div>
+      </div>
+      <!-- MAIN LINK GRID -->
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 class="footer-col-title">Marketplace</h3>
+          <div class="footer-nav-grid">
+            <a class="footer-nav-link" href="index.html">Home</a>
+            <a class="footer-nav-link" href="games.html">Games</a>
+            <a class="footer-nav-link" href="gift-cards.html">Gift Cards</a>
+            <a class="footer-nav-link" href="software.html">Software</a>
+            <a class="footer-nav-link" href="ai-tools.html">AI Tools</a>
+            <a class="footer-nav-link" href="game-items.html">Game Items</a>
+            <a class="footer-nav-link" href="accounts.html">Accounts</a>
+            <a class="footer-nav-link" href="subscriptions.html">Subscriptions</a>
+            <a class="footer-nav-link" href="top-up.html">Top Up</a>
+            <a class="footer-nav-link" href="file:///C:/Users/playb/Downloads/my-account.html">My Account</a>
+            <a class="footer-nav-link special" href="trending.html">🔥 Trending</a>
+            <a class="footer-nav-link special" href="best-value.html">💎 Best Value</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Discover</h3>
+          <ul class="footer-link-list">
+            <li><a href="trending.html">🔥 Trending</a></li>
+            <li><a href="best-value.html">💎 Best Value</a></li>
+            <li><a href="file:///C:/Users/playb/Downloads/outsource.html">Outsource</a></li>
+            <li><a href="file:///C:/Users/playb/Downloads/our-team.html">Our Team</a></li>
+            <li><a href="file:///C:/Users/playb/Downloads/faq.html">FAQ</a></li>
+            <li><a href="file:///C:/Users/playb/Downloads/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Legal</h3>
+          <ul class="footer-link-list">
+            <li><a href="file:///C:/Users/playb/Downloads/privacy.html">Privacy Policy</a></li>
+            <li><a href="file:///C:/Users/playb/Downloads/terms.html">Terms of Service</a></li>
+            <li><a href="file:///C:/Users/playb/Downloads/refund.html">Refund Policy</a></li>
+            <li><a href="file:///C:/Users/playb/Downloads/my-account.html">My Account</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Newsletter</h3>
+          <p style="font-family:'Exo 2',sans-serif;font-size:11.5px;color:#3d5a88;line-height:1.75;margin-bottom:14px;">
+            Get exclusive deals, flash sales, and new arrivals straight to your inbox.</p>
+          <div style="display:flex;gap:0;border:1px solid rgba(245,166,35,0.22);border-radius:3px;overflow:hidden;">
+            <input onblur="this.parentElement.style.borderColor='rgba(245,166,35,0.22)'"
+              onfocus="this.parentElement.style.borderColor='#f5a623'" placeholder="your@email.com"
+              style="flex:1;background:rgba(8,20,44,.85);border:none;color:#e2ecff;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.8px;padding:9px 12px;outline:none;"
+              type="email" />
+            <button onmouseout="this.style.filter='none'" onmouseover="this.style.filter='brightness(1.18)'"
+              style="background:linear-gradient(135deg,#8a5400,#c07800,#f5a623);border:none;color:#020a16;padding:9px 14px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;transition:filter .2s;white-space:nowrap;">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <!-- SOCIAL + TRUST -->
+      <div class="footer-social-row">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <span class="social-label">Follow Us</span>
+          <div class="social-icons">
+            <a aria-label="X / Twitter" class="social-btn x" href="https://twitter.com/playbeat" rel="noopener"
+              target="_blank">
+              <svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Facebook" class="social-btn fb" href="https://facebook.com/playbeat" rel="noopener"
+              target="_blank">
+              <svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Instagram" class="social-btn ig" href="https://instagram.com/playbeat" rel="noopener"
+              target="_blank">
+              <svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="YouTube" class="social-btn yt" href="https://youtube.com/@playbeat" rel="noopener"
+              target="_blank">
+              <svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Discord" class="social-btn discord" href="https://discord.gg/playbeat" rel="noopener"
+              target="_blank">
+              <svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+                <path
+                  d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="TikTok" class="social-btn tiktok" href="https://tiktok.com/@playbeat" rel="noopener"
+              target="_blank">
+              <svg fill="currentColor" height="15" viewbox="0 0 24 24" width="15">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.2 8.2 0 0 0 4.79 1.52V6.9a4.85 4.85 0 0 1-1.02-.21z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="trust-badges">
+          <span class="trust-badge"><svg fill="none" height="11" stroke="currentColor" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="11">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>SSL Secured</span>
+          <span class="trust-badge"><svg fill="none" height="11" stroke="currentColor" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="11">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+            </svg>Instant Delivery</span>
+          <span class="trust-badge"><svg fill="none" height="11" stroke="currentColor" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="11">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>Trusted Sellers</span>
+          <span class="trust-badge"><svg fill="none" height="11" stroke="currentColor" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="11">
+              <rect height="16" rx="2" width="22" x="1" y="4"></rect>
+              <line x1="1" x2="23" y1="10" y2="10"></line>
+            </svg>Secure Payment</span>
+        </div>
+      </div>
+      <!-- BOTTOM BAR -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© <span id="yr">2026</span> <strong>PlayBeat Digital</strong> — All rights reserved.
+          Prices in USD.</p>
+        <nav aria-label="Legal" class="footer-legal-links">
+          <a href="file:///C:/Users/playb/Downloads/privacy.html">Privacy</a><span aria-hidden="true">·</span>
+          <a href="file:///C:/Users/playb/Downloads/terms.html">Terms</a><span aria-hidden="true">·</span>
+          <a href="file:///C:/Users/playb/Downloads/refund.html">Refunds</a><span aria-hidden="true">·</span>
+          <a href="file:///C:/Users/playb/Downloads/contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <!-- SIGN UP MODAL -->
+  <div id="signupModal"
+    style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; display:flex; align-items:center; justify-content:center;">
+    <div
+      style="background:#0a0b0f; border:1px solid rgba(245,166,35,0.22); border-radius:20px; padding:40px; max-width:420px; width:90%; box-shadow:0 28px 80px rgba(0,0,0,0.5); backdrop-filter:blur(12px);">
+      <div style="text-align:center; margin-bottom:30px;">
+        <h2 style="margin:0 0 8px; font-size:28px; color:#f0ece4;">Join PlayBeat</h2>
+        <p style="margin:0; color:#7a9ac8; font-size:14px;">Create your account to start shopping</p>
+      </div>
+      <form id="signupForm" onsubmit="submitSignup(event)" style="display:grid; gap:16px;">
+        <div>
+          <label
+            style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">First
+            Name *</label>
+          <input id="firstName" placeholder="John" required=""
+            style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;"
+            type="text" />
+        </div>
+        <div>
+          <label
+            style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">Last
+            Name *</label>
+          <input id="lastName" placeholder="Doe" required=""
+            style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;"
+            type="text" />
+        </div>
+        <div>
+          <label
+            style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">Mobile
+            Number *</label>
+          <input id="mobileNumber" placeholder="+92 300 0000000" required=""
+            style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;"
+            type="tel" />
+        </div>
+        <div>
+          <label
+            style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">Email
+            Address *</label>
+          <input id="emailSignup" placeholder="your@email.com" required=""
+            style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;"
+            type="email" />
+        </div>
+        <div style="display:flex; gap:10px; margin-top:10px;">
+          <button
+            style="flex:1; background:linear-gradient(135deg,#8a5400,#c07800,#f5a623); border:none; color:#020a16; padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer; transition:filter .2s;"
+            type="submit">Create Account</button>
+          <button onclick="closeSignup()"
+            style="flex:1; background:rgba(255,255,255,0.08); border:1px solid rgba(245,166,35,0.22); color:#7a9ac8; padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer;"
+            type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    function showSignup() {
+      document.getElementById('signupModal').style.display = 'flex';
+      document.getElementById('firstName').focus();
+    }
+
+    function closeSignup() {
+      document.getElementById('signupModal').style.display = 'none';
+      document.getElementById('signupForm').reset();
+    }
+
+    function submitSignup(event) {
+      event.preventDefault();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const mobileNumber = document.getElementById('mobileNumber').value.trim();
+      const emailSignup = document.getElementById('emailSignup').value.trim();
+
+      if (!firstName || !lastName || !mobileNumber || !emailSignup) {
+        alert('⚠ Please fill in all fields');
+        return;
+      }
+
+      // Create new user object
+      const newUser = {
+        id: 'user_' + Date.now(),
+        firstName: firstName,
+        lastName: lastName,
+        mobileNumber: mobileNumber,
+        email: emailSignup,
+        registeredAt: new Date().toLocaleString(),
+        status: 'Active'
+      };
+
+      // Get existing registered users
+      let registeredUsers = JSON.parse(localStorage.getItem('pb_registered_users')) || [];
+
+      // Check if email already exists
+      if (registeredUsers.find(u => u.email === emailSignup)) {
+        alert('⚠ Email already registered! Please use Sign In instead.');
+        return;
+      }
+
+      // Add new user
+      registeredUsers.push(newUser);
+      localStorage.setItem('pb_registered_users', JSON.stringify(registeredUsers));
+
+      // Set current customer session
+      localStorage.setItem('pb_customer_email', emailSignup);
+      localStorage.setItem('pb_customer_name', firstName + ' ' + lastName);
+      localStorage.setItem('pb_customer_phone', mobileNumber);
+
+      alert('✅ Welcome to PlayBeat, ' + firstName + '!\n\nAccount created successfully.\n\nName: ' + firstName + ' ' + lastName + '\nEmail: ' + emailSignup + '\nMobile: ' + mobileNumber + '\n\nStart shopping now!');
+
+      closeSignup();
+    }
+
+    // Search functionality - for customers to find products
+    document.querySelector('.search-btn').addEventListener('click', function () {
+      const searchInput = document.querySelector('.search-input').value.trim();
+      const category = document.querySelector('.search-category').value;
+      if (searchInput) {
+        console.log('Search:', searchInput, 'Category:', category);
+        alert('🔍 Searching for: "' + searchInput + '"\n' + (category ? 'Category: ' + category : 'All Categories'));
+      } else {
+        alert('⚠ Please enter a search term');
+      }
+    });
+
+    // Search input - submit on Enter key
+    document.querySelector('.search-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        document.querySelector('.search-btn').click();
+      }
+    });
+
+    // Sign In button - customer login for checkout & order tracking
+    document.querySelector('.btn-login').addEventListener('click', function () {
+      const customerEmail = prompt('📧 Enter your email address to sign in:');
+      if (customerEmail) {
+        const registeredUsers = JSON.parse(localStorage.getItem('pb_registered_users')) || [];
+        const user = registeredUsers.find(u => u.email === customerEmail);
+
+        if (user) {
+          localStorage.setItem('pb_customer_email', user.email);
+          localStorage.setItem('pb_customer_name', user.firstName + ' ' + user.lastName);
+          localStorage.setItem('pb_customer_phone', user.mobileNumber);
+          alert('✔ Logged in as ' + user.firstName + ' ' + user.lastName + '\n\nYou can now proceed to checkout and track your orders.');
+        } else {
+          alert('⚠ Email not found. Please create an account first.');
+        }
+      }
+    });
+
+    // Join PlayBeat button - new customer registration
+    document.querySelector('.btn-prime').addEventListener('click', function () {
+      showSignup();
+    });
+
+    // Wishlist button
+    document.querySelector('.btn-wish').addEventListener('click', function () {
+      const email = localStorage.getItem('pb_customer_email');
+      if (email) {
+        alert('❤️ Wishlist\n\nLogged in as: ' + email + '\n\nWishlist feature - Coming soon!');
+      } else {
+        const login = confirm('Sign in to access your wishlist?\n\nClick OK to login or join.');
+        if (login) {
+          const choice = confirm('Do you have an existing account?\n\nOK = Sign In | Cancel = Join');
+          if (choice) {
+            document.querySelector('.btn-login').click();
+          } else {
+            showSignup();
+          }
+        }
+      }
+    });
+  </script>
+  <a class="floating-whatsapp" href="#">💬</a>
+  <main>
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title"><span>01</span>Featured Grid</div>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 1</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 2</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 3</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 4</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 5</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 6</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 7</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 8</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 9</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 10</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 11</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 12</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 13</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 14</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 15</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Featured Grid Item 16</div>
+        </div>
       </div>
     </section>
-    <main class="products-section">
-      <div class="product-grid">
-
-        <!-- Product 1 -->
-        <div class="product-card">
-          <img src="product1.jpg" alt="Product 1">
-          <button class="wishlist-btn">♡</button>
-          <h3>Product 1</h3>
-          <p class="price">Rs 2,999</p>
-          <div class="actions">
-            <button>Add to Cart</button>
-            <button>Buy Now</button>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-          <img src="product2.jpg" alt="Product 2">
-          <button class="wishlist-btn">♡</button>
-          <h3>Product 2</h3>
-          <p class="price">Rs 3,499</p>
-          <div class="actions">
-            <button>Add to Cart</button>
-            <button>Buy Now</button>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-          <img src="product3.jpg" alt="Product 3">
-          <button class="wishlist-btn">♡</button>
-          <h3>Product 3</h3>
-          <p class="price">Rs 1,999</p>
-          <div class="actions">
-            <button>Add to Cart</button>
-            <button>Buy Now</button>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-          <img src="product4.jpg" alt="Product 4">
-          <button class="wishlist-btn">♡</button>
-          <h3>Product 4</h3>
-          <p class="price">Rs 4,299</p>
-          <div class="actions">
-            <button>Add to Cart</button>
-            <button>Buy Now</button>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-          <img src="product5.jpg" alt="Product 5">
-          <button class="wishlist-btn">♡</button>
-          <h3>Product 5</h3>
-          <p class="price">Rs 5,999</p>
-          <div class="actions">
-            <button>Add to Cart</button>
-            <button>Buy Now</button>
-          </div>
-        </div>
-
+    <div style="height:1px;background:rgba(255,255,255,.08);max-width:1280px;margin:0 auto;"></div>
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title"><span>02</span>Categories</div>
       </div>
-    </main>
-    /* ═══════════════════════════════════════════════════════
-    FOOTER
-    ═══════════════════════════════════════════════════════ */
-    .site-footer {
-    background: linear-gradient(180deg, var(--n800) 0%, var(--n900) 100%);
-    border-top: 1px solid var(--border1);
-    position: relative;
-    overflow: hidden;
-    }
-
-    /* amber top rule with glow — mirrors header */
-    .site-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--g800) 15%, var(--g500) 40%, var(--g400) 50%, var(--g500)
-    60%, var(--g800) 85%, transparent 100%);
-    box-shadow: var(--glow);
-    }
-
-    /* subtle grid texture — mirrors header::after */
-    .site-footer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: linear-gradient(rgba(245, 166, 35, .018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 166, 35, .018) 1px, transparent 1px);
-    background-size: 52px 52px;
-    mask-image: linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, transparent 100%);
-    }
-
-    /* HUD corner accents */
-    .f-hud {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    }
-
-    .f-hc {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    opacity: .35;
-    }
-
-    .f-hc-tl {
-    top: 8px;
-    left: 8px;
-    border-top: 1px solid var(--g500);
-    border-left: 1px solid var(--g500);
-    }
-
-    .f-hc-tr {
-    top: 8px;
-    right: 8px;
-    border-top: 1px solid var(--g500);
-    border-right: 1px solid var(--g500);
-    }
-
-    .f-hc-bl {
-    bottom: 8px;
-    left: 8px;
-    border-bottom: 1px solid var(--g500);
-    border-left: 1px solid var(--g500);
-    }
-
-    .f-hc-br {
-    bottom: 8px;
-    right: 8px;
-    border-bottom: 1px solid var(--g500);
-    border-right: 1px solid var(--g500);
-    }
-
-    .footer-inner {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 28px;
-    position: relative;
-    z-index: 2;
-    }
-
-    /* ── LOGO BANNER STRIP ────────────────────────────────── */
-    .footer-banner {
-    padding: 42px 0 36px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border0);
-    gap: 24px;
-    flex-wrap: wrap;
-    }
-
-    /* Logo block (same structure as header) */
-    .footer-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-decoration: none;
-    gap: 2px;
-    flex-shrink: 0;
-    }
-
-    .footer-logo-digital {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 8.5px;
-    letter-spacing: 3.5px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #8fa8c8, #b8cde8, #7a9ac8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    padding-left: 2px;
-    }
-
-    .footer-logo-wordmark {
-    display: flex;
-    align-items: baseline;
-    filter: drop-shadow(0 0 10px rgba(245, 166, 35, .35));
-    transition: filter .3s;
-    }
-
-    .footer-logo:hover .footer-logo-wordmark {
-    filter: drop-shadow(0 0 22px rgba(245, 166, 35, .7));
-    }
-
-    .footer-logo-play {
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    letter-spacing: -1px;
-    color: #ffffff;
-    line-height: 1;
-    }
-
-    .footer-logo-beat {
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    letter-spacing: -1px;
-    line-height: 1;
-    background: linear-gradient(170deg, #f9cc7a 0%, #f5a623 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    }
-
-    .footer-logo-line {
-    height: 1px;
-    width: 100%;
-    margin-top: 4px;
-    background: linear-gradient(90deg, var(--g500), transparent 80%);
-    opacity: .5;
-    }
-
-    .footer-tagline {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: var(--tm);
-    margin-top: 8px;
-    padding-left: 2px;
-    }
-
-    /* Support buttons (right of banner) */
-    .footer-support {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    }
-
-    .support-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--tm);
-    margin-right: 4px;
-    }
-
-    .btn-support {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    border-radius: 3px;
-    padding: 9px 16px;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    transition: all .22s;
-    position: relative;
-    overflow: hidden;
-    white-space: nowrap;
-    }
-
-    .btn-support::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -110%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
-    transition: left .5s;
-    }
-
-    .btn-support:hover::before {
-    left: 150%;
-    }
-
-    .btn-support.email {
-    background: rgba(8, 20, 44, .9);
-    border: 1px solid var(--border1);
-    color: var(--ts);
-    }
-
-    .btn-support.email:hover {
-    border-color: var(--g500);
-    color: var(--g300);
-    box-shadow: var(--glow);
-    }
-
-    .btn-support.whatsapp {
-    background: rgba(7, 46, 20, .85);
-    border: 1px solid rgba(37, 211, 102, .25);
-    color: #25d366;
-    }
-
-    .btn-support.whatsapp:hover {
-    border-color: rgba(37, 211, 102, .6);
-    color: #4ade80;
-    box-shadow: 0 0 16px rgba(37, 211, 102, .2);
-    }
-
-    .btn-support.telegram {
-    background: rgba(4, 22, 50, .85);
-    border: 1px solid rgba(0, 136, 204, .28);
-    color: #29a8e0;
-    }
-
-    .btn-support.telegram:hover {
-    border-color: rgba(0, 136, 204, .6);
-    color: #60d0ff;
-    box-shadow: 0 0 16px rgba(0, 136, 204, .22);
-    }
-
-    /* ── MAIN FOOTER GRID ─────────────────────────────────── */
-    .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px 40px;
-    padding: 40px 0 36px;
-    border-bottom: 1px solid var(--border0);
-    }
-
-    .footer-col-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--g400);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    }
-
-    .footer-col-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border1), transparent);
-    }
-
-    /* Marketplace nav links (col 1 — spans wider) */
-    .footer-nav-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 16px;
-    }
-
-    .footer-nav-link {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: .4px;
-    color: var(--ts);
-    text-decoration: none;
-    padding: 5px 8px;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    transition: color .18s, border-color .18s, background .18s;
-    position: relative;
-    }
-
-    .footer-nav-link::before {
-    content: '';
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--tm);
-    flex-shrink: 0;
-    transition: background .18s, box-shadow .18s;
-    }
-
-    .footer-nav-link:hover {
-    color: var(--g300);
-    border-color: var(--border0);
-    background: rgba(245, 166, 35, .04);
-    }
-
-    .footer-nav-link:hover::before {
-    background: var(--g500);
-    box-shadow: 0 0 6px var(--g500);
-    }
-
-    .footer-nav-link.special {
-    color: var(--g400);
-    }
-
-    .footer-nav-link.special::before {
-    background: var(--g700);
-    }
-
-    .footer-nav-link.special:hover {
-    color: var(--g200);
-    }
-
-    .footer-nav-link.cyan {
-    color: var(--cy);
-    }
-
-    .footer-nav-link.cyan::before {
-    background: var(--cy);
-    }
-
-    .footer-nav-link.cyan:hover {
-    color: var(--cy2);
-    border-color: rgba(0, 212, 255, .2);
-    }
-
-    /* Regular list links (col 2, 3, 4) */
-    .footer-link-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    }
-
-    .footer-link-list li a {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: .4px;
-    color: var(--ts);
-    text-decoration: none;
-    padding: 5px 8px;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color .18s, border-color .18s, background .18s;
-    }
-
-    .footer-link-list li a::before {
-    content: '';
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--tm);
-    flex-shrink: 0;
-    transition: background .18s, box-shadow .18s;
-    }
-
-    .footer-link-list li a:hover {
-    color: var(--g300);
-    border-color: var(--border0);
-    background: rgba(245, 166, 35, .04);
-    }
-
-    .footer-link-list li a:hover::before {
-    background: var(--g500);
-    box-shadow: 0 0 6px var(--g500);
-    }
-
-    /* ── SOCIAL ROW ───────────────────────────────────────── */
-    .footer-social-row {
-    padding: 28px 0 26px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border0);
-    gap: 20px;
-    flex-wrap: wrap;
-    }
-
-    .social-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--tm);
-    }
-
-    .social-icons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    }
-
-    .social-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
-    background: rgba(8, 20, 44, .85);
-    border: 1px solid var(--border1);
-    color: var(--ts);
-    transition: all .22s;
-    position: relative;
-    overflow: hidden;
-    }
-
-    .social-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity .22s;
-    }
-
-    .social-btn:hover {
-    transform: translateY(-2px);
-    }
-
-    .social-btn svg {
-    position: relative;
-    z-index: 1;
-    }
-
-    /* per-platform colours */
-    .social-btn.x:hover {
-    border-color: rgba(255, 255, 255, .4);
-    color: #fff;
-    box-shadow: 0 0 14px rgba(255, 255, 255, .12);
-    }
-
-    .social-btn.x::before {
-    background: rgba(30, 30, 30, .6);
-    }
-
-    .social-btn.x:hover::before {
-    opacity: 1;
-    }
-
-    .social-btn.fb:hover {
-    border-color: rgba(66, 103, 178, .6);
-    color: #4267b2;
-    box-shadow: 0 0 14px rgba(66, 103, 178, .2);
-    }
-
-    .social-btn.fb::before {
-    background: rgba(10, 20, 60, .6);
-    }
-
-    .social-btn.fb:hover::before {
-    opacity: 1;
-    }
-
-    .social-btn.ig:hover {
-    border-color: rgba(225, 48, 108, .5);
-    color: #e1306c;
-    box-shadow: 0 0 14px rgba(225, 48, 108, .18);
-    }
-
-    .social-btn.ig::before {
-    background: rgba(40, 10, 30, .6);
-    }
-
-    .social-btn.ig:hover::before {
-    opacity: 1;
-    }
-
-    .social-btn.yt:hover {
-    border-color: rgba(255, 0, 0, .5);
-    color: #ff0000;
-    box-shadow: 0 0 14px rgba(255, 0, 0, .18);
-    }
-
-    .social-btn.yt::before {
-    background: rgba(40, 0, 0, .6);
-    }
-
-    .social-btn.yt:hover::before {
-    opacity: 1;
-    }
-
-    .social-btn.discord:hover {
-    border-color: rgba(88, 101, 242, .55);
-    color: #5865f2;
-    box-shadow: 0 0 14px rgba(88, 101, 242, .2);
-    }
-
-    .social-btn.discord::before {
-    background: rgba(10, 14, 60, .6);
-    }
-
-    .social-btn.discord:hover::before {
-    opacity: 1;
-    }
-
-    .social-btn.tiktok:hover {
-    border-color: rgba(0, 242, 234, .4);
-    color: #00f2ea;
-    box-shadow: 0 0 14px rgba(0, 242, 234, .15);
-    }
-
-    .social-btn.tiktok::before {
-    background: rgba(0, 20, 30, .6);
-    }
-
-    .social-btn.tiktok:hover::before {
-    opacity: 1;
-    }
-
-    /* trust badges */
-    .trust-badges {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    }
-
-    .trust-badge {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    color: var(--tm);
-    background: rgba(8, 20, 44, .6);
-    border: 1px solid var(--border0);
-    border-radius: 2px;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    }
-
-    .trust-badge svg {
-    color: var(--g500);
-    }
-
-    /* ── BOTTOM BAR ───────────────────────────────────────── */
-    .footer-bottom {
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    }
-
-    .footer-copy {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 1.2px;
-    color: var(--tm);
-    }
-
-    .footer-copy strong {
-    color: var(--g400);
-    font-weight: 400;
-    letter-spacing: 1px;
-    }
-
-    .footer-legal-links {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    }
-
-    .footer-legal-links a {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--tm);
-    text-decoration: none;
-    padding: 3px 8px;
-    transition: color .18s;
-    }
-
-    .footer-legal-links a:hover {
-    color: var(--g300);
-    }
-
-    .footer-legal-links span {
-    color: var(--border1);
-    padding: 0 2px;
-    }
-
-    /* ─── RESPONSIVE ──────────────────────────────────────── */
-    @media(max-width:1050px) {
-    .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 36px 32px;
-    }
-    }
-
-    @media(max-width:680px) {
-    .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    }
-
-    .footer-nav-grid {
-    grid-template-columns: 1fr 1fr;
-    }
-
-    .footer-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    }
-
-    .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    }
-
-    .footer-social-row {
-    flex-direction: column;
-    align-items: flex-start;
-    }
-
-    .footer-inner {
-    padding: 0 16px;
-    }
-    }
-    </style>
-    </head>
-
-    <!-- ════════════════════════════════════════════════════════
-  FOOTER
-═══════════════════════════════════════════════════════ -->
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Playbeat Digital</title>
-      <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-
-      <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-      <style>
-        body {
-          font-family: 'Exo 2', sans-serif;
-        }
-      </style>
-      <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-      <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
-      <script src="/_sdk/telemetry_sdk.js"></script>
-    </head>
-
-    <body data-template-id="__page-root" class="min-h-screen flex flex-col" style="background: rgb(0, 0, 0);">
-      <footer class="w-full mt-auto">
-        <div class="max-w-6xl mx-auto px-6 py-12">
-
-          <div>
-            <h3 data-template-id="col-discover" class="canva-text font-semibold uppercase tracking-wider text-sm mb-4"
-              style="color: rgb(255, 255, 255); font-weight: 600; font-size: 16px;">Discover</h3>
-            <ul class="space-y-2">
-              <li><span data-template-id="nav-trending" class="canva-text text-sm cursor-default"
-                  style="color: rgb(204, 204, 204);">🔥 Trending</span></li>
-              <li><span data-template-id="nav-bestvalue" class="canva-text text-sm cursor-default"
-                  style="color: rgb(204, 204, 204);">💎 Best Value</span></li>
-              <li><span data-template-id="nav-outsource" class="canva-text text-sm cursor-default"
-                  style="color: rgb(204, 204, 204);">Outsource</span></li>
-              <li><span data-template-id="nav-team" class="canva-text text-sm cursor-default"
-                  style="color: rgb(204, 204, 204);">Our Team</span></li>
-              <li><span data-template-id="nav-faq" class="canva-text text-sm cursor-default"
-                  style="color: rgb(204, 204, 204);">FAQ</span></li>
-              <li><span data-template-id="nav-contact" class="canva-text text-sm cursor-default"
-                  style="color: rgb(204, 204, 204);">Contact Us</span></li>
-            </ul>
-          </div>
-          <div>
-            <h3 data-template-id="col-newsletter" class="canva-text font-semibold uppercase tracking-wider text-sm mb-4"
-              style="color: rgb(255, 255, 255); font-weight: 600; font-size: 16px;">Newsletter</h3>
-            <p data-template-id="newsletter-desc" class="canva-text text-sm mb-4" style="color: rgb(204, 204, 204);">Get
-              exclusive deals, flash sales, and new arrivals straight
-              to your inbox.</p>
-            <form id="newsletter-form" class="flex gap-2">
-              <input data-template-id="newsletter-input" type="email" required=""
-                class="canva-input flex-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-purple-400"
-                placeholder="your@email.com" style="color: rgb(204, 204, 204);"> <button
-                data-template-id="newsletter-btn" type="submit"
-                class="canva-button px-4 py-2 rounded-lg text-sm font-semibold transition hover:opacity-90"
-                style="background: rgb(251, 191, 36); color: rgb(0, 0, 0); font-weight: 600;">Subscribe</button>
-            </form>
-            <p id="newsletter-success" class="text-emerald-400 text-xs mt-2 hidden">Subscribed!</p>
-          </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 1</div>
         </div>
-        <div class="flex flex-col items-center gap-4 pt-6 border-t border-white/10">
-          <div class="flex gap-4 flex-wrap justify-center">
-            <a href="https://facebook.com/playbeatdigital" target="_blank" rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition"><i
-                data-lucide="facebook" class="w-5 h-5" style="color:#1877f2"></i></a>
-            <a href="https://instagram.com/playbeatdigital" target="_blank" rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition"><i
-                data-lucide="instagram" class="w-5 h-5" style="color:#f472b6"></i></a>
-            <a href="https://tiktok.com/@playbeatdigital" target="_blank" rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition"><i
-                data-lucide="music-2" class="w-5 h-5" style="color:#ffffff"></i></a>
-            <a href="mailto:support@business.playbeat" target="_blank" rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition"><i
-                data-lucide="mail" class="w-5 h-5" style="color:#ffffff"></i></a>
-            <a href="https://t.me/playbeatdigital" target="_blank" rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition"><i
-                data-lucide="send" class="w-5 h-5" style="color:#26a5e4"></i></a>
-            <a href="https://wa.me/923390005715" target="_blank" rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition"><i
-                data-lucide="message-circle" class="w-5 h-5" style="color:#25d366"></i></a>
-          </div>
-          <p data-template-id="copyright" class="canva-text text-xs" style="color: rgba(255, 255, 255, 0.6);">©
-            2026 PlayBeat Digital — All rights reserved. Prices in USD.</p>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 2</div>
         </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 3</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 4</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 5</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 6</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 7</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 8</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 9</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 10</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 11</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 12</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 13</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 14</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 15</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Categories Item 16</div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:rgba(255,255,255,.08);max-width:1280px;margin:0 auto;"></div>
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title"><span>03</span>Products</div>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-card-body">Products Item 1</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 2</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 3</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 4</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 5</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 6</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 7</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 8</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 9</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 10</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 11</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 12</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 13</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 14</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 15</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">Products Item 16</div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:rgba(255,255,255,.08);max-width:1280px;margin:0 auto;"></div>
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title"><span>04</span>New Arrivals</div>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 1</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 2</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 3</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 4</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 5</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 6</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 7</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 8</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 9</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 10</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 11</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 12</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 13</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 14</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 15</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-body">New Arrivals Item 16</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
 
-      </footer>
-      <script src="/_sdk/editing_sdk.js"></script>
-      <script>
-        lucide.createIcons();
-        document.getElementById('newsletter-form').addEventListener('submit', function (e) {
-          e.preventDefault();
-          this.querySelector('input').value = '';
-          document.getElementById('newsletter-success').classList.remove('hidden');
-          setTimeout(() => document.getElementById('newsletter-success').classList.add('hidden'), 3000);
-        });
-      </script>
-      <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'a05d25f779da6f00',t:'MTc4MDQ3MzQ2MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
-
-
-    </body>
-
-    </html>
+</html>
