@@ -1,631 +1,2176 @@
 <!DOCTYPE html>
-<a href="index.html" class="nav-item">HOME</a>
-<a href="privacy.html" class="nav-item active">privacy</a>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — PlayBeat Digital</title>
-<link rel="stylesheet" href="shared.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<style>
-/* ── HEADER v3 ─────────────────────────────────────────────── */
-.ticker-bar{background:linear-gradient(90deg,var(--n900),#060f22,var(--n900));border-bottom:1px solid var(--border0);height:30px;overflow:hidden;position:relative;}
-.ticker-bar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(245,166,35,.018) 3px,rgba(245,166,35,.018) 6px);pointer-events:none;}
-.ticker-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--n900) 0%,transparent 90px),linear-gradient(270deg,var(--n900) 0%,transparent 90px);pointer-events:none;z-index:2;}
-.ticker-inner{display:inline-flex;align-items:center;height:100%;white-space:nowrap;animation:tickscroll 55s linear infinite;}
-@keyframes tickscroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ticker-inner span{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.8px;color:var(--tm);padding:0 18px;border-right:1px solid var(--border0);position:relative;z-index:1;transition:color .2s;cursor:default;}
-.ticker-inner span:hover{color:var(--g400);}
-.t-live{display:inline-flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;color:var(--g500);padding:0 16px 0 18px;border-right:1px solid var(--border0);position:relative;z-index:1;}
-.pulse{width:5px;height:5px;border-radius:50%;background:var(--g500);box-shadow:0 0 8px var(--g500);animation:p 1.6s ease infinite;flex-shrink:0;}
-@keyframes p{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.55)}}
-header{background:linear-gradient(180deg,rgba(4,14,30,.98) 0%,rgba(7,20,40,.97) 100%);border-bottom:1px solid var(--border1);position:sticky;top:0;z-index:100;backdrop-filter:blur(24px);box-shadow:0 1px 0 var(--border0),0 6px 48px rgba(0,0,0,.75),inset 0 1px 0 rgba(245,166,35,.07);overflow:visible;}
-header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--g800) 15%,var(--g500) 40%,var(--g400) 50%,var(--g500) 60%,var(--g800) 85%,transparent 100%);box-shadow:var(--glow);}
-header::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(245,166,35,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.025) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 100%);}
-.header-top{border-bottom:1px solid var(--border0);padding:6px 0;position:relative;z-index:3;}
-.header-top-inner{max-width:1440px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:14px;justify-content:flex-end;}
-.search-wrap{flex:1;max-width:680px;position:relative;margin-left:auto;}
-.search-bar{display:flex;align-items:center;background:rgba(8,20,44,.85);border:1px solid var(--border1);border-radius:4px;overflow:hidden;position:relative;transition:border-color .25s,box-shadow .25s;}
-.search-bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,166,35,.06) 0%,transparent 50%);pointer-events:none;}
-.search-bar:focus-within{border-color:var(--g500);box-shadow:0 0 0 1px rgba(245,166,35,.18),var(--glow);}
-.search-category{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;background:rgba(4,12,28,.95);border:none;border-right:1px solid var(--border1);color:var(--g400);padding:0 28px 0 12px;height:36px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23f5a623'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;flex-shrink:0;}
-.search-category option{background:#07142a;color:var(--tp);}
-.search-ico{display:flex;align-items:center;padding:0 8px 0 12px;color:var(--tm);flex-shrink:0;}
-.search-input{flex:1;background:transparent;border:none;color:var(--tp);font-family:'Exo 2',sans-serif;font-size:13px;font-weight:400;letter-spacing:.3px;padding:0 12px;height:36px;outline:none;}
-.search-input::placeholder{color:var(--tm);font-style:italic;}
-.search-btn{background:linear-gradient(135deg,var(--g800),var(--g700),var(--g500));border:none;color:var(--n900);padding:0 18px;height:36px;display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700;cursor:pointer;flex-shrink:0;transition:filter .2s,box-shadow .2s;}
-.search-btn:hover{filter:brightness(1.18);box-shadow:var(--glow);}
-.search-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--n700);border:1px solid var(--border1);border-radius:4px;z-index:200;display:none;box-shadow:0 20px 48px rgba(0,0,0,.7);}
-.top-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.btn-wish{background:rgba(8,20,44,.85);border:1px solid var(--border1);color:var(--ts);width:36px;height:36px;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;transition:all .2s;flex-shrink:0;}
-.btn-wish:hover{border-color:var(--g500);color:var(--g400);box-shadow:var(--glow);background:rgba(245,166,35,.06);}
-.wish-count{position:absolute;top:-6px;right:-6px;background:linear-gradient(135deg,var(--g800),var(--g500));color:var(--n900);font-size:9px;font-family:'Share Tech Mono',monospace;font-weight:700;min-width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
-.btn-login{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:1px solid var(--border1);color:var(--ts);padding:7px 16px;border-radius:3px;height:36px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;align-items:center;}
-.btn-login:hover{border-color:var(--g500);color:var(--g300);}
-.btn-prime{font-family:'Orbitron',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;background:linear-gradient(135deg,var(--g800) 0%,var(--g700) 40%,var(--g500) 100%);border:1px solid var(--g500);color:var(--n900);padding:0 18px;height:36px;border-radius:3px;cursor:pointer;transition:filter .2s,box-shadow .2s,transform .15s;position:relative;overflow:hidden;white-space:nowrap;display:flex;align-items:center;gap:6px;}
-.btn-prime:hover{filter:brightness(1.15);box-shadow:var(--glow);transform:translateY(-1px);}
-.header-inner{max-width:1440px;margin:0 auto;padding:0 28px;height:58px;display:flex;align-items:center;gap:20px;position:relative;z-index:3;}
-.logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;flex-shrink:0;gap:1px;position:relative;}
-.logo-digital{font-family:'Share Tech Mono',monospace;font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;background:linear-gradient(90deg,#8fa8c8,#b8cde8,#7a9ac8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;user-select:none;padding-left:2px;}
-.logo-wordmark{display:flex;align-items:baseline;gap:0;filter:drop-shadow(0 0 10px rgba(245,166,35,.38));transition:filter .3s;}
-.logo:hover .logo-wordmark{filter:drop-shadow(0 0 22px rgba(245,166,35,.72));}
-.logo-play{font-family:'Exo 2',sans-serif;font-weight:800;font-size:30px;letter-spacing:-1px;color:#ffffff;line-height:1;}
-.logo-beat{font-family:'Exo 2',sans-serif;font-weight:800;font-size:30px;letter-spacing:-1px;background:linear-gradient(170deg,#f9cc7a 0%,#f5a623 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
-.logo-underline{height:1px;width:100%;margin-top:3px;background:linear-gradient(90deg,var(--g500) 0%,transparent 80%);opacity:.55;}
-nav{display:flex;align-items:center;gap:1px;flex:1;}
-.nav-item{font-family:'Exo 2',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.9px;text-transform:uppercase;color:var(--ts);text-decoration:none;padding:7px 10px;border-radius:3px;white-space:nowrap;border:1px solid transparent;transition:color .2s,background .2s,border-color .2s,box-shadow .2s;position:relative;}
-.nav-item:hover{color:var(--g300);background:rgba(245,166,35,.06);border-color:var(--border0);}
-.nav-item.active{color:var(--g400);background:rgba(245,166,35,.08);border-color:var(--border1);}
-.nav-special{color:var(--g400)!important;background:rgba(245,166,35,.06)!important;border-color:var(--border0)!important;}
-.nav-special:hover{color:var(--g200)!important;background:rgba(245,166,35,.13)!important;border-color:var(--border2)!important;box-shadow:var(--glow)!important;}
-.nav-outsource{color:var(--cy)!important;background:rgba(0,212,255,.05)!important;border-color:rgba(0,212,255,.18)!important;}
-.nav-outsource:hover{color:var(--cy2)!important;background:rgba(0,212,255,.10)!important;border-color:rgba(0,212,255,.35)!important;box-shadow:var(--glow2)!important;}
-.nav-sep{width:1px;height:18px;background:var(--border0);margin:0 3px;flex-shrink:0;}
-.user-chip{display:flex;align-items:center;gap:10px;background:rgba(8,20,44,.85);border:1px solid var(--border1);border-radius:3px;padding:5px 14px 5px 8px;cursor:pointer;transition:all .2s;position:relative;}
-.user-chip:hover{border-color:var(--g500);box-shadow:var(--glow);}
-.u-avatar{width:24px;height:24px;background:linear-gradient(135deg,var(--g800),var(--g700));border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--n900);}
-.u-name{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:600;color:var(--tp);letter-spacing:.5px;}
-.hud-c{position:absolute;inset:0;pointer-events:none;z-index:1;}
-.hc{position:absolute;width:10px;height:10px;opacity:.4;}
-.hc-tl{top:5px;left:5px;border-top:1px solid var(--g500);border-left:1px solid var(--g500);}
-.hc-tr{top:5px;right:5px;border-top:1px solid var(--g500);border-right:1px solid var(--g500);}
-.hc-bl{bottom:5px;left:5px;border-bottom:1px solid var(--g500);border-left:1px solid var(--g500);}
-.hc-br{bottom:5px;right:5px;border-bottom:1px solid var(--g500);border-right:1px solid var(--g500);}
-/* ── FOOTER v3 ─────────────────────────────────────────────── */
-.site-footer{background:linear-gradient(180deg,var(--n800) 0%,var(--n900) 100%);border-top:1px solid var(--border1);position:relative;overflow:hidden;}
-.site-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--g800) 15%,var(--g500) 40%,var(--g400) 50%,var(--g500) 60%,var(--g800) 85%,transparent 100%);box-shadow:var(--glow);}
-.site-footer::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(245,166,35,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.018) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(0deg,rgba(0,0,0,.6) 0%,transparent 100%);}
-.f-hud{position:absolute;inset:0;pointer-events:none;z-index:1;}
-.f-hc{position:absolute;width:10px;height:10px;opacity:.35;}
-.f-hc-tl{top:8px;left:8px;border-top:1px solid var(--g500);border-left:1px solid var(--g500);}
-.f-hc-tr{top:8px;right:8px;border-top:1px solid var(--g500);border-right:1px solid var(--g500);}
-.f-hc-bl{bottom:8px;left:8px;border-bottom:1px solid var(--g500);border-left:1px solid var(--g500);}
-.f-hc-br{bottom:8px;right:8px;border-bottom:1px solid var(--g500);border-right:1px solid var(--g500);}
-.footer-inner{max-width:1440px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
-.footer-banner{padding:42px 0 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border0);gap:24px;flex-wrap:wrap;}
-.footer-logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;gap:2px;flex-shrink:0;}
-.footer-logo-digital{font-family:'Share Tech Mono',monospace;font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;background:linear-gradient(90deg,#8fa8c8,#b8cde8,#7a9ac8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding-left:2px;}
-.footer-logo-wordmark{display:flex;align-items:baseline;filter:drop-shadow(0 0 10px rgba(245,166,35,.35));transition:filter .3s;}
-.footer-logo:hover .footer-logo-wordmark{filter:drop-shadow(0 0 22px rgba(245,166,35,.7));}
-.footer-logo-play{font-family:'Exo 2',sans-serif;font-weight:800;font-size:32px;letter-spacing:-1px;color:#ffffff;line-height:1;}
-.footer-logo-beat{font-family:'Exo 2',sans-serif;font-weight:800;font-size:32px;letter-spacing:-1px;line-height:1;background:linear-gradient(170deg,#f9cc7a 0%,#f5a623 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.footer-logo-line{height:1px;width:100%;margin-top:4px;background:linear-gradient(90deg,var(--g500),transparent 80%);opacity:.5;}
-.footer-tagline{font-family:'Share Tech Mono',monospace;font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--tm);margin-top:8px;padding-left:2px;}
-.footer-support{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.support-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--tm);margin-right:4px;}
-.btn-support{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;border-radius:3px;padding:9px 16px;text-decoration:none;cursor:pointer;border:none;transition:all .22s;position:relative;overflow:hidden;white-space:nowrap;}
-.btn-support.email{background:rgba(8,20,44,.9);border:1px solid var(--border1);color:var(--ts);}
-.btn-support.email:hover{border-color:var(--g500);color:var(--g300);box-shadow:var(--glow);}
-.btn-support.whatsapp{background:rgba(7,46,20,.85);border:1px solid rgba(37,211,102,.25);color:#25d366;}
-.btn-support.whatsapp:hover{border-color:rgba(37,211,102,.6);color:#4ade80;box-shadow:0 0 16px rgba(37,211,102,.2);}
-.btn-support.telegram{background:rgba(4,22,50,.85);border:1px solid rgba(0,136,204,.28);color:#29a8e0;}
-.btn-support.telegram:hover{border-color:rgba(0,136,204,.6);color:#60d0ff;box-shadow:0 0 16px rgba(0,136,204,.22);}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px 40px;padding:40px 0 36px;border-bottom:1px solid var(--border0);}
-.footer-col-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--g400);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.footer-col-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border1),transparent);}
-.footer-nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;}
-.footer-nav-link{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:400;letter-spacing:.4px;color:var(--ts);text-decoration:none;padding:5px 8px;border-radius:2px;border:1px solid transparent;display:flex;align-items:center;gap:7px;transition:color .18s,border-color .18s,background .18s;position:relative;}
-.footer-nav-link::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--tm);flex-shrink:0;transition:background .18s,box-shadow .18s;}
-.footer-nav-link:hover{color:var(--g300);border-color:var(--border0);background:rgba(245,166,35,.04);}
-.footer-nav-link:hover::before{background:var(--g500);box-shadow:0 0 6px var(--g500);}
-.footer-nav-link.special{color:var(--g400);}
-.footer-link-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
-.footer-link-list li a{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:400;letter-spacing:.4px;color:var(--ts);text-decoration:none;padding:5px 8px;border-radius:2px;border:1px solid transparent;display:flex;align-items:center;gap:8px;transition:color .18s,border-color .18s,background .18s;}
-.footer-link-list li a::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--tm);flex-shrink:0;transition:background .18s,box-shadow .18s;}
-.footer-link-list li a:hover{color:var(--g300);border-color:var(--border0);background:rgba(245,166,35,.04);}
-.footer-link-list li a:hover::before{background:var(--g500);box-shadow:0 0 6px var(--g500);}
-.footer-social-row{padding:28px 0 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border0);gap:20px;flex-wrap:wrap;}
-.social-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--tm);}
-.social-icons{display:flex;align-items:center;gap:8px;}
-.social-btn{width:38px;height:38px;border-radius:3px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;background:rgba(8,20,44,.85);border:1px solid var(--border1);color:var(--ts);transition:all .22s;position:relative;overflow:hidden;}
-.social-btn:hover{transform:translateY(-2px);}
-.social-btn.x:hover{border-color:rgba(255,255,255,.4);color:#fff;box-shadow:0 0 14px rgba(255,255,255,.12);}
-.social-btn.fb:hover{border-color:rgba(66,103,178,.6);color:#4267b2;box-shadow:0 0 14px rgba(66,103,178,.2);}
-.social-btn.ig:hover{border-color:rgba(225,48,108,.5);color:#e1306c;box-shadow:0 0 14px rgba(225,48,108,.18);}
-.social-btn.yt:hover{border-color:rgba(255,0,0,.5);color:#ff0000;box-shadow:0 0 14px rgba(255,0,0,.18);}
-.social-btn.discord:hover{border-color:rgba(88,101,242,.55);color:#5865f2;box-shadow:0 0 14px rgba(88,101,242,.2);}
-.social-btn.tiktok:hover{border-color:rgba(0,242,234,.4);color:#00f2ea;box-shadow:0 0 14px rgba(0,242,234,.15);}
-.trust-badges{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.trust-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--tm);background:rgba(8,20,44,.6);border:1px solid var(--border0);border-radius:2px;padding:5px 10px;display:flex;align-items:center;gap:6px;}
-.trust-badge svg{color:var(--g500);}
-.footer-bottom{padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.footer-copy{font-family:'Share Tech Mono',monospace;font-size:9.5px;letter-spacing:1.2px;color:var(--tm);}
-.footer-copy strong{color:var(--g400);font-weight:400;letter-spacing:1px;}
-.footer-legal-links{display:flex;align-items:center;gap:4px;}
-.footer-legal-links a{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--tm);text-decoration:none;padding:3px 8px;transition:color .18s;}
-.footer-legal-links a:hover{color:var(--g300);}
-.footer-legal-links span{color:var(--border1);padding:0 2px;}
-/* ── RESPONSIVE ─────────────────────────────────────────────── */
-@media(max-width:1200px){.nav-item{font-size:10.5px;padding:7px 8px;}}
-@media(max-width:1050px){nav{display:none;}.footer-grid{grid-template-columns:1fr 1fr;gap:36px 32px;}}
-@media(max-width:800px){.btn-prime{display:none;}.search-wrap{max-width:100%;}}
-@media(max-width:680px){.footer-grid{grid-template-columns:1fr;gap:28px;}.footer-nav-grid{grid-template-columns:1fr 1fr;}.footer-banner{flex-direction:column;align-items:flex-start;}.footer-bottom{flex-direction:column;align-items:flex-start;gap:10px;}.footer-social-row{flex-direction:column;align-items:flex-start;}.footer-inner{padding:0 16px;}}
-@media(max-width:640px){.header-inner{padding:0 14px;gap:10px;}.header-top-inner{padding:0 14px;}}
-</style>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — PlayBeat Digital</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@400;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --bg: #0a0b0f;
+            --bg2: #111318;
+            --bg3: #1a1d25;
+            --accent: #f0c040;
+            --accent2: #e85d26;
+            --text: #f0ece4;
+            --muted: #7a7e8c;
+            --border: rgba(255, 255, 255, 0.07);
+            --gold: #f5a623;
+            --gold-dim: rgba(245, 166, 35, 0.22);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ─── TICKER ─── */
+        .ticker-bar {
+            background: linear-gradient(90deg, var(--bg), #060f22, var(--bg));
+            border-bottom: 1px solid rgba(245, 166, 35, .10);
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--bg) 0%, transparent 90px), linear-gradient(270deg, var(--bg) 0%, transparent 90px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .ticker-inner {
+            display: inline-flex;
+            align-items: center;
+            height: 100%;
+            white-space: nowrap;
+            animation: tickscroll 55s linear infinite;
+        }
+
+        @keyframes tickscroll {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        .ticker-inner span {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .8px;
+            color: #3d5a88;
+            padding: 0 18px;
+            border-right: 1px solid rgba(245, 166, 35, .10);
+            position: relative;
+            z-index: 1;
+            cursor: default;
+        }
+
+        .t-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            color: #f5a623;
+            padding: 0 16px 0 18px;
+            border-right: 1px solid rgba(245, 166, 35, .10);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pulse {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #f5a623;
+            box-shadow: 0 0 8px #f5a623;
+            animation: p 1.6s ease infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes p {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .35;
+                transform: scale(.55)
+            }
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            background: linear-gradient(180deg, rgba(4, 14, 30, .98) 0%, rgba(7, 20, 40, .97) 100%);
+            border-bottom: 1px solid rgba(245, 166, 35, .22);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 6px 48px rgba(0, 0, 0, .75);
+            overflow: visible;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #8a5400 15%, #f5a623 40%, #f7b84a 50%, #f5a623 60%, #8a5400 85%, transparent 100%);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .header-top {
+            border-bottom: 1px solid rgba(245, 166, 35, .10);
+            padding: 6px 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .header-top-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            justify-content: flex-end;
+        }
+
+        .search-wrap {
+            flex: 1;
+            max-width: 680px;
+            position: relative;
+            margin-left: auto;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(8, 20, 44, .85);
+            border: 1px solid var(--gold-dim);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: border-color .25s, box-shadow .25s;
+        }
+
+        .search-bar:focus-within {
+            border-color: #f5a623;
+            box-shadow: 0 0 0 1px rgba(245, 166, 35, .18), 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .search-category {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            background: rgba(4, 12, 28, .95);
+            border: none;
+            border-right: 1px solid var(--gold-dim);
+            color: #f7b84a;
+            padding: 0 28px 0 12px;
+            height: 36px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23f5a623'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 9px center;
+            flex-shrink: 0;
+        }
+
+        .search-category option {
+            background: #07142a;
+            color: #e2ecff;
+        }
+
+        .search-ico {
+            display: flex;
+            align-items: center;
+            padding: 0 8px 0 12px;
+            color: #3d5a88;
+            flex-shrink: 0;
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #e2ecff;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13px;
+            padding: 0 12px;
+            height: 36px;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #3d5a88;
+            font-style: italic;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #8a5400, #c07800, #f5a623);
+            border: none;
+            color: #020a16;
+            padding: 0 18px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: filter .2s, box-shadow .2s;
+        }
+
+        .search-btn:hover {
+            filter: brightness(1.18);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-wish {
+            background: rgba(8, 20, 44, .85);
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+            width: 36px;
+            height: 36px;
+            border-radius: 3px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all .2s;
+            flex-shrink: 0;
+        }
+
+        .btn-wish:hover {
+            border-color: #f5a623;
+            color: #f7b84a;
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .btn-login {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: transparent;
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+            padding: 7px 16px;
+            border-radius: 3px;
+            height: 36px;
+            cursor: pointer;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-login:hover {
+            border-color: #f5a623;
+            color: #f9cc7a;
+        }
+
+        .btn-prime {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #8a5400 0%, #c07800 40%, #f5a623 100%);
+            border: 1px solid #f5a623;
+            color: #020a16;
+            padding: 0 18px;
+            height: 36px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: filter .2s, box-shadow .2s, transform .15s;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-prime:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+            transform: translateY(-1px);
+        }
+
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+            flex-shrink: 0;
+            gap: 1px;
+        }
+
+        .logo-digital {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8.5px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #8fa8c8, #b8cde8, #7a9ac8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-wordmark {
+            display: flex;
+            align-items: baseline;
+            filter: drop-shadow(0 0 10px rgba(245, 166, 35, .38));
+            transition: filter .3s;
+        }
+
+        .logo:hover .logo-wordmark {
+            filter: drop-shadow(0 0 22px rgba(245, 166, 35, .72));
+        }
+
+        .logo-play {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 30px;
+            letter-spacing: -1px;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .logo-beat {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 30px;
+            letter-spacing: -1px;
+            background: linear-gradient(170deg, #f9cc7a 0%, #f5a623 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .logo-underline {
+            height: 1px;
+            width: 100%;
+            margin-top: 3px;
+            background: linear-gradient(90deg, #f5a623 0%, transparent 80%);
+            opacity: .55;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1px;
+            flex: 1;
+        }
+
+        .nav-item {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 11.5px;
+            font-weight: 500;
+            letter-spacing: .9px;
+            text-transform: uppercase;
+            color: #7a9ac8;
+            text-decoration: none;
+            padding: 7px 10px;
+            border-radius: 3px;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            transition: color .2s, background .2s, border-color .2s;
+        }
+
+        .nav-item:hover {
+            color: #f9cc7a;
+            background: rgba(245, 166, 35, .06);
+            border-color: rgba(245, 166, 35, .10);
+        }
+
+        .nav-item.active {
+            color: #f7b84a;
+            background: rgba(245, 166, 35, .08);
+            border-color: var(--gold-dim);
+        }
+
+        .nav-special {
+            color: #f7b84a !important;
+            background: rgba(245, 166, 35, .06) !important;
+            border-color: rgba(245, 166, 35, .10) !important;
+        }
+
+        .nav-outsource {
+            color: #00d4ff !important;
+            background: rgba(0, 212, 255, .05) !important;
+            border-color: rgba(0, 212, 255, .18) !important;
+        }
+
+        .nav-sep {
+            width: 1px;
+            height: 18px;
+            background: rgba(245, 166, 35, .10);
+            margin: 0 3px;
+            flex-shrink: 0;
+        }
+
+        /* ─── PAGE WRAPPER ─── */
+        .page-wrap {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* ─── HERO ─── */
+        .pp-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pp-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 65% at 75% 50%, rgba(55, 138, 221, .05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .pp-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(55, 138, 221, .018) 1px, transparent 1px), linear-gradient(90deg, rgba(55, 138, 221, .018) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .4) 40%, rgba(0, 0, 0, .4) 60%, transparent 100%);
+        }
+
+        .pp-hero-inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .pp-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #378add;
+            background: rgba(55, 138, 221, .08);
+            border: 1px solid rgba(55, 138, 221, .22);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pp-eyebrow .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #378add;
+            box-shadow: 0 0 8px #378add;
+            animation: p 1.6s ease infinite;
+        }
+
+        .pp-hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(46px, 5.5vw, 80px);
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: .75rem;
+        }
+
+        .pp-hero-title span {
+            color: #5aabf0;
+        }
+
+        .pp-hero-desc {
+            font-size: 14.5px;
+            color: var(--muted);
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 520px;
+        }
+
+        .pp-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            flex-shrink: 0;
+            padding-top: 6px;
+        }
+
+        .pp-meta-badge {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #378add;
+            background: rgba(55, 138, 221, .08);
+            border: 1px solid rgba(55, 138, 221, .22);
+            padding: 7px 16px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .pp-meta-date {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            color: #3d5a88;
+            text-transform: uppercase;
+        }
+
+        /* ─── LAYOUT ─── */
+        .pp-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 3rem;
+            padding: 3rem 0 4rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .pp-toc {
+            position: sticky;
+            top: 100px;
+        }
+
+        .toc-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #378add;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toc-label::after {
+            content: '';
+            flex: 0 0 24px;
+            height: 1px;
+            background: rgba(55, 138, 221, .35);
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .toc-list li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 11.5px;
+            font-weight: 500;
+            color: #3d5a88;
+            text-decoration: none;
+            padding: 7px 10px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            transition: color .2s, background .2s, border-color .2s;
+            letter-spacing: .3px;
+        }
+
+        .toc-list li a:hover {
+            color: #8cc8f8;
+            background: rgba(55, 138, 221, .06);
+            border-color: rgba(55, 138, 221, .12);
+        }
+
+        .toc-list li a .toc-num {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            color: rgba(55, 138, 221, .4);
+            flex-shrink: 0;
+            width: 18px;
+        }
+
+        .toc-contact-card {
+            margin-top: 2rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toc-contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(55, 138, 221, .45), transparent);
+        }
+
+        .tcc-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8.5px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #378add;
+            margin-bottom: .75rem;
+        }
+
+        .tcc-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 11.5px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .tcc-row a {
+            color: #7a9ac8;
+            text-decoration: none;
+            font-size: 11.5px;
+        }
+
+        .tcc-row a:hover {
+            color: #8cc8f8;
+        }
+
+        .tcc-icon {
+            color: rgba(55, 138, 221, .6);
+            flex-shrink: 0;
+        }
+
+        /* ─── CONTENT ─── */
+        .pp-content {
+            min-width: 0;
+        }
+
+        .pp-section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+            animation: fadeUp .5s ease both;
+        }
+
+        .pp-section:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pp-sec-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.8px;
+            text-transform: uppercase;
+            color: #378add;
+            margin-bottom: .5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pp-sec-label::after {
+            content: '';
+            flex: 0 0 28px;
+            height: 1px;
+            background: rgba(55, 138, 221, .35);
+        }
+
+        .pp-sec-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(22px, 2.5vw, 30px);
+            letter-spacing: 1.2px;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            color: var(--text);
+        }
+
+        .pp-sec-title span {
+            color: #5aabf0;
+        }
+
+        .pp-body {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.85;
+            font-weight: 300;
+        }
+
+        .pp-body strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .pp-body p {
+            margin-bottom: .85rem;
+        }
+
+        .pp-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .pp-items {
+            margin-top: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pp-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(4, 14, 36, .45);
+            border: 1px solid rgba(55, 138, 221, .07);
+            border-radius: 8px;
+            padding: 11px 14px;
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+            transition: border-color .2s;
+        }
+
+        .pp-item:hover {
+            border-color: rgba(55, 138, 221, .2);
+        }
+
+        .pp-item-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            background: rgba(55, 138, 221, .1);
+            border: 1px solid rgba(55, 138, 221, .22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #378add;
+        }
+
+        .pp-grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 1.1rem;
+        }
+
+        .pp-grid2 .pp-item {
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pp-grid2 .pp-item-dot {
+            margin-top: 0;
+        }
+
+        .pp-callout {
+            background: rgba(55, 138, 221, .05);
+            border: 1px solid rgba(55, 138, 221, .18);
+            border-left: 3px solid #378add;
+            border-radius: 8px;
+            padding: 1.1rem 1.3rem;
+            margin-top: 1.25rem;
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .pp-callout strong {
+            color: #8cc8f8;
+        }
+
+        .pp-callout.warn {
+            background: rgba(245, 166, 35, .05);
+            border-color: rgba(245, 166, 35, .18);
+            border-left-color: #f5a623;
+        }
+
+        .pp-callout.warn strong {
+            color: #f9cc7a;
+        }
+
+        /* data table */
+        .pp-data-table {
+            width: 100%;
+            margin-top: 1.25rem;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .pp-data-table th {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8.5px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #378add;
+            background: rgba(4, 14, 36, .6);
+            border: 1px solid rgba(55, 138, 221, .10);
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        .pp-data-table td {
+            border: 1px solid rgba(55, 138, 221, .07);
+            padding: 10px 14px;
+            color: var(--muted);
+            vertical-align: top;
+            line-height: 1.6;
+            background: rgba(4, 14, 36, .25);
+            transition: background .2s;
+        }
+
+        .pp-data-table tr:hover td {
+            background: rgba(55, 138, 221, .04);
+        }
+
+        .pp-data-table td strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* rights cards */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 1.25rem;
+        }
+
+        .right-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .22s, transform .22s;
+        }
+
+        .right-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(55, 138, 221, .4), transparent);
+        }
+
+        .right-card:hover {
+            border-color: rgba(55, 138, 221, .3);
+            transform: translateY(-2px);
+        }
+
+        .right-card-icon {
+            font-size: 22px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .right-card-title {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .right-card-desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ─── CLOSING BAND ─── */
+        .accept-band {
+            background: linear-gradient(135deg, rgba(55, 138, 221, .06), rgba(55, 138, 221, .02));
+            border: 1px solid rgba(55, 138, 221, .2);
+            border-radius: 14px;
+            padding: 2.5rem 3rem;
+            margin: 2rem 0 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+
+        .accept-band::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(55, 138, 221, .07), transparent 70%);
+            pointer-events: none;
+        }
+
+        .ab-hud {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: .35;
+        }
+
+        .ab-tl {
+            top: 10px;
+            left: 10px;
+            border-top: 1px solid #378add;
+            border-left: 1px solid #378add;
+        }
+
+        .ab-tr {
+            top: 10px;
+            right: 10px;
+            border-top: 1px solid #378add;
+            border-right: 1px solid #378add;
+        }
+
+        .ab-bl {
+            bottom: 10px;
+            left: 10px;
+            border-bottom: 1px solid #378add;
+            border-left: 1px solid #378add;
+        }
+
+        .ab-br {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 1px solid #378add;
+            border-right: 1px solid #378add;
+        }
+
+        .accept-band-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #378add;
+            margin-bottom: .4rem;
+        }
+
+        .accept-band-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(22px, 2.5vw, 32px);
+            letter-spacing: 1.2px;
+            line-height: 1.1;
+            color: var(--text);
+        }
+
+        .accept-band-title span {
+            color: #5aabf0;
+        }
+
+        .accept-band-sub {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-top: .4rem;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        .accept-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn-hero-primary {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #8a5400, #c07800, #f5a623);
+            border: 1px solid #f5a623;
+            color: #020a16;
+            padding: 0 24px;
+            height: 42px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: filter .2s, box-shadow .2s, transform .15s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -110%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .28), transparent);
+            transition: left .55s;
+        }
+
+        .btn-hero-primary:hover::before {
+            left: 150%;
+        }
+
+        .btn-hero-primary:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 0 24px rgba(245, 166, 35, .35);
+            transform: translateY(-1px);
+        }
+
+        .btn-hero-outline {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: transparent;
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+            padding: 0 20px;
+            height: 42px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all .2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-hero-outline:hover {
+            border-color: #f5a623;
+            color: #f9cc7a;
+            background: rgba(245, 166, 35, .04);
+        }
+
+        /* ─── FOOTER ─── */
+        .site-footer {
+            background: linear-gradient(180deg, #040e1e 0%, #020a16 100%);
+            border-top: 1px solid rgba(245, 166, 35, .22);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #8a5400 15%, #f5a623 40%, #f7b84a 50%, #f5a623 60%, #8a5400 85%, transparent 100%);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-banner {
+            padding: 42px 0 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(245, 166, 35, .10);
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .footer-logo-digital {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8.5px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #8fa8c8, #b8cde8, #7a9ac8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-left: 2px;
+        }
+
+        .footer-logo-wordmark {
+            display: flex;
+            align-items: baseline;
+            filter: drop-shadow(0 0 10px rgba(245, 166, 35, .35));
+            transition: filter .3s;
+        }
+
+        .footer-logo:hover .footer-logo-wordmark {
+            filter: drop-shadow(0 0 22px rgba(245, 166, 35, .7));
+        }
+
+        .footer-logo-play {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            letter-spacing: -1px;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .footer-logo-beat {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            letter-spacing: -1px;
+            line-height: 1;
+            background: linear-gradient(170deg, #f9cc7a 0%, #f5a623 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-logo-pvt {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            margin-top: 2px;
+            padding-left: 2px;
+        }
+
+        .footer-logo-line {
+            height: 1px;
+            width: 100%;
+            margin-top: 4px;
+            background: linear-gradient(90deg, #f5a623, transparent 80%);
+            opacity: .5;
+        }
+
+        .footer-tagline {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9.5px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            margin-top: 8px;
+            padding-left: 2px;
+        }
+
+        .footer-tagline .ft-play {
+            color: #e2ecff;
+        }
+
+        .footer-tagline .ft-beat {
+            color: #f5a623;
+        }
+
+        .footer-support {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .support-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            margin-right: 4px;
+        }
+
+        .btn-support {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            padding: 9px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all .22s;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn-support.email {
+            background: rgba(8, 20, 44, .9);
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+        }
+
+        .btn-support.email:hover {
+            border-color: #f5a623;
+            color: #f9cc7a;
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .btn-support.whatsapp {
+            background: rgba(7, 46, 20, .85);
+            border: 1px solid rgba(37, 211, 102, .22);
+            color: #25d366;
+        }
+
+        .btn-support.whatsapp:hover {
+            border-color: #25d366;
+            box-shadow: 0 0 18px rgba(37, 211, 102, .2);
+        }
+
+        .btn-support.telegram {
+            background: rgba(4, 28, 52, .85);
+            border: 1px solid rgba(38, 161, 232, .22);
+            color: #26a1e8;
+        }
+
+        .btn-support.telegram:hover {
+            border-color: #26a1e8;
+            box-shadow: 0 0 18px rgba(38, 161, 232, .2);
+        }
+
+        .footer-bottom {
+            padding: 22px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9.5px;
+            letter-spacing: 1.2px;
+            color: #3d5a88;
+            text-transform: uppercase;
+        }
+
+        .footer-copy strong {
+            color: #f5a623;
+            font-weight: 400;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-legal-links a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .footer-legal-links a:hover {
+            color: #f9cc7a;
+        }
+
+        .footer-legal-links a.active-link {
+            color: #378add;
+        }
+
+        .footer-legal-links span {
+            color: rgba(245, 166, 35, .2);
+            font-size: 8px;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #075e54, #25d366);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, .4);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, .55);
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="ticker-bar">
-  <div class="ticker-inner">
-    <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
-    <span>🔥 Valorant Elderflame Bundle — $89</span>
-    <span>⚡ ChatGPT Plus 1M — $20</span>
-    <span>🎮 PS Plus 12M — $59</span>
-    <span>💎 Adobe CC All Apps — $54</span>
-    <span>🤖 Midjourney Basic — $10</span>
-    <span>🆓 Free Gift Card on Orders $50+</span>
-    <span>🔒 SSL Secured · Instant Delivery</span>
-    <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
-    <span>🔥 Valorant Elderflame Bundle — $89</span>
-    <span>⚡ ChatGPT Plus 1M — $20</span>
-    <span>🎮 PS Plus 12M — $59</span>
-    <span>💎 Adobe CC All Apps — $54</span>
-    <span>🤖 Midjourney Basic — $10</span>
-    <span>🆓 Free Gift Card on Orders $50+</span>
-    <span>🔒 SSL Secured · Instant Delivery</span>
-  </div>
-</div>
-<header>
-  <div class="hud-c">
-    <div class="hc hc-tl"></div><div class="hc hc-tr"></div>
-    <div class="hc hc-bl"></div><div class="hc hc-br"></div>
-  </div>
-
-  <!-- TOP ROW: search bar + actions -->
-  <div class="header-top">
-    <div class="header-top-inner">
-
-      <div class="search-wrap">
-        <div class="search-bar">
-          <select class="search-category" id="searchCat" onchange="doSearch()">
-            <option value="all">All</option>
-            <option value="games">Games</option>
-            <option value="ai">AI Tools</option>
-            <option value="software">Software</option>
-            <option value="giftcards">Gift Cards</option>
-            <option value="subs">Subscriptions</option>
-            <option value="topup">Top Up</option>
-            <option value="items">Game Items</option>
-            <option value="accounts">Accounts</option>
-          </select>
-          <span class="search-ico" aria-hidden="true">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </span>
-          <input class="search-input" id="searchInput" type="text"
-            placeholder="Search games, AI tools, subscriptions…"
-            oninput="doSearch()" autocomplete="off">
-          <button class="search-btn" onclick="doSearch()">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            Search
-          </button>
+    <!-- TICKER -->
+    <div class="ticker-bar">
+        <div class="ticker-inner">
+            <span class="t-live"><span class="pulse"></span>LIVE</span>
+            <span>DATA PROTECTION</span><span>YOUR PRIVACY MATTERS</span><span>GDPR COMPLIANT</span>
+            <span>SECURE PLATFORMS</span><span>ENCRYPTED CONNECTIONS</span><span>NO DATA SELLING</span>
+            <span>TRANSPARENCY FIRST</span><span>USER RIGHTS</span><span>PLAYBEAT DIGITAL</span>
+            <span class="t-live"><span class="pulse"></span>LIVE</span>
+            <span>DATA PROTECTION</span><span>YOUR PRIVACY MATTERS</span><span>GDPR COMPLIANT</span>
+            <span>SECURE PLATFORMS</span><span>ENCRYPTED CONNECTIONS</span><span>NO DATA SELLING</span>
+            <span>TRANSPARENCY FIRST</span><span>USER RIGHTS</span><span>PLAYBEAT DIGITAL</span>
         </div>
-        <div class="search-dropdown" id="searchDropdown"></div>
-      </div>
-
-      <div class="top-actions">
-        <div id="headerGuest" style="display:flex;align-items:center;gap:10px">
-          <button class="btn-wish" onclick="window.location.href='my-account.html'" aria-label="Wishlist">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            <span class="wish-count" id="wishlistCount" style="display:none">0</span>
-          </button>
-          <button class="btn-login" onclick="openModal('signinModal')">Sign In</button>
-          <button class="btn-prime" onclick="openModal('signupModal')">✦ Join PlayBeat</button>
-        </div>
-        <div id="headerUser" style="display:none;align-items:center;gap:10px">
-          <button class="btn-wish" onclick="window.location.href='my-account.html'" aria-label="Wishlist">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            <span class="wish-count" id="wishlistCount2" style="display:none">0</span>
-          </button>
-          <div class="user-chip" onclick="window.location.href='my-account.html'">
-            <div class="u-avatar" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
-            <span class="u-name" id="headerName">User</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- NAV ROW: logo + nav links -->
-  <div class="header-inner">
-    <a class="logo" href="index.html" aria-label="PlayBeat Digital home">
-      <span class="logo-digital">Digital</span>
-      <div class="logo-wordmark">
-        <span class="logo-play">play</span><span class="logo-beat">beat</span>
-      </div>
-      <div class="logo-underline"></div>
+    <!-- HEADER -->
+    <header>
+        <div class="header-top">
+            <div class="header-top-inner">
+                <div class="search-wrap">
+                    <div class="search-bar">
+                        <select class="search-category">
+                            <option>All</option>
+                            <option>Products</option>
+                            <option>Services</option>
+                            <option>Support</option>
+                        </select>
+                        <span class="search-ico"><svg width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></span>
+                        <input class="search-input" type="text" placeholder="Search products, services, solutions…" />
+                        <button class="search-btn"><svg width="12" height="12" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>Search</button>
+                    </div>
+                </div>
+                <div class="top-actions">
+                    <button class="btn-wish" title="Wishlist"><svg width="16" height="16" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg></button>
+                    <button class="btn-login">Login</button>
+                    <button class="btn-prime"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>Get Started</button>
+                </div>
+            </div>
+        </div>
+        <div class="header-inner">
+            <a class="logo" href="index.html">
+                <span class="logo-digital">Digital</span>
+                <div class="logo-wordmark"><span class="logo-play">play</span><span class="logo-beat">beat</span></div>
+                <div class="logo-underline"></div>
+            </a>
+            <nav>
+                <a class="nav-item" href="index.html">Home</a>
+                <a class="nav-item" href="index.html#products">Products</a>
+                <a class="nav-item nav-special" href="index.html#services">Services</a>
+                <a class="nav-item nav-outsource" href="index.html#outsource">Outsource</a>
+                <div class="nav-sep"></div>
+                <a class="nav-item" href="aboutus.html">About</a>
+                <a class="nav-item" href="contact.html">Contact</a>
+                <div class="nav-sep"></div>
+                <a class="nav-item" href="terms.html">Terms</a>
+                <a class="nav-item active" href="privacy.html">Privacy</a>
+                <a class="nav-item" href="refund.html">Refunds</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE BODY -->
+    <div class="page-wrap">
+
+        <!-- HERO -->
+        <section class="pp-hero">
+            <div class="pp-hero-inner">
+                <div>
+                    <div class="pp-eyebrow"><span class="dot"></span>Legal Document</div>
+                    <h1 class="pp-hero-title">Privacy <span>Policy</span></h1>
+                    <p class="pp-hero-desc">We are committed to protecting your personal information. This Policy
+                        explains what data we collect, how we use it, and the rights you hold over your information when
+                        using Playbeat Digital services.</p>
+                </div>
+                <div class="pp-meta">
+                    <div class="pp-meta-badge">
+                        <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
+                            style="display:inline;vertical-align:middle;margin-right:5px">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        Effective: June 2026
+                    </div>
+                    <div class="pp-meta-date">Version 1.0 &nbsp;·&nbsp; playbeat.digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYOUT -->
+        <div class="pp-layout">
+
+            <!-- TOC -->
+            <aside class="pp-toc">
+                <div class="toc-label">Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#p1"><span class="toc-num">01</span>Introduction</a></li>
+                    <li><a href="#p2"><span class="toc-num">02</span>Information We Collect</a></li>
+                    <li><a href="#p3"><span class="toc-num">03</span>How We Use Your Data</a></li>
+                    <li><a href="#p4"><span class="toc-num">04</span>Legal Basis for Processing</a></li>
+                    <li><a href="#p5"><span class="toc-num">05</span>Data Sharing</a></li>
+                    <li><a href="#p6"><span class="toc-num">06</span>Cookies &amp; Tracking</a></li>
+                    <li><a href="#p7"><span class="toc-num">07</span>Data Retention</a></li>
+                    <li><a href="#p8"><span class="toc-num">08</span>Data Security</a></li>
+                    <li><a href="#p9"><span class="toc-num">09</span>Your Rights</a></li>
+                    <li><a href="#p10"><span class="toc-num">10</span>Third-Party Links</a></li>
+                    <li><a href="#p11"><span class="toc-num">11</span>Children's Privacy</a></li>
+                    <li><a href="#p12"><span class="toc-num">12</span>International Transfers</a></li>
+                    <li><a href="#p13"><span class="toc-num">13</span>Changes to This Policy</a></li>
+                    <li><a href="#p14"><span class="toc-num">14</span>Contact &amp; Data Controller</a></li>
+                </ul>
+
+                <div class="toc-contact-card">
+                    <div class="tcc-label">Privacy Concerns?</div>
+                    <div class="tcc-row">
+                        <span class="tcc-icon"><svg width="12" height="12" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <rect x="2" y="4" width="20" height="16" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg></span>
+                        <a href="mailto:support@playbeat.digital">support@playbeat.digital</a>
+                    </div>
+                    <div class="tcc-row">
+                        <span class="tcc-icon"><svg width="12" height="12" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg></span>
+                        <a href="https://wa.me/923318333368" target="_blank" rel="noopener">+92 331 8333368</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- CONTENT -->
+            <main class="pp-content">
+
+                <section class="pp-section" id="p1">
+                    <div class="pp-sec-label">Section 01</div>
+                    <h2 class="pp-sec-title"><span>Introduction</span></h2>
+                    <div class="pp-body">
+                        <p>Playbeat Digital ("we", "us", or "our") is committed to protecting the privacy and security
+                            of your personal information. This Privacy Policy explains how we collect, use, disclose,
+                            and safeguard your information when you visit our website, use our platforms, or engage with
+                            our services.</p>
+                        <p>By using any Playbeat Digital service, you consent to the data practices described in this
+                            Policy. If you do not agree, please discontinue use of our services.</p>
+                    </div>
+                    <div class="pp-callout">
+                        <strong>Our Commitment:</strong> We do not sell, rent, or trade your personal information to
+                        third parties for their own marketing purposes. Your data is used solely to deliver and improve
+                        our services.
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p2">
+                    <div class="pp-sec-label">Section 02</div>
+                    <h2 class="pp-sec-title">Information We <span>Collect</span></h2>
+                    <div class="pp-body">
+                        <p>We collect information in several ways depending on how you interact with our services:</p>
+                    </div>
+                    <table class="pp-data-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Examples</th>
+                                <th>How Collected</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Identity Data</strong></td>
+                                <td>Name, username, profile information</td>
+                                <td>Account registration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Contact Data</strong></td>
+                                <td>Email address, phone number, WhatsApp</td>
+                                <td>Registration, contact forms</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Payment Data</strong></td>
+                                <td>Transaction records, billing details</td>
+                                <td>Purchase flow (via payment processors)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Technical Data</strong></td>
+                                <td>IP address, browser type, device info, OS</td>
+                                <td>Automatically via logs &amp; analytics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Usage Data</strong></td>
+                                <td>Pages visited, features used, session duration</td>
+                                <td>Automatically via cookies &amp; tracking</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Communications Data</strong></td>
+                                <td>Support messages, feedback, correspondence</td>
+                                <td>Direct contact with our team</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pp-callout">
+                        We do <strong>not</strong> collect sensitive data such as racial or ethnic origin, political
+                        opinions, religious beliefs, health data, or biometric data as part of our standard services.
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p3">
+                    <div class="pp-sec-label">Section 03</div>
+                    <h2 class="pp-sec-title">How We Use <span>Your Data</span></h2>
+                    <div class="pp-body">
+                        <p>We use your personal information for the following purposes:</p>
+                    </div>
+                    <div class="pp-items">
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Service Delivery</strong> — To create and manage your
+                                account, process transactions, and provide ordered services</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Communication</strong> — To respond to enquiries,
+                                send service-related notifications, and provide support</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Security &amp; Fraud Prevention</strong> — To detect,
+                                investigate, and prevent unauthorized access, fraud, and abuse</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Service Improvement</strong> — To analyze usage
+                                patterns, fix bugs, and improve user experience across our platforms</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Legal Compliance</strong> — To comply with applicable
+                                laws, regulations, legal processes, or enforceable government requests</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Marketing</strong> — To send promotional materials
+                                about our services where you have opted in or where permitted by law</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p4">
+                    <div class="pp-sec-label">Section 04</div>
+                    <h2 class="pp-sec-title">Legal Basis for <span>Processing</span></h2>
+                    <div class="pp-body">
+                        <p>Where applicable data protection laws require a lawful basis for processing personal data, we
+                            rely on the following:</p>
+                    </div>
+                    <div class="pp-grid2">
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Contract Performance</strong><br>Processing necessary
+                                to fulfill a contract with you</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Legitimate Interests</strong><br>Fraud prevention,
+                                security, service improvement</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Legal Obligation</strong><br>Compliance with
+                                applicable laws and regulations</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Consent</strong><br>Where you have given explicit
+                                consent (e.g. marketing)</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p5">
+                    <div class="pp-sec-label">Section 05</div>
+                    <h2 class="pp-sec-title">Data <span>Sharing</span></h2>
+                    <div class="pp-body">
+                        <p>We do not sell your personal data. We may share your information only in the following
+                            limited circumstances:</p>
+                    </div>
+                    <div class="pp-items">
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Service Providers</strong> — Trusted third-party
+                                vendors (payment processors, cloud hosts, analytics) who process data strictly on our
+                                behalf and under confidentiality obligations</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Legal Requirements</strong> — When required by law,
+                                court order, or government authority</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Business Transfers</strong> — In connection with a
+                                merger, acquisition, or asset sale, subject to the same privacy commitments</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">With Your Consent</strong> — In any other
+                                circumstances where you have given explicit permission</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p6">
+                    <div class="pp-sec-label">Section 06</div>
+                    <h2 class="pp-sec-title">Cookies &amp; <span>Tracking</span></h2>
+                    <div class="pp-body">
+                        <p>Our website and services use cookies and similar tracking technologies to enhance your
+                            experience and analyze site usage.</p>
+                    </div>
+                    <table class="pp-data-table">
+                        <thead>
+                            <tr>
+                                <th>Cookie Type</th>
+                                <th>Purpose</th>
+                                <th>Can Be Disabled?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Essential</strong></td>
+                                <td>Required for core functionality (authentication, security, sessions)</td>
+                                <td>No — required for service</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analytics</strong></td>
+                                <td>Understand how users interact with our platforms (e.g. Google Analytics)</td>
+                                <td>Yes — via browser settings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Functional</strong></td>
+                                <td>Remember preferences such as language, region, or display settings</td>
+                                <td>Yes — via browser settings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Marketing</strong></td>
+                                <td>Deliver relevant advertisements and track campaign effectiveness</td>
+                                <td>Yes — opt-out available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pp-callout">
+                        You can control cookies through your browser settings. Disabling non-essential cookies will not
+                        affect core service functionality.
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p7">
+                    <div class="pp-sec-label">Section 07</div>
+                    <h2 class="pp-sec-title">Data <span>Retention</span></h2>
+                    <div class="pp-body">
+                        <p>We retain personal data only for as long as necessary to fulfill the purposes for which it
+                            was collected, including legal, accounting, or reporting requirements.</p>
+                    </div>
+                    <div class="pp-items">
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>Account data is retained for the duration of your account and for a
+                            reasonable period after deletion to satisfy legal obligations
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>Transaction and billing records are retained for up to 7 years to comply
+                            with financial regulations
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>Support communications are retained for a reasonable period to improve
+                            service quality and resolve disputes
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>Usage and analytics data may be retained in anonymized or aggregated form
+                            indefinitely
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p8">
+                    <div class="pp-sec-label">Section 08</div>
+                    <h2 class="pp-sec-title">Data <span>Security</span></h2>
+                    <div class="pp-body">
+                        <p>We implement appropriate technical and organizational measures to protect your personal data
+                            against unauthorized access, alteration, disclosure, or destruction.</p>
+                    </div>
+                    <div class="pp-grid2">
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Encryption</strong><br>Data encrypted in transit
+                                (TLS/SSL) and at rest</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Access Controls</strong><br>Role-based access
+                                limiting data exposure to authorized personnel</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Secure Infrastructure</strong><br>Hosted on reputable
+                                cloud platforms with industry-standard security certifications</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            <div><strong style="color:var(--text)">Regular Audits</strong><br>Periodic security reviews
+                                and vulnerability assessments</div>
+                        </div>
+                    </div>
+                    <div class="pp-callout warn">
+                        <strong>Important:</strong> No method of transmission over the internet is 100% secure. While we
+                        strive to protect your data, we cannot guarantee absolute security. Please use strong passwords
+                        and protect your account credentials.
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p9">
+                    <div class="pp-sec-label">Section 09</div>
+                    <h2 class="pp-sec-title">Your <span>Rights</span></h2>
+                    <div class="pp-body">
+                        <p>Depending on your location and applicable law, you may have the following rights regarding
+                            your personal data. To exercise any of these rights, contact us at <a
+                                href="mailto:support@playbeat.digital"
+                                style="color:#8cc8f8;text-decoration:none;">support@playbeat.digital</a>.</p>
+                    </div>
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <span class="right-card-icon">👁️</span>
+                            <div class="right-card-title">Right to Access</div>
+                            <div class="right-card-desc">Request a copy of the personal data we hold about you.</div>
+                        </div>
+                        <div class="right-card">
+                            <span class="right-card-icon">✏️</span>
+                            <div class="right-card-title">Right to Rectification</div>
+                            <div class="right-card-desc">Request correction of inaccurate or incomplete data.</div>
+                        </div>
+                        <div class="right-card">
+                            <span class="right-card-icon">🗑️</span>
+                            <div class="right-card-title">Right to Erasure</div>
+                            <div class="right-card-desc">Request deletion of your personal data where permitted by law.
+                            </div>
+                        </div>
+                        <div class="right-card">
+                            <span class="right-card-icon">🚫</span>
+                            <div class="right-card-title">Right to Object</div>
+                            <div class="right-card-desc">Object to processing based on legitimate interests or direct
+                                marketing.</div>
+                        </div>
+                        <div class="right-card">
+                            <span class="right-card-icon">📦</span>
+                            <div class="right-card-title">Data Portability</div>
+                            <div class="right-card-desc">Receive your data in a structured, machine-readable format.
+                            </div>
+                        </div>
+                        <div class="right-card">
+                            <span class="right-card-icon">⏸️</span>
+                            <div class="right-card-title">Right to Restrict</div>
+                            <div class="right-card-desc">Request restriction of processing in certain circumstances.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pp-callout">
+                        We will respond to all legitimate requests within <strong>30 days</strong>. We may need to
+                        verify your identity before processing your request.
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p10">
+                    <div class="pp-sec-label">Section 10</div>
+                    <h2 class="pp-sec-title">Third-Party <span>Links</span></h2>
+                    <div class="pp-body">
+                        <p>Our website and services may contain links to third-party websites, integrations, or
+                            platforms. These external sites have their own privacy policies and we are not responsible
+                            for their content or data practices.</p>
+                        <p>We encourage you to review the privacy policies of any third-party services you interact with
+                            through our platforms, including payment processors and communication tools.</p>
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p11">
+                    <div class="pp-sec-label">Section 11</div>
+                    <h2 class="pp-sec-title">Children's <span>Privacy</span></h2>
+                    <div class="pp-body">
+                        <p>Our services are not directed at individuals under the age of 18. We do not knowingly collect
+                            personal information from minors.</p>
+                    </div>
+                    <div class="pp-callout warn">
+                        <strong>Notice:</strong> If you believe a minor has provided us with personal data without
+                        parental consent, please contact us immediately at <a href="mailto:support@playbeat.digital"
+                            style="color:#f9cc7a;text-decoration:none;">support@playbeat.digital</a> and we will take
+                        steps to delete that information promptly.
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p12">
+                    <div class="pp-sec-label">Section 12</div>
+                    <h2 class="pp-sec-title">International <span>Transfers</span></h2>
+                    <div class="pp-body">
+                        <p>Your personal data may be transferred to and processed in countries other than your country
+                            of residence. These countries may have different data protection laws than your own.</p>
+                        <p>When we transfer data internationally, we take appropriate safeguards to ensure your
+                            information is protected in accordance with this Privacy Policy, including the use of
+                            standard contractual clauses or reliance on adequacy decisions where applicable.</p>
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p13">
+                    <div class="pp-sec-label">Section 13</div>
+                    <h2 class="pp-sec-title">Changes to <span>This Policy</span></h2>
+                    <div class="pp-body">
+                        <p>We may update this Privacy Policy from time to time to reflect changes in our practices,
+                            services, or applicable law. The updated version will be indicated by a revised effective
+                            date at the top of this page.</p>
+                        <p>We encourage you to review this Policy periodically. Continued use of our services after any
+                            updates constitutes acceptance of the revised Policy.</p>
+                    </div>
+                </section>
+
+                <section class="pp-section" id="p14">
+                    <div class="pp-sec-label">Section 14</div>
+                    <h2 class="pp-sec-title">Contact &amp; <span>Data Controller</span></h2>
+                    <div class="pp-body">
+                        <p>Playbeat Digital is the data controller for personal information collected through our
+                            services. If you have any questions, concerns, or requests relating to this Privacy Policy
+                            or your personal data, please reach out to us:</p>
+                    </div>
+                    <div class="pp-items" style="margin-top:1.25rem">
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg></div>
+                            <div><strong
+                                    style="color:var(--text);font-size:12px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;text-transform:uppercase;">Data
+                                    Controller</strong><br>Muhammad Uzair — Playbeat Digital</div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                </svg></div>
+                            <div><strong
+                                    style="color:var(--text);font-size:12px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;text-transform:uppercase;">Email</strong><br><a
+                                    href="mailto:support@playbeat.digital"
+                                    style="color:#7a9ac8;text-decoration:none;">support@playbeat.digital</a></div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="2" y1="12" x2="22" y2="12" />
+                                    <path
+                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                </svg></div>
+                            <div><strong
+                                    style="color:var(--text);font-size:12px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;text-transform:uppercase;">Website</strong><br><a
+                                    href="https://playbeat.digital" target="_blank"
+                                    style="color:#7a9ac8;text-decoration:none;">https://playbeat.digital</a></div>
+                        </div>
+                        <div class="pp-item">
+                            <div class="pp-item-dot"><svg width="9" height="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg></div>
+                            <div><strong
+                                    style="color:var(--text);font-size:12px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;text-transform:uppercase;">Phone
+                                    / WhatsApp</strong><br><a href="https://wa.me/923318333368" target="_blank"
+                                    style="color:#7a9ac8;text-decoration:none;">+92 331 8333368</a></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CLOSING BAND -->
+                <div class="accept-band">
+                    <div class="ab-hud ab-tl"></div>
+                    <div class="ab-hud ab-tr"></div>
+                    <div class="ab-hud ab-bl"></div>
+                    <div class="ab-hud ab-br"></div>
+                    <div>
+                        <div class="accept-band-label">Your Privacy, Our Priority</div>
+                        <div class="accept-band-title">Questions About <span>Your Data?</span></div>
+                        <p class="accept-band-sub">We take privacy seriously. If you have any concerns about how your
+                            data is handled, our team is always available to help.</p>
+                    </div>
+                    <div class="accept-actions">
+                        <a class="btn-hero-primary" href="contact.html">
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
+                            Contact Us
+                        </a>
+                        <a class="btn-hero-outline" href="terms.html">View Terms</a>
+                    </div>
+                </div>
+
+            </main>
+        </div><!-- /pp-layout -->
+
+    </div><!-- /page-wrap -->
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-banner">
+                <a class="footer-logo" href="index.html">
+                    <span class="footer-logo-digital">Digital</span>
+                    <div class="footer-logo-wordmark"><span class="footer-logo-play">play</span><span
+                            class="footer-logo-beat">beat</span></div>
+                    <div class="footer-logo-pvt">Digital Pvt Ltd</div>
+                    <div class="footer-logo-line"></div>
+                    <p class="footer-tagline">Driven by <span class="ft-play">Play</span>, Defined by <span
+                            class="ft-beat">beat.</span></p>
+                </a>
+                <div class="footer-support">
+                    <span class="support-label">Support</span>
+                    <a class="btn-support email" href="mailto:support@business.playbeat">
+                        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>Email
+                    </a>
+                    <a class="btn-support whatsapp" href="https://wa.me/923390005715" target="_blank" rel="noopener">
+                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                        </svg>WhatsApp
+                    </a>
+                    <a class="btn-support telegram" href="https://t.me/playbeatdigi01" target="_blank" rel="noopener">
+                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                        </svg>Telegram
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 <strong>PlayBeat Digital</strong> — All rights reserved.</p>
+                <nav class="footer-legal-links">
+                    <a href="privacy.html" class="active-link">Privacy</a><span>·</span>
+                    <a href="terms.html">Terms</a><span>·</span>
+                    <a href="refund.html">Refunds</a><span>·</span>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a class="floating-whatsapp" href="https://wa.me/923390005715" target="_blank" rel="noopener"
+        aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </svg>
     </a>
-    <nav aria-label="Main navigation">
-      <a href="index.html"         class="nav-item">Home</a>
-      <a href="games.html"         class="nav-item">Games</a>
-      <a href="gift-cards.html"    class="nav-item">Gift Cards</a>
-      <a href="software.html"      class="nav-item">Software</a>
-      <a href="ai-tools.html"      class="nav-item">AI Tools</a>
-      <a href="game-items.html"    class="nav-item">Game Items</a>
-      <a href="accounts.html"      class="nav-item">Accounts</a>
-      <a href="subscriptions.html" class="nav-item">Subscriptions</a>
-      <a href="top-up.html"        class="nav-item">Top Up</a>
-      <div class="nav-sep" aria-hidden="true"></div>
-      <a href="trending.html"      class="nav-item nav-special">🔥 Trending</a>
-      <a href="best-value.html"    class="nav-item nav-outsource">💎 Best Value</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<div class="main" style="padding-top:40px;padding-bottom:80px">
-  <div class="page-header">
-    <div class="eyebrow">Legal</div>
-    <h1>🔒 Privacy Policy</h1>
-    <p>Last updated: January 1, 2026</p>
-  </div>
-  <div class="privacy-content">
-    <h3>1. Information We Collect</h3>
-    <p>We collect information you provide directly to us, such as your name, email address, and payment details when you create an account or make a purchase. We also automatically collect certain information when you use our services, including IP addresses, browser type, pages visited, and transaction data.</p>
-    <h3>2. How We Use Your Information</h3>
-    <p>We use the information we collect to process transactions, send order confirmations, provide customer support, improve our services, and comply with legal obligations. We do not sell your personal data to third parties.</p>
-    <h3>3. Data Storage &amp; Security</h3>
-    <p>Your data is stored on secure servers with 256-bit SSL encryption. Payment card details are never stored on our servers — all transactions are processed through PCI-DSS compliant payment processors. We retain your data only as long as necessary to provide our services.</p>
-    <h3>4. Cookies</h3>
-    <p>We use cookies to keep you signed in, remember your preferences, and analyze site traffic. You can disable cookies in your browser settings, though some features may not function properly.</p>
-    <h3>5. Your Rights</h3>
-    <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at privacy@playbeat.digital. We will respond within 30 days.</p>
-    <h3>6. Third-Party Services</h3>
-    <p>Our platform integrates with third-party services including payment processors and analytics providers. These services have their own privacy policies, which we encourage you to review.</p>
-    <h3>7. Contact Us</h3>
-    <p>If you have questions about this Privacy Policy, contact us at privacy@playbeat.digital or through our <a href="contact.html" style="color:var(--gold)">Contact page</a>.</p>
-  </div>
-</div>
-
-</main>
-
-<footer class="site-footer">
-
-  <div class="f-hud">
-    <div class="f-hc f-hc-tl"></div><div class="f-hc f-hc-tr"></div>
-    <div class="f-hc f-hc-bl"></div><div class="f-hc f-hc-br"></div>
-  </div>
-
-  <div class="footer-inner">
-
-    <!-- LOGO BANNER + SUPPORT BUTTONS -->
-    <div class="footer-banner">
-      <a class="footer-logo" href="index.html" aria-label="PlayBeat Digital home">
-        <span class="footer-logo-digital">Digital</span>
-        <div class="footer-logo-wordmark">
-          <span class="footer-logo-play">play</span>
-          <span class="footer-logo-beat">beat</span>
-        </div>
-        <div class="footer-logo-line"></div>
-        <p class="footer-tagline">Your Digital Marketplace</p>
-      </a>
-      <div class="footer-support">
-        <span class="support-label">Support</span>
-        <a class="btn-support email" href="mailto:support@playbeat.digital" aria-label="Email support">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-          </svg>
-          Email
-        </a>
-        <a class="btn-support whatsapp" href="https://wa.me/923390005715" target="_blank" rel="noopener" aria-label="WhatsApp support">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-          WhatsApp
-        </a>
-        <a class="btn-support telegram" href="https://t.me/pdigi01" target="_blank" rel="noopener" aria-label="Telegram support">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-          Telegram
-        </a>
-      </div>
-    </div>
-
-    <!-- MAIN LINK GRID -->
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3 class="footer-col-title">Marketplace</h3>
-        <div class="footer-nav-grid">
-          <a href="index.html"         class="footer-nav-link">Home</a>
-          <a href="games.html"         class="footer-nav-link">Games</a>
-          <a href="gift-cards.html"    class="footer-nav-link">Gift Cards</a>
-          <a href="software.html"      class="footer-nav-link">Software</a>
-          <a href="ai-tools.html"      class="footer-nav-link">AI Tools</a>
-          <a href="game-items.html"    class="footer-nav-link">Game Items</a>
-          <a href="accounts.html"      class="footer-nav-link">Accounts</a>
-          <a href="subscriptions.html" class="footer-nav-link">Subscriptions</a>
-          <a href="top-up.html"        class="footer-nav-link">Top Up</a>
-          <a href="my-account.html"    class="footer-nav-link">My Account</a>
-          <a href="trending.html"      class="footer-nav-link special">🔥 Trending</a>
-          <a href="best-value.html"    class="footer-nav-link special">💎 Best Value</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h3 class="footer-col-title">Discover</h3>
-        <ul class="footer-link-list">
-          <li><a href="trending.html">🔥 Trending</a></li>
-          <li><a href="best-value.html">💎 Best Value</a></li>
-          <li><a href="outsource.html">Outsource</a></li>
-          <li><a href="our-team.html">Our Team</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3 class="footer-col-title">Legal</h3>
-        <ul class="footer-link-list">
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="refund.html">Refund Policy</a></li>
-          <li><a href="my-account.html">My Account</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3 class="footer-col-title">Newsletter</h3>
-        <p style="font-family:'Exo 2',sans-serif;font-size:11.5px;color:var(--tm);line-height:1.75;margin-bottom:14px;">
-          Get exclusive deals, flash sales, and new arrivals straight to your inbox.
-        </p>
-        <div style="display:flex;gap:0;border:1px solid var(--border1);border-radius:3px;overflow:hidden;">
-          <input type="email" placeholder="your@email.com"
-            style="flex:1;background:rgba(8,20,44,.85);border:none;color:var(--tp);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.8px;padding:9px 12px;outline:none;"
-            onfocus="this.parentElement.style.borderColor='var(--g500)'"
-            onblur="this.parentElement.style.borderColor='var(--border1)'">
-          <button style="background:linear-gradient(135deg,var(--g800),var(--g700),var(--g500));border:none;color:var(--n900);padding:9px 14px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;transition:filter .2s;white-space:nowrap;"
-            onmouseover="this.style.filter='brightness(1.18)'"
-            onmouseout="this.style.filter='none'">Subscribe</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- SOCIAL ROW + TRUST BADGES -->
-    <div class="footer-social-row">
-      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-        <span class="social-label">Follow Us</span>
-        <div class="social-icons">
-          <a class="social-btn x" href="https://twitter.com/playbeat" target="_blank" rel="noopener" aria-label="X / Twitter">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a class="social-btn fb" href="https://facebook.com/playbeatdigital01" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a class="social-btn ig" href="https://instagram.com/playbeatdigital01" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-          </a>
-          <a class="social-btn yt" href="https://youtube.com/playbeatdigital01" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
-          <a class="social-btn discord" href="https://discord.gg/playbeat" target="_blank" rel="noopener" aria-label="Discord">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-          </a>
-          <a class="social-btn tiktok" href="https://tiktok.com/@playbeatdigital01" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.2 8.2 0 0 0 4.79 1.52V6.9a4.85 4.85 0 0 1-1.02-.21z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="trust-badges">
-        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>SSL Secured</span>
-        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Instant Delivery</span>
-        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Trusted Sellers</span>
-        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Payment</span>
-      </div>
-    </div>
-
-    <!-- BOTTOM BAR -->
-    <div class="footer-bottom">
-      <p class="footer-copy">&copy; <span id="yr"></span> <strong>PlayBeat Digital</strong> — All rights reserved. Prices in PKR.</p>
-      <nav class="footer-legal-links" aria-label="Legal">
-        <a href="privacy.html">Privacy</a><span aria-hidden="true">·</span>
-        <a href="terms.html">Terms</a><span aria-hidden="true">·</span>
-        <a href="refund.html">Refunds</a><span aria-hidden="true">·</span>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-
-  </div>
-</footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
-<!-- ===== SIGN IN MODAL ===== -->
-<div class="modal-overlay" id="signinModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('signinModal')">✕</button>
-    <div class="modal-logo">Play<span>Beat</span></div>
-    <div class="modal-sub">Prime Digital Marketplace</div>
-    <div class="modal-title">Sign In</div>
-    <div class="modal-success" id="signinSuccess">✓ Signed in successfully!</div>
-    <button class="btn-social">🔵 Continue with Google</button>
-    <button class="btn-social">🐙 Continue with GitHub</button>
-    <div class="modal-divider">or use email</div>
-    <div class="form-group">
-      <label class="form-label">Email</label>
-      <input class="form-input" id="siEmail" type="email" placeholder="you@email.com">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Password</label>
-      <input class="form-input" id="siPass" type="password" placeholder="••••••••">
-    </div>
-    <div class="modal-error" id="siError">Invalid email or password.</div>
-    <div style="text-align:right;margin-bottom:20px">
-      <a style="color:var(--gold);font-size:12px;cursor:pointer;font-family:'Share Tech Mono',monospace" onclick="switchModal('signinModal','resetModal')">Forgot password?</a>
-    </div>
-    <button class="btn-hero-primary" style="width:100%;padding:13px;border-radius:4px" onclick="doSignIn()">Sign In →</button>
-    <div class="modal-switch">Don't have an account? <a onclick="switchModal('signinModal','signupModal')">Create one free</a></div>
-  </div>
-</div>
-
-<!-- ===== SIGN UP MODAL ===== -->
-<div class="modal-overlay" id="signupModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('signupModal')">✕</button>
-    <div class="modal-logo">Play<span>Beat</span></div>
-    <div class="modal-sub">Prime Digital Marketplace</div>
-    <div class="modal-title">Create Account</div>
-    <div class="modal-success" id="signupSuccess">✓ Account created! Welcome aboard.</div>
-    <button class="btn-social">🔵 Continue with Google</button>
-    <button class="btn-social">🐙 Continue with GitHub</button>
-    <div class="modal-divider">or use email</div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="suFirst" type="text" placeholder="Alex"></div>
-      <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="suLast" type="text" placeholder="Carter"></div>
-    </div>
-    <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="suEmail" type="email" placeholder="you@email.com"></div>
-    <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="suPass" type="password" placeholder="Min. 6 characters"></div>
-    <div class="modal-error" id="suError">Please fill all fields correctly.</div>
-    <div class="checkbox-row">
-      <input type="checkbox" id="suTerms">
-      <label for="suTerms">I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></label>
-    </div>
-    <button class="btn-hero-primary" style="width:100%;padding:13px;border-radius:4px" onclick="doSignUp()">Create Account →</button>
-    <div class="modal-switch">Already have an account? <a onclick="switchModal('signupModal','signinModal')">Sign in</a></div>
-  </div>
-</div>
-
-<!-- ===== RESET PASSWORD MODAL ===== -->
-<div class="modal-overlay" id="resetModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('resetModal')">✕</button>
-    <div class="modal-logo">Play<span>Beat</span></div>
-    <div class="modal-sub">Prime Digital Marketplace</div>
-    <div class="modal-title">Reset Password</div>
-    <div class="modal-success" id="resetSuccess">✓ Reset link sent! Check your inbox.</div>
-    <p style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#555;letter-spacing:1px;margin-bottom:20px">Enter your email and we'll send you a reset link.</p>
-    <div class="form-group">
-      <label class="form-label">Email</label>
-      <input class="form-input" id="resetEmail" type="email" placeholder="you@email.com">
-    </div>
-    <div class="modal-error" id="resetError">Please enter a valid email address.</div>
-    <button class="btn-hero-primary" style="width:100%;padding:13px;border-radius:4px" onclick="doReset()">Send Reset Link →</button>
-    <div class="modal-switch">Remembered it? <a onclick="switchModal('resetModal','signinModal')">Back to Sign In</a></div>
-  </div>
-</div>
-
-<!-- ===== CHECKOUT MODAL ===== -->
-<div class="modal-overlay" id="checkoutModal">
-  <div class="modal-box" style="max-width:680px">
-    <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
-    <div class="modal-title" id="checkoutTitle">Checkout</div>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#555;margin-bottom:24px;letter-spacing:2px">SECURE PAYMENT · INSTANT DELIVERY</div>
-    <div id="checkoutForm">
-      <div class="checkout-grid">
-        <div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#555;letter-spacing:2px;margin-bottom:14px">ORDER SUMMARY</div>
-          <div class="checkout-summary">
-            <div class="checkout-item">
-              <div class="checkout-item-icon" id="coIcon">🎮</div>
-              <div>
-                <div class="checkout-item-name" id="coName">Product</div>
-                <div class="checkout-item-cat"  id="coCat">Category</div>
-              </div>
-              <div class="checkout-item-price" id="coPrice">$0</div>
-            </div>
-            <div class="checkout-total">
-              <div><div class="checkout-total-label">Total</div></div>
-              <div class="checkout-total-price" id="coTotal">$0</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#555;letter-spacing:2px;margin-bottom:14px">PAYMENT METHOD</div>
-          <div class="payment-methods">
-            <div class="pay-method selected" onclick="selectPay(this)">💳 Card</div>
-            <div class="pay-method" onclick="selectPay(this)">🅿️ PayPal</div>
-            <div class="pay-method" onclick="selectPay(this)">₿ Crypto</div>
-            <div class="pay-method" onclick="selectPay(this)">🍎 Apple Pay</div>
-          </div>
-          <div id="cardFields">
-            <div class="form-group"><label class="form-label">Card Number</label><input class="form-input" id="coCard" type="text" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"></div>
-            <div class="form-row">
-              <div class="form-group"><label class="form-label">Expiry</label><input class="form-input" id="coExp" type="text" placeholder="MM/YY" maxlength="5"></div>
-              <div class="form-group"><label class="form-label">CVV</label><input class="form-input" id="coCvv" type="password" placeholder="•••" maxlength="4"></div>
-            </div>
-            <div class="form-group"><label class="form-label">Name on Card</label><input class="form-input" id="coCardName" type="text" placeholder="Alex Carter"></div>
-          </div>
-          <div id="paypalFields" style="display:none">
-            <div class="form-group"><label class="form-label">PayPal Email</label><input class="form-input" id="coPaypalEmail" type="email" placeholder="you@paypal.com"></div>
-            <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#555;letter-spacing:1px;margin-top:8px">You will be redirected to PayPal to complete payment securely.</p>
-          </div>
-          <div id="cryptoFields" style="display:none">
-            <div class="form-group">
-              <label class="form-label">Select Coin</label>
-              <select class="form-input" id="coCoin" style="cursor:pointer">
-                <option>Bitcoin (BTC)</option>
-                <option>Ethereum (ETH)</option>
-                <option>USDT (TRC-20)</option>
-                <option>Litecoin (LTC)</option>
-              </select>
-            </div>
-            <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#555;letter-spacing:1px;margin-top:8px">A wallet address will be shown after confirming your order.</p>
-          </div>
-          <div id="appleFields" style="display:none">
-            <p style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#555;letter-spacing:1px;margin:16px 0 8px">Tap the button below to authenticate with Apple Pay.</p>
-            <div style="background:rgba(8,20,44,.6);border:1px solid var(--border1);border-radius:4px;padding:14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--ts);letter-spacing:1px">🍎 Apple Pay — Confirm with Touch ID or Face ID</div>
-          </div>
-          <div class="modal-error" id="coError" style="margin-top:-4px">Please complete all card details.</div>
-          <button class="btn-hero-primary" style="width:100%;padding:14px;border-radius:4px;margin-top:8px" onclick="doCheckout()">🔒 Pay &amp; Get Instant Delivery</button>
-          <div style="text-align:center;font-size:11px;color:#333;font-family:'Share Tech Mono',monospace;margin-top:10px;letter-spacing:1px">256-bit SSL · Verified Secure</div>
-        </div>
-      </div>
-    </div>
-    <div class="checkout-success" id="checkoutSuccess">
-      <div class="big-icon">🎉</div>
-      <h3>Order Complete!</h3>
-      <p>Your digital product has been delivered instantly.</p>
-      <div class="key-box" id="deliveryKey">XXXX-XXXX-XXXX-XXXX</div>
-      <p style="font-size:12px;color:#444;font-family:'Share Tech Mono',monospace">Save this key · Check email for full details</p>
-      <button class="btn-hero-primary" style="margin-top:20px;padding:12px 32px;border-radius:4px"
-        onclick="closeModal('checkoutModal');window.location.href='my-account.html'">View My Orders</button>
-    </div>
-  </div>
-</div>
-
-<script>
-function doReset() {
-  const email = document.getElementById('resetEmail').value.trim();
-  const err   = document.getElementById('resetError');
-  const ok    = document.getElementById('resetSuccess');
-  err.style.display = 'none';
-  ok.style.display  = 'none';
-  if (!email || !email.includes('@')) {
-    err.style.display = 'block'; return;
-  }
-  const btn = document.querySelector('#resetModal .btn-hero-primary');
-  if (btn) { btn.textContent = '⏳ Sending…'; btn.disabled = true; }
-  setTimeout(() => {
-    if (btn) { btn.textContent = 'Send Reset Link →'; btn.disabled = false; }
-    ok.style.display = 'block';
-    document.getElementById('resetEmail').value = '';
-  }, 1200);
-}
-function selectPay(el) {
-  document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
-  el.classList.add('selected');
-  const label = el.textContent.trim();
-  const allFields = ['cardFields','paypalFields','cryptoFields','appleFields'];
-  allFields.forEach(id => { const f = document.getElementById(id); if (f) f.style.display = 'none'; });
-  if (label.includes('Card'))       { const f = document.getElementById('cardFields');   if (f) f.style.display = 'block'; }
-  else if (label.includes('PayPal')) { const f = document.getElementById('paypalFields'); if (f) f.style.display = 'block'; }
-  else if (label.includes('Crypto') || label.includes('₿')) { const f = document.getElementById('cryptoFields'); if (f) f.style.display = 'block'; }
-  else if (label.includes('Apple'))  { const f = document.getElementById('appleFields');  if (f) f.style.display = 'block'; }
-}
-</script>
-
-<script src="shared.js"></script>
-
-
 
 </body>
+
 </html>
-
-

@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — PlayBeat Digital</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@400;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --bg: #0a0b0f;
+            --bg2: #111318;
+            --bg3: #1a1d25;
+            --accent: #f0c040;
+            --accent2: #e85d26;
+            --text: #f0ece4;
+            --muted: #7a7e8c;
+            --border: rgba(255, 255, 255, 0.07);
+            --gold: #f5a623;
+            --gold-dim: rgba(245, 166, 35, 0.22);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ─── TICKER ─── */
+        .ticker-bar {
+            background: linear-gradient(90deg, var(--bg), #060f22, var(--bg));
+            border-bottom: 1px solid rgba(245, 166, 35, .10);
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--bg) 0%, transparent 90px), linear-gradient(270deg, var(--bg) 0%, transparent 90px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .ticker-inner {
+            display: inline-flex;
+            align-items: center;
+            height: 100%;
+            white-space: nowrap;
+            animation: tickscroll 55s linear infinite;
+        }
+
+        @keyframes tickscroll {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        .ticker-inner span {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .8px;
+            color: #3d5a88;
+            padding: 0 18px;
+            border-right: 1px solid rgba(245, 166, 35, .10);
+            position: relative;
+            z-index: 1;
+            cursor: default;
+        }
+
+        .t-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            color: #f5a623;
+            padding: 0 16px 0 18px;
+            border-right: 1px solid rgba(245, 166, 35, .10);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pulse {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #f5a623;
+            box-shadow: 0 0 8px #f5a623;
+            animation: p 1.6s ease infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes p {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .35;
+                transform: scale(.55)
+            }
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            background: linear-gradient(180deg, rgba(4, 14, 30, .98) 0%, rgba(7, 20, 40, .97) 100%);
+            border-bottom: 1px solid rgba(245, 166, 35, .22);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 6px 48px rgba(0, 0, 0, .75);
+            overflow: visible;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #8a5400 15%, #f5a623 40%, #f7b84a 50%, #f5a623 60%, #8a5400 85%, transparent 100%);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .header-top {
+            border-bottom: 1px solid rgba(245, 166, 35, .10);
+            padding: 6px 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .header-top-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            justify-content: flex-end;
+        }
+
+        .search-wrap {
+            flex: 1;
+            max-width: 680px;
+            position: relative;
+            margin-left: auto;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(8, 20, 44, .85);
+            border: 1px solid var(--gold-dim);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: border-color .25s, box-shadow .25s;
+        }
+
+        .search-bar:focus-within {
+            border-color: #f5a623;
+            box-shadow: 0 0 0 1px rgba(245, 166, 35, .18), 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .search-category {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            background: rgba(4, 12, 28, .95);
+            border: none;
+            border-right: 1px solid var(--gold-dim);
+            color: #f7b84a;
+            padding: 0 28px 0 12px;
+            height: 36px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23f5a623'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 9px center;
+            flex-shrink: 0;
+        }
+
+        .search-category option {
+            background: #07142a;
+            color: #e2ecff;
+        }
+
+        .search-ico {
+            display: flex;
+            align-items: center;
+            padding: 0 8px 0 12px;
+            color: #3d5a88;
+            flex-shrink: 0;
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #e2ecff;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13px;
+            padding: 0 12px;
+            height: 36px;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #3d5a88;
+            font-style: italic;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #8a5400, #c07800, #f5a623);
+            border: none;
+            color: #020a16;
+            padding: 0 18px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: filter .2s, box-shadow .2s;
+        }
+
+        .search-btn:hover {
+            filter: brightness(1.18);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-wish {
+            background: rgba(8, 20, 44, .85);
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+            width: 36px;
+            height: 36px;
+            border-radius: 3px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all .2s;
+            flex-shrink: 0;
+        }
+
+        .btn-wish:hover {
+            border-color: #f5a623;
+            color: #f7b84a;
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .btn-login {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: transparent;
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+            padding: 7px 16px;
+            border-radius: 3px;
+            height: 36px;
+            cursor: pointer;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-login:hover {
+            border-color: #f5a623;
+            color: #f9cc7a;
+        }
+
+        .btn-prime {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #8a5400 0%, #c07800 40%, #f5a623 100%);
+            border: 1px solid #f5a623;
+            color: #020a16;
+            padding: 0 18px;
+            height: 36px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: filter .2s, box-shadow .2s, transform .15s;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-prime:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+            transform: translateY(-1px);
+        }
+
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+            flex-shrink: 0;
+            gap: 1px;
+        }
+
+        .logo-digital {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8.5px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #8fa8c8, #b8cde8, #7a9ac8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-wordmark {
+            display: flex;
+            align-items: baseline;
+            filter: drop-shadow(0 0 10px rgba(245, 166, 35, .38));
+            transition: filter .3s;
+        }
+
+        .logo:hover .logo-wordmark {
+            filter: drop-shadow(0 0 22px rgba(245, 166, 35, .72));
+        }
+
+        .logo-play {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 30px;
+            letter-spacing: -1px;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .logo-beat {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 30px;
+            letter-spacing: -1px;
+            background: linear-gradient(170deg, #f9cc7a 0%, #f5a623 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .logo-underline {
+            height: 1px;
+            width: 100%;
+            margin-top: 3px;
+            background: linear-gradient(90deg, #f5a623 0%, transparent 80%);
+            opacity: .55;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1px;
+            flex: 1;
+        }
+
+        .nav-item {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 11.5px;
+            font-weight: 500;
+            letter-spacing: .9px;
+            text-transform: uppercase;
+            color: #7a9ac8;
+            text-decoration: none;
+            padding: 7px 10px;
+            border-radius: 3px;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            transition: color .2s, background .2s, border-color .2s;
+        }
+
+        .nav-item:hover {
+            color: #f9cc7a;
+            background: rgba(245, 166, 35, .06);
+            border-color: rgba(245, 166, 35, .10);
+        }
+
+        .nav-item.active {
+            color: #f7b84a;
+            background: rgba(245, 166, 35, .08);
+            border-color: var(--gold-dim);
+        }
+
+        .nav-special {
+            color: #f7b84a !important;
+            background: rgba(245, 166, 35, .06) !important;
+            border-color: rgba(245, 166, 35, .10) !important;
+        }
+
+        .nav-outsource {
+            color: #00d4ff !important;
+            background: rgba(0, 212, 255, .05) !important;
+            border-color: rgba(0, 212, 255, .18) !important;
+        }
+
+        .nav-sep {
+            width: 1px;
+            height: 18px;
+            background: rgba(245, 166, 35, .10);
+            margin: 0 3px;
+            flex-shrink: 0;
+        }
+
+        /* ─── ABOUT PAGE ─── */
+        .about-wrap {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* HERO BANNER */
+        .about-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0 3.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 65% 55% at 60% 50%, rgba(245, 166, 35, .07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* grid lines atmosphere */
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(245, 166, 35, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 166, 35, .025) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .4) 40%, rgba(0, 0, 0, .4) 60%, transparent 100%);
+        }
+
+        .about-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #f5a623;
+            background: rgba(245, 166, 35, .08);
+            border: 1px solid rgba(245, 166, 35, .22);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-eyebrow .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #f5a623;
+            box-shadow: 0 0 8px #f5a623;
+            animation: p 1.6s ease infinite;
+        }
+
+        .about-hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(46px, 5.5vw, 80px);
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: .75rem;
+        }
+
+        .about-hero-title span {
+            color: var(--accent);
+        }
+
+        .about-hero-desc {
+            font-size: 15px;
+            color: var(--muted);
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 480px;
+            margin-bottom: 2rem;
+        }
+
+        .about-hero-desc strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #8a5400, #c07800, #f5a623);
+            border: 1px solid #f5a623;
+            color: #020a16;
+            padding: 0 24px;
+            height: 42px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: filter .2s, box-shadow .2s, transform .15s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -110%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .28), transparent);
+            transition: left .55s;
+        }
+
+        .btn-hero-primary:hover::before {
+            left: 150%;
+        }
+
+        .btn-hero-primary:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 0 24px rgba(245, 166, 35, .35);
+            transform: translateY(-1px);
+        }
+
+        .btn-hero-outline {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: transparent;
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+            padding: 0 20px;
+            height: 42px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all .2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-hero-outline:hover {
+            border-color: #f5a623;
+            color: #f9cc7a;
+            background: rgba(245, 166, 35, .04);
+        }
+
+        /* right side: stat grid */
+        .hero-stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .hero-stat-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.4rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .22s, box-shadow .22s;
+        }
+
+        .hero-stat-card:hover {
+            border-color: rgba(245, 166, 35, .3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .4);
+        }
+
+        .hero-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dim), transparent);
+        }
+
+        .hero-stat-card.hs-orange::before {
+            background: linear-gradient(90deg, rgba(232, 93, 38, .5), transparent);
+        }
+
+        .hero-stat-card.hs-blue::before {
+            background: linear-gradient(90deg, rgba(55, 138, 221, .5), transparent);
+        }
+
+        .hero-stat-card.hs-green::before {
+            background: linear-gradient(90deg, rgba(29, 158, 117, .5), transparent);
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 38px;
+            letter-spacing: 1px;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-num span {
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ─── SECTION COMMON ─── */
+        .ab-section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ab-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .ab-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.8px;
+            text-transform: uppercase;
+            color: #f5a623;
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ab-label::after {
+            content: '';
+            flex: 0 0 32px;
+            height: 1px;
+            background: rgba(245, 166, 35, .4);
+        }
+
+        .ab-heading {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(30px, 3.5vw, 46px);
+            letter-spacing: 1.5px;
+            line-height: 1;
+            margin-bottom: .75rem;
+        }
+
+        .ab-heading span {
+            color: var(--accent);
+        }
+
+        .ab-body {
+            font-size: 14.5px;
+            color: var(--muted);
+            line-height: 1.85;
+            font-weight: 300;
+            max-width: 640px;
+        }
+
+        .ab-body strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ─── WHO WE ARE — 2-col text+visual ─── */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .who-visual {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .who-visual::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 166, 35, .08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .wv-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            background: rgba(8, 20, 44, .5);
+            border: 1px solid rgba(245, 166, 35, .07);
+            border-radius: 8px;
+            transition: border-color .2s;
+        }
+
+        .wv-row:hover {
+            border-color: rgba(245, 166, 35, .2);
+        }
+
+        .wv-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: rgba(245, 166, 35, .1);
+            border: 1px solid rgba(245, 166, 35, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f5a623;
+            flex-shrink: 0;
+        }
+
+        .wv-text-title {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .wv-text-sub {
+            font-size: 11.5px;
+            color: var(--muted);
+        }
+
+        /* ─── WHAT WE DO — service cards ─── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.6rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .22s, transform .22s, box-shadow .22s;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(245, 166, 35, .04), transparent 60%);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(245, 166, 35, .32);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dim), transparent);
+        }
+
+        .sc-orange .service-card-accent {
+            background: linear-gradient(90deg, rgba(232, 93, 38, .5), transparent);
+        }
+
+        .sc-blue .service-card-accent {
+            background: linear-gradient(90deg, rgba(55, 138, 221, .5), transparent);
+        }
+
+        .sc-green .service-card-accent {
+            background: linear-gradient(90deg, rgba(29, 158, 117, .5), transparent);
+        }
+
+        .sc-purple .service-card-accent {
+            background: linear-gradient(90deg, rgba(127, 119, 221, .5), transparent);
+        }
+
+        .sc-pink .service-card-accent {
+            background: linear-gradient(90deg, rgba(212, 83, 126, .5), transparent);
+        }
+
+        .service-icon {
+            font-size: 28px;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .service-name {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: .3px;
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        /* ─── MISSION / VISION — 2-col cards ─── */
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 2rem;
+        }
+
+        .mv-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mv-card.mission {
+            border-top: 2px solid rgba(245, 166, 35, .4);
+        }
+
+        .mv-card.vision {
+            border-top: 2px solid rgba(55, 138, 221, .4);
+        }
+
+        .mv-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .mv-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            letter-spacing: 1px;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .mv-title span {
+            color: var(--accent);
+        }
+
+        .mv-body {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .mv-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1.25rem;
+        }
+
+        .mv-pill {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #f5a623;
+            background: rgba(245, 166, 35, .08);
+            border: 1px solid rgba(245, 166, 35, .18);
+            padding: 5px 12px;
+            border-radius: 50px;
+        }
+
+        /* ─── CORE VALUES — icon grid ─── */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: border-color .22s, transform .22s;
+        }
+
+        .value-card:hover {
+            border-color: rgba(245, 166, 35, .3);
+            transform: translateY(-3px);
+        }
+
+        .value-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            margin: 0 auto 14px;
+            background: rgba(245, 166, 35, .1);
+            border: 1px solid rgba(245, 166, 35, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: background .2s, box-shadow .2s;
+        }
+
+        .value-card:hover .value-icon {
+            background: rgba(245, 166, 35, .16);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .12);
+        }
+
+        .value-name {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .value-desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ─── INDUSTRIES — pill cloud ─── */
+        .industries-wrap {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .industry-tag {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 12.5px;
+            font-weight: 500;
+            color: #7a9ac8;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 18px;
+            transition: border-color .2s, color .2s, background .2s;
+            cursor: default;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .industry-tag:hover {
+            border-color: rgba(245, 166, 35, .3);
+            color: #f9cc7a;
+            background: rgba(245, 166, 35, .05);
+        }
+
+        .industry-tag .itag-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(245, 166, 35, .4);
+            flex-shrink: 0;
+        }
+
+        /* ─── WHY CHOOSE — features list ─── */
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.1rem 1.25rem;
+            transition: border-color .2s;
+        }
+
+        .why-item:hover {
+            border-color: rgba(245, 166, 35, .25);
+        }
+
+        .why-check {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            flex-shrink: 0;
+            background: rgba(245, 166, 35, .1);
+            border: 1px solid rgba(245, 166, 35, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            color: #f5a623;
+        }
+
+        .why-text-title {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+
+        .why-text-desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        /* ─── CLOSING CTA BAND ─── */
+        .cta-band {
+            background: linear-gradient(135deg, rgba(245, 166, 35, .06), rgba(245, 166, 35, .02));
+            border: 1px solid rgba(245, 166, 35, .18);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+
+        .cta-band::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 166, 35, .08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-hud {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: .35;
+        }
+
+        .cta-tl {
+            top: 10px;
+            left: 10px;
+            border-top: 1px solid #f5a623;
+            border-left: 1px solid #f5a623;
+        }
+
+        .cta-tr {
+            top: 10px;
+            right: 10px;
+            border-top: 1px solid #f5a623;
+            border-right: 1px solid #f5a623;
+        }
+
+        .cta-bl {
+            bottom: 10px;
+            left: 10px;
+            border-bottom: 1px solid #f5a623;
+            border-left: 1px solid #f5a623;
+        }
+
+        .cta-br {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 1px solid #f5a623;
+            border-right: 1px solid #f5a623;
+        }
+
+        .cta-band-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #f5a623;
+            margin-bottom: .5rem;
+        }
+
+        .cta-band-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(26px, 3vw, 38px);
+            letter-spacing: 1.5px;
+            line-height: 1.1;
+            color: var(--text);
+        }
+
+        .cta-band-title span {
+            color: var(--accent);
+        }
+
+        .cta-band-sub {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: .5rem;
+            max-width: 440px;
+            line-height: 1.7;
+        }
+
+        .cta-band-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        /* ─── FOOTER ─── */
+        .site-footer {
+            background: linear-gradient(180deg, #040e1e 0%, #020a16 100%);
+            border-top: 1px solid rgba(245, 166, 35, .22);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #8a5400 15%, #f5a623 40%, #f7b84a 50%, #f5a623 60%, #8a5400 85%, transparent 100%);
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-banner {
+            padding: 42px 0 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(245, 166, 35, .10);
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .footer-logo-digital {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8.5px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #8fa8c8, #b8cde8, #7a9ac8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-left: 2px;
+        }
+
+        .footer-logo-wordmark {
+            display: flex;
+            align-items: baseline;
+            filter: drop-shadow(0 0 10px rgba(245, 166, 35, .35));
+            transition: filter .3s;
+        }
+
+        .footer-logo:hover .footer-logo-wordmark {
+            filter: drop-shadow(0 0 22px rgba(245, 166, 35, .7));
+        }
+
+        .footer-logo-play {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            letter-spacing: -1px;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .footer-logo-beat {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            letter-spacing: -1px;
+            line-height: 1;
+            background: linear-gradient(170deg, #f9cc7a 0%, #f5a623 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-logo-pvt {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            margin-top: 2px;
+            padding-left: 2px;
+        }
+
+        .footer-logo-line {
+            height: 1px;
+            width: 100%;
+            margin-top: 4px;
+            background: linear-gradient(90deg, #f5a623, transparent 80%);
+            opacity: .5;
+        }
+
+        .footer-tagline {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9.5px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            margin-top: 8px;
+            padding-left: 2px;
+        }
+
+        .footer-tagline .ft-play {
+            color: #e2ecff;
+        }
+
+        .footer-tagline .ft-beat {
+            color: #f5a623;
+        }
+
+        .footer-support {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .support-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            margin-right: 4px;
+        }
+
+        .btn-support {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            padding: 9px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all .22s;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn-support.email {
+            background: rgba(8, 20, 44, .9);
+            border: 1px solid var(--gold-dim);
+            color: #7a9ac8;
+        }
+
+        .btn-support.email:hover {
+            border-color: #f5a623;
+            color: #f9cc7a;
+            box-shadow: 0 0 18px rgba(245, 166, 35, .28);
+        }
+
+        .btn-support.whatsapp {
+            background: rgba(7, 46, 20, .85);
+            border: 1px solid rgba(37, 211, 102, .25);
+            color: #25d366;
+        }
+
+        .btn-support.whatsapp:hover {
+            border-color: rgba(37, 211, 102, .6);
+            color: #4ade80;
+            box-shadow: 0 0 16px rgba(37, 211, 102, .2);
+        }
+
+        .btn-support.telegram {
+            background: rgba(4, 22, 50, .85);
+            border: 1px solid rgba(0, 136, 204, .28);
+            color: #29a8e0;
+        }
+
+        .btn-support.telegram:hover {
+            border-color: rgba(0, 136, 204, .6);
+            color: #60d0ff;
+        }
+
+        .footer-bottom {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9.5px;
+            letter-spacing: 1.2px;
+            color: #3d5a88;
+        }
+
+        .footer-copy strong {
+            color: #f7b84a;
+            font-weight: 400;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .footer-legal-links a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #3d5a88;
+            text-decoration: none;
+            padding: 3px 8px;
+            transition: color .18s;
+        }
+
+        .footer-legal-links a:hover {
+            color: #f9cc7a;
+        }
+
+        .footer-legal-links span {
+            color: rgba(245, 166, 35, .22);
+            padding: 0 2px;
+        }
+
+        /* floating whatsapp */
+        .floating-whatsapp {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            background: #25d366;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            z-index: 9999;
+            text-decoration: none;
+            box-shadow: 0 4px 18px rgba(37, 211, 102, .4);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, .55);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:1050px) {
+            nav {
+                display: none;
+            }
+        }
+
+        @media(max-width:900px) {
+
+            .about-hero-inner,
+            .who-grid,
+            .mv-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .about-wrap {
+                padding: 0 16px;
+            }
+
+            .hero-stat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .header-inner,
+            .header-top-inner {
+                padding: 0 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TICKER -->
+    <div class="ticker-bar">
+        <div class="ticker-inner">
+            <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
+            <span>🔥 Valorant Elderflame Bundle — Rs 14,399</span>
+            <span>⚡ ChatGPT Plus 1M — Rs 3,209</span>
+            <span>🎮 PS Plus 12M — Rs 9,599</span>
+            <span>💎 Adobe CC All Apps — Rs 8,819</span>
+            <span>🤖 Midjourney Basic — Rs 1,609</span>
+            <span>🆓 Free Gift Card on Orders Rs 5,000+</span>
+            <span>🔒 SSL Secured · Instant Delivery</span>
+            <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
+            <span>🔥 Valorant Elderflame Bundle — Rs 14,399</span>
+            <span>⚡ ChatGPT Plus 1M — Rs 3,209</span>
+            <span>🎮 PS Plus 12M — Rs 9,599</span>
+            <span>💎 Adobe CC All Apps — Rs 8,819</span>
+            <span>🤖 Midjourney Basic — Rs 1,609</span>
+            <span>🆓 Free Gift Card on Orders Rs 5,000+</span>
+            <span>🔒 SSL Secured · Instant Delivery</span>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-top">
+            <div class="header-top-inner">
+                <div class="search-wrap">
+                    <div class="search-bar">
+                        <select class="search-category">
+                            <option>All</option>
+                            <option>Games</option>
+                            <option>AI Tools</option>
+                            <option>Software</option>
+                            <option>Gift Cards</option>
+                            <option>Subscriptions</option>
+                        </select>
+                        <span class="search-ico">
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                        </span>
+                        <input class="search-input" type="text" placeholder="Search games, AI tools, subscriptions…"
+                            autocomplete="off" />
+                        <button class="search-btn">
+                            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                </div>
+                <div class="top-actions">
+                    <button class="btn-wish" aria-label="Wishlist">
+                        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </button>
+                    <button class="btn-login">Sign In</button>
+                    <button class="btn-prime">✦ Join PlayBeat</button>
+                </div>
+            </div>
+        </div>
+        <div class="header-inner">
+            <a class="logo" href="index.html">
+                <span class="logo-digital">Digital</span>
+                <div class="logo-wordmark"><span class="logo-play">play</span><span class="logo-beat">beat</span></div>
+                <div
+                    style="font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:#3d5a88;margin-top:1px;padding-left:2px;">
+                    Digital Pvt Ltd</div>
+                <div class="logo-underline"></div>
+            </a>
+            <nav>
+                <a class="nav-item" href="index.html">Home</a>
+                <a class="nav-item" href="games.html">Games</a>
+                <a class="nav-item" href="gift-cards.html">Gift Cards</a>
+                <a class="nav-item" href="software.html">Software</a>
+                <a class="nav-item" href="ai-tools.html">AI Tools</a>
+                <a class="nav-item" href="game-items.html">Game Items</a>
+                <a class="nav-item" href="accounts.html">Accounts</a>
+                <a class="nav-item" href="subscriptions.html">Subscriptions</a>
+                <div class="nav-sep"></div>
+                <a class="nav-item nav-special" href="trending.html">🔥 Trending</a>
+                <a class="nav-item nav-outsource" href="best-value.html">💎 Global</a>
+                <a class="nav-item active" href="about.html">About Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════
+     ABOUT US PAGE
+══════════════════════════════════════════ -->
+    <div class="about-wrap">
+
+        <!-- ── HERO ── -->
+        <section class="about-hero">
+            <div class="about-hero-inner">
+                <div>
+                    <div class="about-eyebrow"><span class="dot"></span> Who We Are</div>
+                    <h1 class="about-hero-title">Driving <span>Digital</span><br>Innovation</h1>
+                    <p class="about-hero-desc"><strong>Playbeat Digital</strong> is a technology-focused digital
+                        solutions company dedicated to helping businesses, entrepreneurs, startups, and organizations
+                        succeed in an increasingly connected world. We specialize in software, SaaS platforms, business
+                        automation, payment technologies, and scalable online services.</p>
+                    <div class="hero-cta-row">
+                        <a class="btn-hero-primary" href="contact.html">
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
+                            Get In Touch
+                        </a>
+                        <a class="btn-hero-outline" href="index.html">Explore Products</a>
+                    </div>
+                </div>
+                <!-- stat cards -->
+                <div class="hero-stat-grid">
+                    <div class="hero-stat-card">
+                        <div class="stat-num">10<span>+</span></div>
+                        <div class="stat-label">Industries Served</div>
+                    </div>
+                    <div class="hero-stat-card hs-orange">
+                        <div class="stat-num">100<span>%</span></div>
+                        <div class="stat-label">Cloud-Based Solutions</div>
+                    </div>
+                    <div class="hero-stat-card hs-blue">
+                        <div class="stat-num">8<span>+</span></div>
+                        <div class="stat-label">Service Verticals</div>
+                    </div>
+                    <div class="hero-stat-card hs-green">
+                        <div class="stat-num">4.9<span>★</span></div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WHO WE ARE ── -->
+        <section class="ab-section">
+            <div class="ab-label">Our Team</div>
+            <h2 class="ab-heading">Who <span>We Are</span></h2>
+            <div class="who-grid">
+                <div>
+                    <p class="ab-body">At Playbeat Digital, we are a team of <strong>developers, designers, strategists,
+                            and technology professionals</strong> committed to building modern digital experiences. Our
+                        expertise spans multiple industries and technologies, allowing us to develop customized
+                        solutions tailored to the specific needs of our clients.</p>
+                    <p class="ab-body" style="margin-top:1rem;">We understand that every business is unique. That is why
+                        we focus on delivering <strong>flexible, scalable, and reliable digital solutions</strong> that
+                        align with our clients' objectives and long-term vision. Our goal is not only to provide
+                        software and services but also to become a trusted technology partner throughout your digital
+                        journey.</p>
+                </div>
+                <!-- visual feature list -->
+                <div class="who-visual">
+                    <div class="wv-row">
+                        <div class="wv-icon"><svg width="18" height="18" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <rect x="2" y="3" width="20" height="14" rx="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg></div>
+                        <div>
+                            <div class="wv-text-title">Expert Development Team</div>
+                            <div class="wv-text-sub">Developers, designers & strategists</div>
+                        </div>
+                    </div>
+                    <div class="wv-row">
+                        <div class="wv-icon"><svg width="18" height="18" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg></div>
+                        <div>
+                            <div class="wv-text-title">Secure & Reliable Systems</div>
+                            <div class="wv-text-sub">Industry-standard security practices</div>
+                        </div>
+                    </div>
+                    <div class="wv-row">
+                        <div class="wv-icon"><svg width="18" height="18" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            </svg></div>
+                        <div>
+                            <div class="wv-text-title">Scalable Architecture</div>
+                            <div class="wv-text-sub">Built to grow with your business</div>
+                        </div>
+                    </div>
+                    <div class="wv-row">
+                        <div class="wv-icon"><svg width="18" height="18" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                <line x1="9" y1="9" x2="9.01" y2="9" />
+                                <line x1="15" y1="9" x2="15.01" y2="9" />
+                            </svg></div>
+                        <div>
+                            <div class="wv-text-title">Customer-First Approach</div>
+                            <div class="wv-text-sub">Your success is our success</div>
+                        </div>
+                    </div>
+                    <div class="wv-row">
+                        <div class="wv-icon"><svg width="18" height="18" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+                            </svg></div>
+                        <div>
+                            <div class="wv-text-title">Long-Term Partnership</div>
+                            <div class="wv-text-sub">With you at every stage of growth</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WHAT WE DO ── -->
+        <section class="ab-section">
+            <div class="ab-label">Services</div>
+            <h2 class="ab-heading">What <span>We Do</span></h2>
+            <p class="ab-body">Playbeat Digital offers a broad range of technology and digital services designed to help
+                businesses establish, manage, and expand their online presence.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">☁️</span>
+                    <div class="service-name">Software as a Service (SaaS)</div>
+                    <div class="service-desc">Cloud-based software platforms providing powerful tools for managing
+                        operations, customers, subscriptions, and workflows through secure, scalable online systems.
+                    </div>
+                </div>
+                <div class="service-card sc-orange">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">⚙️</span>
+                    <div class="service-name">Custom Software Development</div>
+                    <div class="service-desc">Tailored software solutions that address specific business requirements,
+                        improve operational efficiency, and support organizational growth.</div>
+                </div>
+                <div class="service-card sc-blue">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">🌐</span>
+                    <div class="service-name">Web Application Development</div>
+                    <div class="service-desc">Responsive and user-friendly web applications delivering seamless
+                        experiences across desktop and mobile while maintaining security and performance.</div>
+                </div>
+                <div class="service-card sc-green">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">🤖</span>
+                    <div class="service-name">Business Automation Solutions</div>
+                    <div class="service-desc">Intelligent automation systems that reduce manual tasks, streamline
+                        processes, and improve productivity and operational accuracy.</div>
+                </div>
+                <div class="service-card sc-purple">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">💳</span>
+                    <div class="service-name">Payment Technology Solutions</div>
+                    <div class="service-desc">Secure payment systems, subscription management tools, transaction
+                        workflows, and financial technology solutions for digital commerce.</div>
+                </div>
+                <div class="service-card sc-pink">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">🛒</span>
+                    <div class="service-name">E-Commerce Platforms</div>
+                    <div class="service-desc">Modern storefronts, customer portals, and integrated payment experiences
+                        that enable businesses to sell products and services online.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">🔧</span>
+                    <div class="service-name">Cloud-Based Business Solutions</div>
+                    <div class="service-desc">Scalable cloud-hosted applications designed to support business growth,
+                        reliability, and accessibility from anywhere in the world.</div>
+                </div>
+                <div class="service-card sc-blue">
+                    <div class="service-card-accent"></div>
+                    <span class="service-icon">📊</span>
+                    <div class="service-name">Digital Consulting & Strategy</div>
+                    <div class="service-desc">Technology planning, digital transformation, platform architecture, and
+                        strategic decision-making to maximize the value of technology investments.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── MISSION & VISION ── -->
+        <section class="ab-section">
+            <div class="ab-label">Purpose</div>
+            <h2 class="ab-heading">Mission & <span>Vision</span></h2>
+            <div class="mv-grid">
+                <div class="mv-card mission">
+                    <span class="mv-icon">🎯</span>
+                    <div class="mv-title">Our <span>Mission</span></div>
+                    <p class="mv-body">To empower businesses through innovative technology solutions that simplify
+                        operations, enhance customer experiences, and create sustainable growth opportunities. We strive
+                        to deliver products and services that are reliable, scalable, and built with modern technologies
+                        for long-term success.</p>
+                    <div class="mv-pills">
+                        <span class="mv-pill">Reliable &amp; Secure</span>
+                        <span class="mv-pill">Scalable</span>
+                        <span class="mv-pill">User-Friendly</span>
+                        <span class="mv-pill">Future-Ready</span>
+                    </div>
+                </div>
+                <div class="mv-card vision">
+                    <span class="mv-icon">🔭</span>
+                    <div class="mv-title" style="color:var(--text);">Our <span
+                            style="-webkit-text-fill-color:initial;color:#378add;">Vision</span></div>
+                    <p class="mv-body">To become a globally recognized technology company known for delivering
+                        innovative digital solutions that help businesses thrive in the digital economy. We aim to build
+                        platforms and services that create value, drive innovation, and contribute to the success of our
+                        clients across diverse industries and markets.</p>
+                    <div class="mv-pills">
+                        <span class="mv-pill"
+                            style="color:#378add;background:rgba(55,138,221,.08);border-color:rgba(55,138,221,.25);">Global
+                            Reach</span>
+                        <span class="mv-pill"
+                            style="color:#378add;background:rgba(55,138,221,.08);border-color:rgba(55,138,221,.25);">Innovation</span>
+                        <span class="mv-pill"
+                            style="color:#378add;background:rgba(55,138,221,.08);border-color:rgba(55,138,221,.25);">Client
+                            Success</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CORE VALUES ── -->
+        <section class="ab-section">
+            <div class="ab-label">Principles</div>
+            <h2 class="ab-heading">Core <span>Values</span></h2>
+            <p class="ab-body">The principles that guide every decision, product, and partnership at Playbeat Digital.
+            </p>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <div class="value-name">Innovation</div>
+                    <div class="value-desc">We continuously explore emerging technologies and modern development
+                        practices to create solutions that remain relevant.</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⭐</div>
+                    <div class="value-name">Excellence</div>
+                    <div class="value-desc">High-quality products, services, and customer experiences through attention
+                        to detail and professional execution.</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <div class="value-name">Integrity</div>
+                    <div class="value-desc">Trust is the foundation of every relationship. We operate with transparency,
+                        honesty, and accountability in everything we do.</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🏆</div>
+                    <div class="value-name">Customer Success</div>
+                    <div class="value-desc">The success of our clients is our success. We focus on understanding
+                        business objectives and delivering measurable value.</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔄</div>
+                    <div class="value-name">Continuous Improvement</div>
+                    <div class="value-desc">Technology never stands still, and neither do we. We continuously improve
+                        our products, services, and processes.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── INDUSTRIES ── -->
+        <section class="ab-section">
+            <div class="ab-label">Markets</div>
+            <h2 class="ab-heading">Industries <span>We Serve</span></h2>
+            <p class="ab-body">Playbeat Digital supports businesses across a wide range of sectors — from fast-moving
+                startups to established enterprises.</p>
+            <div class="industries-wrap">
+                <span class="industry-tag"><span class="itag-dot"></span>Technology &amp; Software</span>
+                <span class="industry-tag"><span class="itag-dot"></span>E-Commerce &amp; Retail</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Professional Services</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Financial Technology</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Education &amp; Training</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Digital Media &amp; Content</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Subscription Businesses</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Startups &amp; Entrepreneurs</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Business Services</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Online Communities</span>
+                <span class="industry-tag"><span class="itag-dot"></span>Membership Platforms</span>
+            </div>
+        </section>
+
+        <!-- ── WHY CHOOSE ── -->
+        <section class="ab-section">
+            <div class="ab-label">Advantage</div>
+            <h2 class="ab-heading">Why Choose <span>PlayBeat</span></h2>
+            <p class="ab-body">Businesses choose Playbeat Digital because we combine technical expertise with a deep
+                understanding of modern business needs — building solutions that are not only functional but scalable,
+                secure, and aligned with long-term growth.</p>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-check"><svg width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <div>
+                        <div class="why-text-title">Customized Technology Solutions</div>
+                        <div class="why-text-desc">Every solution tailored to your unique business requirements and
+                            objectives.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-check"><svg width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <div>
+                        <div class="why-text-title">Modern Development Practices</div>
+                        <div class="why-text-desc">We build with current industry standards — clean code, proper
+                            architecture.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-check"><svg width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <div>
+                        <div class="why-text-title">Scalable Cloud-Based Systems</div>
+                        <div class="why-text-desc">Infrastructure designed to grow alongside your business without
+                            friction.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-check"><svg width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <div>
+                        <div class="why-text-title">Professional Support & Consultation</div>
+                        <div class="why-text-desc">Responsive support team and strategic advisors at every stage.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-check"><svg width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <div>
+                        <div class="why-text-title">Secure &amp; Reliable Platforms</div>
+                        <div class="why-text-desc">Security-first infrastructure built to protect your business and
+                            users.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-check"><svg width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <div>
+                        <div class="why-text-title">Long-Term Technology Partnership</div>
+                        <div class="why-text-desc">We invest in your success for the long haul — not just the launch.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CTA BAND ── -->
+        <div class="cta-band">
+            <div class="cta-hud cta-tl"></div>
+            <div class="cta-hud cta-tr"></div>
+            <div class="cta-hud cta-bl"></div>
+            <div class="cta-hud cta-br"></div>
+            <div>
+                <div class="cta-band-label">Ready to Start?</div>
+                <div class="cta-band-title">Building the <span>Future</span><br>Together</div>
+                <p class="cta-band-sub">Whether you are launching a startup, scaling an existing business, developing a
+                    SaaS platform, or implementing automation — we are committed to helping you achieve your goals.</p>
+            </div>
+            <div class="cta-band-actions">
+                <a class="btn-hero-primary" href="contact.html">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <line x1="22" y1="2" x2="11" y2="13" />
+                        <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                    </svg>
+                    Contact Us
+                </a>
+                <a class="btn-hero-outline" href="https://playbeat.digital" target="_blank">Visit Store</a>
+            </div>
+        </div>
+
+    </div><!-- /about-wrap -->
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-banner">
+                <a class="footer-logo" href="index.html">
+                    <span class="footer-logo-digital">Digital</span>
+                    <div class="footer-logo-wordmark"><span class="footer-logo-play">play</span><span
+                            class="footer-logo-beat">beat</span></div>
+                    <div class="footer-logo-pvt">Digital Pvt Ltd</div>
+                    <div class="footer-logo-line"></div>
+                    <p class="footer-tagline">Driven by <span class="ft-play">Play</span>, Defined by <span
+                            class="ft-beat">beat.</span></p>
+                </a>
+                <div class="footer-support">
+                    <span class="support-label">Support</span>
+                    <a class="btn-support email" href="mailto:support@business.playbeat">
+                        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                        Email
+                    </a>
+                    <a class="btn-support whatsapp" href="https://wa.me/923390005715" target="_blank" rel="noopener">
+                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                        </svg>
+                        WhatsApp
+                    </a>
+                    <a class="btn-support telegram" href="https://t.me/playbeatdigi01" target="_blank" rel="noopener">
+                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                        </svg>
+                        Telegram
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 <strong>PlayBeat Digital</strong> — All rights reserved.</p>
+                <nav class="footer-legal-links">
+                    <a href="privacy.html">Privacy</a><span>·</span>
+                    <a href="terms.html">Terms</a><span>·</span>
+                    <a href="refund.html">Refunds</a><span>·</span>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a class="floating-whatsapp" href="https://wa.me/923390005715" target="_blank" rel="noopener"
+        aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </svg>
+    </a>
+
+</body>
+
+</html>
