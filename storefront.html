@@ -1,0 +1,1480 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@400;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --bg: #0a0b0f;
+    --bg2: #111318;
+    --bg3: #1a1d25;
+    --accent: #f0c040;
+    --accent2: #e85d26;
+    --text: #f0ece4;
+    --muted: #7a7e8c;
+    --border: rgba(255,255,255,0.07);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ---- PLAYBEAT HEADER CSS ---- */
+  .ticker-bar{background:linear-gradient(90deg,var(--bg),#060f22,var(--bg));border-bottom:1px solid rgba(245,166,35,0.10);height:30px;overflow:hidden;position:relative;}
+  .ticker-bar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(245,166,35,.018) 3px,rgba(245,166,35,.018) 6px);pointer-events:none;}
+  .ticker-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,transparent 90px),linear-gradient(270deg,var(--bg) 0%,transparent 90px);pointer-events:none;z-index:2;}
+  .ticker-inner{display:inline-flex;align-items:center;height:100%;white-space:nowrap;animation:tickscroll 55s linear infinite;}
+  @keyframes tickscroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .ticker-inner span{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.8px;color:#3d5a88;padding:0 18px;border-right:1px solid rgba(245,166,35,0.10);position:relative;z-index:1;transition:color .2s;cursor:default;}
+  .ticker-inner span:hover{color:#f7b84a;}
+  .t-live{display:inline-flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;color:#f5a623;padding:0 16px 0 18px;border-right:1px solid rgba(245,166,35,0.10);position:relative;z-index:1;}
+  .pulse{width:5px;height:5px;border-radius:50%;background:#f5a623;box-shadow:0 0 8px #f5a623;animation:p 1.6s ease infinite;flex-shrink:0;}
+  @keyframes p{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.55)}}
+
+  header{background:linear-gradient(180deg,rgba(4,14,30,.98) 0%,rgba(7,20,40,.97) 100%);border-bottom:1px solid rgba(245,166,35,0.22);position:sticky;top:0;z-index:100;backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(245,166,35,0.10),0 6px 48px rgba(0,0,0,.75),inset 0 1px 0 rgba(245,166,35,.07);overflow:visible;}
+  header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,#8a5400 15%,#f5a623 40%,#f7b84a 50%,#f5a623 60%,#8a5400 85%,transparent 100%);box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);}
+  header::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(245,166,35,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.025) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 100%);}
+
+  .header-top{border-bottom:1px solid rgba(245,166,35,0.10);padding:6px 0;position:relative;z-index:3;}
+  .header-top-inner{max-width:1440px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:14px;justify-content:flex-end;}
+  .search-wrap{flex:1;max-width:680px;position:relative;margin-left:auto;}
+  .search-bar{display:flex;align-items:center;background:rgba(8,20,44,.85);border:1px solid rgba(245,166,35,0.22);border-radius:4px;overflow:hidden;position:relative;transition:border-color .25s,box-shadow .25s;}
+  .search-bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,166,35,.06) 0%,transparent 50%);pointer-events:none;}
+  .search-bar:focus-within{border-color:#f5a623;box-shadow:0 0 0 1px rgba(245,166,35,.18),0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);}
+  .search-category{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;background:rgba(4,12,28,.95);border:none;border-right:1px solid rgba(245,166,35,0.22);color:#f7b84a;padding:0 28px 0 12px;height:36px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23f5a623'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;flex-shrink:0;}
+  .search-category option{background:#07142a;color:#e2ecff;}
+  .search-ico{display:flex;align-items:center;padding:0 8px 0 12px;color:#3d5a88;flex-shrink:0;}
+  .search-input{flex:1;background:transparent;border:none;color:#e2ecff;font-family:'Exo 2',sans-serif;font-size:13px;font-weight:400;letter-spacing:.3px;padding:0 12px;height:36px;outline:none;}
+  .search-input::placeholder{color:#3d5a88;font-style:italic;}
+  .search-btn{background:linear-gradient(135deg,#8a5400,#c07800,#f5a623);border:none;color:#020a16;padding:0 18px;height:36px;display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700;cursor:pointer;flex-shrink:0;transition:filter .2s,box-shadow .2s;}
+  .search-btn:hover{filter:brightness(1.18);box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);}
+
+  .top-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .btn-wish{background:rgba(8,20,44,.85);border:1px solid rgba(245,166,35,0.22);color:#7a9ac8;width:36px;height:36px;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;transition:all .2s;flex-shrink:0;}
+  .btn-wish:hover{border-color:#f5a623;color:#f7b84a;box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);background:rgba(245,166,35,.06);}
+  .wish-count{position:absolute;top:-6px;right:-6px;background:linear-gradient(135deg,#8a5400,#f5a623);color:#020a16;font-size:9px;font-family:'Share Tech Mono',monospace;font-weight:700;min-width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+  .btn-login{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:1px solid rgba(245,166,35,0.22);color:#7a9ac8;padding:7px 16px;border-radius:3px;height:36px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;align-items:center;}
+  .btn-login::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,166,35,.06),transparent);opacity:0;transition:opacity .2s;}
+  .btn-login:hover{border-color:#f5a623;color:#f9cc7a;}
+  .btn-login:hover::before{opacity:1;}
+  .btn-prime{font-family:'Orbitron',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;background:linear-gradient(135deg,#8a5400 0%,#c07800 40%,#f5a623 100%);border:1px solid #f5a623;color:#020a16;padding:0 18px;height:36px;border-radius:3px;cursor:pointer;transition:filter .2s,box-shadow .2s,transform .15s;position:relative;overflow:hidden;white-space:nowrap;display:flex;align-items:center;gap:6px;}
+  .btn-prime::before{content:'';position:absolute;top:0;left:-110%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transition:left .55s;}
+  .btn-prime:hover::before{left:150%;}
+  .btn-prime:hover{filter:brightness(1.15);box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);transform:translateY(-1px);}
+
+  .header-inner{max-width:1440px;margin:0 auto;padding:0 28px;height:58px;display:flex;align-items:center;gap:20px;position:relative;z-index:3;}
+  .logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;flex-shrink:0;gap:1px;position:relative;}
+  .logo-digital{font-family:'Share Tech Mono',monospace;font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;background:linear-gradient(90deg,#8fa8c8,#b8cde8,#7a9ac8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;user-select:none;padding-left:2px;}
+  .logo-wordmark{display:flex;align-items:baseline;gap:0;filter:drop-shadow(0 0 10px rgba(245,166,35,.38));transition:filter .3s;}
+  .logo:hover .logo-wordmark{filter:drop-shadow(0 0 22px rgba(245,166,35,.72));}
+  .logo-play{font-family:'Exo 2',sans-serif;font-weight:800;font-size:30px;letter-spacing:-1px;color:#ffffff;line-height:1;}
+  .logo-beat{font-family:'Exo 2',sans-serif;font-weight:800;font-size:30px;letter-spacing:-1px;background:linear-gradient(170deg,#f9cc7a 0%,#f5a623 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+  .logo-underline{height:1px;width:100%;margin-top:3px;background:linear-gradient(90deg,#f5a623 0%,transparent 80%);opacity:.55;}
+  .logo::after{display:none;}
+
+  nav{display:flex;align-items:center;gap:1px;flex:1;}
+  .nav-item{font-family:'Exo 2',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.9px;text-transform:uppercase;color:#7a9ac8;text-decoration:none;padding:7px 10px;border-radius:3px;white-space:nowrap;border:1px solid transparent;transition:color .2s,background .2s,border-color .2s,box-shadow .2s;position:relative;}
+  .nav-item:hover{color:#f9cc7a;background:rgba(245,166,35,.06);border-color:rgba(245,166,35,0.10);}
+  .nav-item.active{color:#f7b84a;background:rgba(245,166,35,.08);border-color:rgba(245,166,35,0.22);}
+  .nav-item.active::after{content:'';position:absolute;bottom:-1px;left:25%;right:25%;height:1px;background:#f5a623;box-shadow:0 0 6px #f5a623;}
+  .nav-special{color:#f7b84a!important;background:rgba(245,166,35,.06)!important;border-color:rgba(245,166,35,0.10)!important;}
+  .nav-special:hover{color:#fce2b4!important;background:rgba(245,166,35,.13)!important;border-color:rgba(245,166,35,0.45)!important;box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10)!important;}
+  .nav-outsource{color:#00d4ff!important;background:rgba(0,212,255,.05)!important;border-color:rgba(0,212,255,.18)!important;}
+  .nav-outsource:hover{color:#60e8ff!important;background:rgba(0,212,255,.10)!important;border-color:rgba(0,212,255,.35)!important;box-shadow:0 0 12px rgba(0,212,255,0.22)!important;}
+  .nav-sep{width:1px;height:18px;background:rgba(245,166,35,0.10);margin:0 3px;flex-shrink:0;}
+  .user-chip{display:flex;align-items:center;gap:10px;background:rgba(8,20,44,.85);border:1px solid rgba(245,166,35,0.22);border-radius:3px;padding:5px 14px 5px 8px;cursor:pointer;transition:all .2s;position:relative;}
+  .user-chip::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#f5a623;border-radius:0 2px 2px 0;}
+  .user-chip:hover{border-color:#f5a623;box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);}
+  .u-avatar{width:24px;height:24px;background:linear-gradient(135deg,#8a5400,#c07800);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#020a16;}
+  .u-name{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:600;color:#e2ecff;letter-spacing:.5px;}
+  .hud-c{position:absolute;inset:0;pointer-events:none;z-index:1;}
+  .hc{position:absolute;width:10px;height:10px;opacity:.4;}
+  .hc-tl{top:5px;left:5px;border-top:1px solid #f5a623;border-left:1px solid #f5a623;}
+  .hc-tr{top:5px;right:5px;border-top:1px solid #f5a623;border-right:1px solid #f5a623;}
+  .hc-bl{bottom:5px;left:5px;border-bottom:1px solid #f5a623;border-left:1px solid #f5a623;}
+  .hc-br{bottom:5px;right:5px;border-bottom:1px solid #f5a623;border-right:1px solid #f5a623;}
+  @media(max-width:1200px){.nav-item{font-size:10.5px;padding:7px 8px;}}
+  @media(max-width:1050px){nav{display:none;}}
+  @media(max-width:800px){.btn-prime{display:none;}.search-wrap{max-width:100%;}}
+  @media(max-width:640px){.header-inner{padding:0 14px;gap:10px;}.header-top-inner{padding:0 14px;}}
+
+  /* ---- HERO ---- */
+  .hero {
+    background: var(--bg);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240,192,64,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(240,192,64,0.1);
+    border: 1px solid rgba(240,192,64,0.25);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 96px);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 17px;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+  .hero-search {
+    display: flex;
+    max-width: 560px;
+    margin: 0 auto;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .hero-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 15px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .hero-search input::placeholder { color: var(--muted); }
+  .hero-search button {
+    background: var(--accent);
+    border: none;
+    color: #0a0b0f;
+    padding: 0 24px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ---- CATEGORY TABS ---- */
+  .category-bar {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .category-bar::-webkit-scrollbar { display: none; }
+  .cat-tab {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .cat-tab:hover { color: var(--text); }
+  .cat-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .cat-tab .tab-icon { font-size: 16px; }
+
+  /* ---- SECTION ---- */
+  .section {
+    padding: 3rem 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1.5px;
+  }
+  .section-title span {
+    color: var(--accent);
+    margin-right: 8px;
+  }
+  .section-link {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .section-link:hover { color: var(--text); }
+
+  /* ---- BANNER / HERO CARDS ---- */
+  .banner-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 16px;
+    margin-bottom: 3rem;
+  }
+  .banner-main {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .banner-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 80% 20%, rgba(232,93,38,0.15) 0%, transparent 60%);
+  }
+  .banner-tag {
+    display: inline-block;
+    background: var(--accent2);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  .banner-main h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .banner-main p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a0b0f;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    width: fit-content;
+    position: relative;
+  }
+  .banner-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .banner-mini {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .banner-mini:hover { border-color: rgba(255,255,255,0.2); }
+  .banner-mini-left h3 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .banner-mini-left p { font-size: 12px; color: var(--muted); }
+  .banner-mini-icon {
+    font-size: 28px;
+    opacity: 0.6;
+  }
+
+  /* ---- PRODUCT GRID ---- */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .product-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.18s, border-color 0.18s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .product-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.18);
+  }
+  .product-card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card-body {
+    padding: 12px 14px 14px;
+  }
+  .product-card-game {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+  .product-card-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .product-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .product-offers {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .badge-hot {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: var(--accent2);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-new {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #1d9e75;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .star-row {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 4px;
+  }
+  .star { color: var(--accent); font-size: 11px; }
+  .star-count { font-size: 11px; color: var(--muted); }
+
+  /* ---- GAME LOGO CARDS (icons) ---- */
+  .game-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  .game-icon-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .game-icon-card:hover {
+    background: var(--bg3);
+    border-color: rgba(255,255,255,0.18);
+  }
+  .game-icon-emoji { font-size: 30px; margin-bottom: 8px; }
+  .game-icon-name { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; line-height: 1.3; }
+
+  /* ---- CATEGORY SHOWCASE ---- */
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .showcase-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem;
+    cursor: pointer;
+    transition: border-color 0.18s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .showcase-card:hover { border-color: rgba(255,255,255,0.2); }
+  .showcase-icon {
+    font-size: 36px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .showcase-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .showcase-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .showcase-offers {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .showcase-accent-orange { border-top: 3px solid var(--accent2); }
+  .showcase-accent-yellow { border-top: 3px solid var(--accent); }
+  .showcase-accent-green { border-top: 3px solid #1d9e75; }
+  .showcase-accent-blue { border-top: 3px solid #378add; }
+  .showcase-accent-purple { border-top: 3px solid #7f77dd; }
+  .showcase-accent-pink { border-top: 3px solid #d4537e; }
+
+  /* ---- TRENDING ROW ---- */
+  .trending-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .trending-row::-webkit-scrollbar { display: none; }
+  .trending-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 8px 16px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s;
+  }
+  .trending-pill:hover { border-color: rgba(255,255,255,0.25); }
+  .trending-pill .tp-icon { font-size: 16px; }
+  .trending-pill .tp-count { font-size: 11px; color: var(--muted); }
+
+  /* ---- TRUST BAR ---- */
+  .trust-bar {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.75rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin: 0;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .trust-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(240,192,64,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .trust-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .trust-text p { font-size: 12px; color: var(--muted); }
+
+  /* ---- DEALS ---- */
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .deal-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: border-color 0.18s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .deal-card:hover { border-color: rgba(255,255,255,0.2); }
+  .deal-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .deal-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .deal-info p { font-size: 12px; color: var(--muted); }
+  .deal-price-col { margin-left: auto; text-align: right; }
+  .deal-price { font-size: 16px; font-weight: 700; color: var(--accent); }
+  .deal-old-price { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+
+  /* ---- PLAYBEAT FOOTER CSS ---- */
+  .site-footer{background:linear-gradient(180deg,#040e1e 0%,#020a16 100%);border-top:1px solid rgba(245,166,35,0.22);position:relative;overflow:hidden;}
+  .site-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,#8a5400 15%,#f5a623 40%,#f7b84a 50%,#f5a623 60%,#8a5400 85%,transparent 100%);box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);}
+  .site-footer::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(245,166,35,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.018) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(0deg,rgba(0,0,0,.6) 0%,transparent 100%);}
+  .f-hud{position:absolute;inset:0;pointer-events:none;z-index:1;}
+  .f-hc{position:absolute;width:10px;height:10px;opacity:.35;}
+  .f-hc-tl{top:8px;left:8px;border-top:1px solid #f5a623;border-left:1px solid #f5a623;}
+  .f-hc-tr{top:8px;right:8px;border-top:1px solid #f5a623;border-right:1px solid #f5a623;}
+  .f-hc-bl{bottom:8px;left:8px;border-bottom:1px solid #f5a623;border-left:1px solid #f5a623;}
+  .f-hc-br{bottom:8px;right:8px;border-bottom:1px solid #f5a623;border-right:1px solid #f5a623;}
+  .footer-inner{max-width:1440px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
+  .footer-banner{padding:42px 0 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(245,166,35,0.10);gap:24px;flex-wrap:wrap;}
+  .footer-logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;gap:2px;flex-shrink:0;}
+  .footer-logo-digital{font-family:'Share Tech Mono',monospace;font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;background:linear-gradient(90deg,#8fa8c8,#b8cde8,#7a9ac8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding-left:2px;}
+  .footer-logo-wordmark{display:flex;align-items:baseline;filter:drop-shadow(0 0 10px rgba(245,166,35,.35));transition:filter .3s;}
+  .footer-logo:hover .footer-logo-wordmark{filter:drop-shadow(0 0 22px rgba(245,166,35,.7));}
+  .footer-logo-play{font-family:'Exo 2',sans-serif;font-weight:800;font-size:32px;letter-spacing:-1px;color:#ffffff;line-height:1;}
+  .footer-logo-beat{font-family:'Exo 2',sans-serif;font-weight:800;font-size:32px;letter-spacing:-1px;line-height:1;background:linear-gradient(170deg,#f9cc7a 0%,#f5a623 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .footer-logo-pvt{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#3d5a88;margin-top:2px;padding-left:2px;}
+  .footer-logo-line{height:1px;width:100%;margin-top:4px;background:linear-gradient(90deg,#f5a623,transparent 80%);opacity:.5;}
+  .footer-tagline{font-family:'Share Tech Mono',monospace;font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;color:#3d5a88;margin-top:8px;padding-left:2px;}
+  .footer-tagline .ft-play{color:#e2ecff;}.footer-tagline .ft-beat{color:#f5a623;}
+  .footer-support{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .support-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#3d5a88;margin-right:4px;}
+  .btn-support{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;border-radius:3px;padding:9px 16px;text-decoration:none;cursor:pointer;border:none;transition:all .22s;position:relative;overflow:hidden;white-space:nowrap;}
+  .btn-support::before{content:'';position:absolute;top:0;left:-110%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transition:left .5s;}
+  .btn-support:hover::before{left:150%;}
+  .btn-support.email{background:rgba(8,20,44,.9);border:1px solid rgba(245,166,35,0.22);color:#7a9ac8;}
+  .btn-support.email:hover{border-color:#f5a623;color:#f9cc7a;box-shadow:0 0 18px rgba(245,166,35,0.28),0 0 40px rgba(245,166,35,0.10);}
+  .btn-support.whatsapp{background:rgba(7,46,20,.85);border:1px solid rgba(37,211,102,.25);color:#25d366;}
+  .btn-support.whatsapp:hover{border-color:rgba(37,211,102,.6);color:#4ade80;box-shadow:0 0 16px rgba(37,211,102,.2);}
+  .btn-support.telegram{background:rgba(4,22,50,.85);border:1px solid rgba(0,136,204,.28);color:#29a8e0;}
+  .btn-support.telegram:hover{border-color:rgba(0,136,204,.6);color:#60d0ff;box-shadow:0 0 16px rgba(0,136,204,.22);}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px 40px;padding:40px 0 36px;border-bottom:1px solid rgba(245,166,35,0.10);}
+  .footer-col-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#f7b84a;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+  .footer-col-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(245,166,35,0.22),transparent);}
+  .footer-nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;}
+  .footer-nav-link{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:400;letter-spacing:.4px;color:#7a9ac8;text-decoration:none;padding:5px 8px;border-radius:2px;border:1px solid transparent;display:flex;align-items:center;gap:7px;transition:color .18s,border-color .18s,background .18s;position:relative;}
+  .footer-nav-link::before{content:'';width:3px;height:3px;border-radius:50%;background:#3d5a88;flex-shrink:0;transition:background .18s,box-shadow .18s;}
+  .footer-nav-link:hover{color:#f9cc7a;border-color:rgba(245,166,35,0.10);background:rgba(245,166,35,.04);}
+  .footer-nav-link:hover::before{background:#f5a623;box-shadow:0 0 6px #f5a623;}
+  .footer-nav-link.special{color:#f7b84a;}.footer-nav-link.special::before{background:#c07800;}
+  .footer-link-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
+  .footer-link-list li a{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:400;letter-spacing:.4px;color:#7a9ac8;text-decoration:none;padding:5px 8px;border-radius:2px;border:1px solid transparent;display:flex;align-items:center;gap:8px;transition:color .18s,border-color .18s,background .18s;}
+  .footer-link-list li a::before{content:'';width:3px;height:3px;border-radius:50%;background:#3d5a88;flex-shrink:0;transition:background .18s,box-shadow .18s;}
+  .footer-link-list li a:hover{color:#f9cc7a;border-color:rgba(245,166,35,0.10);background:rgba(245,166,35,.04);}
+  .footer-link-list li a:hover::before{background:#f5a623;box-shadow:0 0 6px #f5a623;}
+  .footer-social-row{padding:28px 0 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(245,166,35,0.10);gap:20px;flex-wrap:wrap;}
+  .social-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#3d5a88;}
+  .social-icons{display:flex;align-items:center;gap:8px;}
+  .social-btn{width:38px;height:38px;border-radius:3px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;background:rgba(8,20,44,.85);border:1px solid rgba(245,166,35,0.22);color:#7a9ac8;transition:all .22s;position:relative;overflow:hidden;}
+  .social-btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .22s;}
+  .social-btn:hover{transform:translateY(-2px);}
+  .social-btn svg{position:relative;z-index:1;}
+  .social-btn.x:hover{border-color:rgba(255,255,255,.4);color:#fff;box-shadow:0 0 14px rgba(255,255,255,.12);}
+  .social-btn.x::before{background:rgba(30,30,30,.6);}.social-btn.x:hover::before{opacity:1;}
+  .social-btn.fb:hover{border-color:rgba(66,103,178,.6);color:#4267b2;box-shadow:0 0 14px rgba(66,103,178,.2);}
+  .social-btn.fb::before{background:rgba(10,20,60,.6);}.social-btn.fb:hover::before{opacity:1;}
+  .social-btn.ig:hover{border-color:rgba(225,48,108,.5);color:#e1306c;box-shadow:0 0 14px rgba(225,48,108,.18);}
+  .social-btn.ig::before{background:rgba(40,10,30,.6);}.social-btn.ig:hover::before{opacity:1;}
+  .social-btn.yt:hover{border-color:rgba(255,0,0,.5);color:#ff0000;box-shadow:0 0 14px rgba(255,0,0,.18);}
+  .social-btn.yt::before{background:rgba(40,0,0,.6);}.social-btn.yt:hover::before{opacity:1;}
+  .social-btn.discord:hover{border-color:rgba(88,101,242,.55);color:#5865f2;box-shadow:0 0 14px rgba(88,101,242,.2);}
+  .social-btn.discord::before{background:rgba(10,14,60,.6);}.social-btn.discord:hover::before{opacity:1;}
+  .social-btn.tiktok:hover{border-color:rgba(0,242,234,.4);color:#00f2ea;box-shadow:0 0 14px rgba(0,242,234,.15);}
+  .social-btn.tiktok::before{background:rgba(0,20,30,.6);}.social-btn.tiktok:hover::before{opacity:1;}
+  .trust-badges{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .trust-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:#3d5a88;background:rgba(8,20,44,.6);border:1px solid rgba(245,166,35,0.10);border-radius:2px;padding:5px 10px;display:flex;align-items:center;gap:6px;}
+  .trust-badge svg{color:#f5a623;}
+  .footer-bottom{padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .footer-copy{font-family:'Share Tech Mono',monospace;font-size:9.5px;letter-spacing:1.2px;color:#3d5a88;}
+  .footer-copy strong{color:#f7b84a;font-weight:400;letter-spacing:1px;}
+  .footer-legal-links{display:flex;align-items:center;gap:4px;}
+  .footer-legal-links a{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#3d5a88;text-decoration:none;padding:3px 8px;transition:color .18s;}
+  .footer-legal-links a:hover{color:#f9cc7a;}
+  .footer-legal-links span{color:rgba(245,166,35,0.22);padding:0 2px;}
+  @media(max-width:1050px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px 32px;}}
+  @media(max-width:680px){.footer-grid{grid-template-columns:1fr;gap:28px;}.footer-nav-grid{grid-template-columns:1fr 1fr;}.footer-banner{flex-direction:column;align-items:flex-start;}.footer-bottom{flex-direction:column;align-items:flex-start;gap:10px;}.footer-social-row{flex-direction:column;align-items:flex-start;}.footer-inner{padding:0 16px;}}
+</style>
+
+<!-- TICKER -->
+</head><body><div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
+    <span>🔥 Valorant Elderflame Bundle — $89</span>
+    <span>⚡ ChatGPT Plus 1M — $20</span>
+    <span>🎮 PS Plus 12M — $59</span>
+    <span>💎 Adobe CC All Apps — $54</span>
+    <span>🤖 Midjourney Basic — $10</span>
+    <span>🆓 Free Gift Card on Orders $50+</span>
+    <span>🔒 SSL Secured · Instant Delivery</span>
+    <span class="t-live"><span class="pulse"></span>LIVE DEALS</span>
+    <span>🔥 Valorant Elderflame Bundle — $89</span>
+    <span>⚡ ChatGPT Plus 1M — $20</span>
+    <span>🎮 PS Plus 12M — $59</span>
+    <span>💎 Adobe CC All Apps — $54</span>
+    <span>🤖 Midjourney Basic — $10</span>
+    <span>🆓 Free Gift Card on Orders $50+</span>
+    <span>🔒 SSL Secured · Instant Delivery</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hud-c">
+    <div class="hc hc-tl"></div><div class="hc hc-tr"></div>
+    <div class="hc hc-bl"></div><div class="hc hc-br"></div>
+  </div>
+
+  <!-- TOP ROW: search + actions -->
+  <div class="header-top">
+    <div class="header-top-inner">
+      <div class="search-wrap">
+        <div class="search-bar">
+          <select class="search-category">
+            <option value="all">All</option>
+            <option value="games">Games</option>
+            <option value="ai">AI Tools</option>
+            <option value="software">Software</option>
+            <option value="giftcards">Gift Cards</option>
+            <option value="subs">Subscriptions</option>
+            <option value="topup">Top Up</option>
+            <option value="items">Game Items</option>
+            <option value="accounts">Accounts</option>
+          </select>
+          <span class="search-ico" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input class="search-input" type="text" placeholder="Search games, AI tools, subscriptions…" autocomplete="off">
+          <button class="search-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Search
+          </button>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div style="display:flex;align-items:center;gap:10px">
+          <button class="btn-wish" aria-label="Wishlist">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="btn-login">Sign In</button>
+          <button class="btn-prime">✦ Join PlayBeat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV ROW: logo + nav links -->
+  <div class="header-inner">
+    <a class="logo" href="index.html" aria-label="PlayBeat Digital home">
+      <span class="logo-digital">Digital</span>
+      <div class="logo-wordmark">
+        <span class="logo-play">play</span><span class="logo-beat">beat</span>
+      </div>
+      <div style="font-family:&#39;Share Tech Mono&#39;,monospace;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:#3d5a88;margin-top:1px;padding-left:2px;">Digital Pvt Ltd</div>
+      <div class="logo-underline"></div>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="index.html" class="nav-item active">Home</a>
+      <a href="games.html" class="nav-item">Games</a>
+      <a href="gift-cards.html" class="nav-item">Gift Cards</a>
+      <a href="software.html" class="nav-item">Software</a>
+      <a href="ai-tools.html" class="nav-item">AI Tools</a>
+      <a href="game-items.html" class="nav-item">Game Items</a>
+      <a href="accounts.html" class="nav-item">Accounts</a>
+      <a href="subscriptions.html" class="nav-item">Subscriptions</a>
+      <a href="top-up.html" class="nav-item">Top Up</a>
+      <div class="nav-sep" aria-hidden="true"></div>
+      <a href="trending.html" class="nav-item nav-special">🔥 Trending</a>
+      <a href="best-value.html" class="nav-item nav-outsource">💎 Global</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">⚡ Live Marketplace</div>
+  <h1>The Digital<br><span>Heaven</span></h1>
+  <p class="hero-sub">WORLD WIDE SUBSCRIPTIONS, PREMIUM ACCOUNTS , GAMES HUB AND POPULAR STREAMING APP'S.</p>
+  <div class="hero-search">
+    <input type="text" placeholder="Search a game, item, or service…">
+    <button>Search</button>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">2.7M+</div>
+      <div class="hero-stat-label">Active Offers</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">850K+</div>
+      <div class="hero-stat-label">Sellers</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">190+</div>
+      <div class="hero-stat-label">Countries</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">4.9★</div>
+      <div class="hero-stat-label">Avg Rating</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY TABS -->
+<div class="category-bar">
+  <div class="cat-tab active"><span class="tab-icon">🎮</span> All</div>
+  <div class="cat-tab"><span class="tab-icon">🪙</span> Game Coins</div>
+  <div class="cat-tab"><span class="tab-icon">⚔️</span> Items</div>
+  <div class="cat-tab"><span class="tab-icon">🎴</span> Accounts</div>
+  <div class="cat-tab"><span class="tab-icon">🚀</span> Boosting</div>
+  <div class="cat-tab"><span class="tab-icon">🎓</span> Coaching</div>
+  <div class="cat-tab"><span class="tab-icon">🎁</span> Gift Cards</div>
+  <div class="cat-tab"><span class="tab-icon">💎</span> Skins</div>
+  <div class="cat-tab"><span class="tab-icon">📱</span> Mobile</div>
+  <div class="cat-tab"><span class="tab-icon">💻</span> Software</div>
+  <div class="cat-tab"><span class="tab-icon">💳</span> Payment Cards</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div style="background: var(--bg);">
+
+  <!-- BANNER -->
+  <div class="section" style="padding-bottom: 0;">
+    <div class="banner-grid">
+      <div class="banner-main">
+        <div class="banner-tag">🔥 Top Trending</div>
+        <h2>Steam Wallet<br>Gift Cards</h2>
+        <p>2,704 offers available — instant delivery to any region</p>
+        <a href="index.html#" class="btn-primary">Shop Now →</a>
+      </div>
+      <div class="banner-side">
+        <a href="index.html#" class="banner-mini">
+          <div class="banner-mini-left">
+            <h3>ARC Raiders Coaching</h3>
+            <p>8 offers · From $4.99/hr</p>
+          </div>
+          <div class="banner-mini-icon">🎓</div>
+        </a>
+        <a href="index.html#" class="banner-mini">
+          <div class="banner-mini-left">
+            <h3>Account Marketplace</h3>
+            <p>Verified accounts, instant access</p>
+          </div>
+          <div class="banner-mini-icon">🎴</div>
+        </a>
+        <a href="index.html#" class="banner-mini">
+          <div class="banner-mini-left">
+            <h3>Rank Boosting</h3>
+            <p>All major titles covered</p>
+          </div>
+          <div class="banner-mini-icon">🚀</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRENDING PILLS -->
+  <div class="section" style="padding-top: 2rem; padding-bottom: 1.5rem;">
+    <div class="section-header">
+      <div class="section-title"><span>🔥</span> Trending Searches</div>
+    </div>
+    <div class="trending-row">
+      <a href="https://www.g2g.com/trending/gift-cards" class="trending-pill"><span class="tp-icon">🎁</span> Steam Wallet <span class="tp-count">2,704</span></a>
+      <a href="https://www.g2g.com/trending/game-coaching" class="trending-pill"><span class="tp-icon">🎓</span> ARC Raiders Coaching <span class="tp-count">8</span></a>
+      <a href="https://www.g2g.com/trending/game-coins" class="trending-pill"><span class="tp-icon">🪙</span> Game Coins</a>
+      <a href="https://www.g2g.com/trending/items" class="trending-pill"><span class="tp-icon">⚔️</span> Items</a>
+      <a href="https://www.g2g.com/trending/accounts" class="trending-pill"><span class="tp-icon">🎴</span> Accounts</a>
+      <a href="https://www.g2g.com/trending/boosting" class="trending-pill"><span class="tp-icon">🚀</span> Boosting</a>
+      <a href="https://www.g2g.com/trending/skins" class="trending-pill"><span class="tp-icon">💎</span> Skins</a>
+      <a href="https://www.g2g.com/trending/mobile-recharge" class="trending-pill"><span class="tp-icon">📱</span> Mobile Recharge</a>
+      <a href="https://www.g2g.com/trending/software" class="trending-pill"><span class="tp-icon">💻</span> Software</a>
+      <a href="https://www.g2g.com/trending/payment-cards" class="trending-pill"><span class="tp-icon">💳</span> Payment Cards</a>
+    </div>
+  </div>
+
+  <!-- CATEGORY SHOWCASE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title"><span>📦</span> Browse Categories</div>
+      <a href="index.html#" class="section-link">View all</a>
+    </div>
+    <div class="showcase-grid">
+      <a href="https://www.g2g.com/trending/gift-cards" class="showcase-card showcase-accent-yellow">
+        <span class="showcase-icon">🎁</span>
+        <h3>Gift Cards</h3>
+        <p>Steam, PlayStation, Xbox and more. Delivered instantly to your inbox.</p>
+        <div class="showcase-offers">2,704+ offers available</div>
+      </a>
+      <a href="https://www.g2g.com/trending/game-coins" class="showcase-card showcase-accent-orange">
+        <span class="showcase-icon">🪙</span>
+        <h3>Game Coins</h3>
+        <p>Gold, gems, credits and in-game currency for every major title.</p>
+        <div class="showcase-offers">100,000+ offers</div>
+      </a>
+      <a href="https://www.g2g.com/trending/items" class="showcase-card showcase-accent-blue">
+        <span class="showcase-icon">⚔️</span>
+        <h3>Game Items</h3>
+        <p>Weapons, armor, runes and rare collectibles. Instant trade.</p>
+        <div class="showcase-offers">50,000+ items listed</div>
+      </a>
+      <a href="https://www.g2g.com/trending/accounts" class="showcase-card showcase-accent-purple">
+        <span class="showcase-icon">🎴</span>
+        <h3>Accounts</h3>
+        <p>Pre-leveled accounts with rare skins, high ranks and starter packs.</p>
+        <div class="showcase-offers">Verified &amp; guaranteed</div>
+      </a>
+      <a href="https://www.g2g.com/trending/boosting" class="showcase-card showcase-accent-green">
+        <span class="showcase-icon">🚀</span>
+        <h3>Rank Boosting</h3>
+        <p>Climb the ladder fast. Pro players boost your rank while you sleep.</p>
+        <div class="showcase-offers">All major titles</div>
+      </a>
+      <a href="https://www.g2g.com/trending/game-coaching" class="showcase-card showcase-accent-pink">
+        <span class="showcase-icon">🎓</span>
+        <h3>Game Coaching</h3>
+        <p>1-on-1 sessions with top-ranked coaches. ARC Raiders, Valorant &amp; more.</p>
+        <div class="showcase-offers">8 ARC Raiders offers</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- POPULAR GAMES -->
+  <div class="section" style="padding-top: 0;">
+    <div class="section-header">
+      <div class="section-title"><span>🎮</span> Popular Games</div>
+      <a href="https://www.g2g.com/trending/video-games" class="section-link">All games</a>
+    </div>
+    <div class="game-icon-grid">
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">⚡</div><div class="game-icon-name">Valorant</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🧱</div><div class="game-icon-name">Minecraft</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🔫</div><div class="game-icon-name">CS2</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🌊</div><div class="game-icon-name">Fortnite</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🧙</div><div class="game-icon-name">WoW</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🏹</div><div class="game-icon-name">Diablo IV</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🌐</div><div class="game-icon-name">Path of Exile</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🎯</div><div class="game-icon-name">PUBG</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">⚽</div><div class="game-icon-name">FC 25</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🚗</div><div class="game-icon-name">Rocket League</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🔱</div><div class="game-icon-name">ARC Raiders</div></a>
+      <a href="index.html#" class="game-icon-card"><div class="game-icon-emoji">🧨</div><div class="game-icon-name">Apex Legends</div></a>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div class="trust-text">
+        <h4>Buyer Protection</h4>
+        <p>Every order is covered</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⚡</div>
+      <div class="trust-text">
+        <h4>Instant Delivery</h4>
+        <p>Digital goods, no wait</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🌍</div>
+      <div class="trust-text">
+        <h4>Global Sellers</h4>
+        <p>190+ countries active</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">💬</div>
+      <div class="trust-text">
+        <h4>24/7 Support</h4>
+        <p>WhatsApp & Telegram 24/7</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title"><span>⭐</span> Featured Products</div>
+      <a href="index.html#" class="section-link">See all</a>
+    </div>
+    <div class="product-grid">
+      <a href="https://www.g2g.com/categories/steam-wallet-gift-cards" class="product-card">
+        <div class="product-card-img" style="background: linear-gradient(135deg,#1b2838 0%,#2a475e 100%);">
+          💰
+          <span class="badge-hot">Hot</span>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-game">Gift Cards</div>
+          <div class="product-card-name">Steam Wallet — $50 USD</div>
+          <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-count">(3.2k)</span></div>
+          <div class="product-card-meta" style="margin-top:8px;">
+            <span class="product-price">From $48.50</span>
+            <span class="product-offers">2,704 offers</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://www.g2g.com/categories/arc-raiders-game-coaching" class="product-card">
+        <div class="product-card-img" style="background: linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);">
+          🎓
+          <span class="badge-new">New</span>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-game">Game Coaching</div>
+          <div class="product-card-name">ARC Raiders — Pro Session</div>
+          <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:0.4">★</span><span class="star-count">(12)</span></div>
+          <div class="product-card-meta" style="margin-top:8px;">
+            <span class="product-price">From $4.99/hr</span>
+            <span class="product-offers">8 offers</span>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#" class="product-card">
+        <div class="product-card-img" style="background: linear-gradient(135deg,#0d1b2a 0%,#1b4332 100%);">
+          🪙
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-game">Game Coins</div>
+          <div class="product-card-name">WoW Classic — 10,000 Gold</div>
+          <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-count">(8.1k)</span></div>
+          <div class="product-card-meta" style="margin-top:8px;">
+            <span class="product-price">From $2.30</span>
+            <span class="product-offers">340 offers</span>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#" class="product-card">
+        <div class="product-card-img" style="background: linear-gradient(135deg,#12001f 0%,#3d0066 100%);">
+          💎
+          <span class="badge-hot">Hot</span>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-game">Skins</div>
+          <div class="product-card-name">Valorant — Rare Bundle</div>
+          <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-count">(1.5k)</span></div>
+          <div class="product-card-meta" style="margin-top:8px;">
+            <span class="product-price">From $9.99</span>
+            <span class="product-offers">210 offers</span>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#" class="product-card">
+        <div class="product-card-img" style="background: linear-gradient(135deg,#1a0000 0%,#5e1717 100%);">
+          🚀
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-game">Boosting</div>
+          <div class="product-card-name">Apex Legends — Diamond Boost</div>
+          <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:0.4">★</span><span class="star-count">(620)</span></div>
+          <div class="product-card-meta" style="margin-top:8px;">
+            <span class="product-price">From $14.00</span>
+            <span class="product-offers">88 offers</span>
+          </div>
+        </div>
+      </a>
+      <a href="index.html#" class="product-card">
+        <div class="product-card-img" style="background: linear-gradient(135deg,#001020 0%,#003060 100%);">
+          🎴
+          <span class="badge-new">New</span>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-game">Accounts</div>
+          <div class="product-card-name">CS2 — Global Elite Starter</div>
+          <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-count">(4.4k)</span></div>
+          <div class="product-card-meta" style="margin-top:8px;">
+            <span class="product-price">From $7.50</span>
+            <span class="product-offers">530 offers</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- HOT DEALS -->
+  <div class="section" style="padding-top: 0;">
+    <div class="section-header">
+      <div class="section-title"><span>💥</span> Hot Deals</div>
+      <a href="index.html#" class="section-link">All deals</a>
+    </div>
+    <div class="deals-grid">
+      <a href="https://www.g2g.com/trending/gift-cards" class="deal-card">
+        <div class="deal-icon-box" style="background: rgba(240,192,64,0.12);">💳</div>
+        <div class="deal-info">
+          <h4>PlayStation Store $20</h4>
+          <p>Gift Cards · Instant code</p>
+        </div>
+        <div class="deal-price-col">
+          <div class="deal-price">$18.50</div>
+          <div class="deal-old-price">$20.00</div>
+        </div>
+      </a>
+      <a href="index.html#" class="deal-card">
+        <div class="deal-icon-box" style="background: rgba(29,158,117,0.12);">🪙</div>
+        <div class="deal-info">
+          <h4>Fortnite — 1,000 V-Bucks</h4>
+          <p>Game Coins · All platforms</p>
+        </div>
+        <div class="deal-price-col">
+          <div class="deal-price">$6.20</div>
+          <div class="deal-old-price">$7.99</div>
+        </div>
+      </a>
+      <a href="https://www.g2g.com/trending/mobile-recharge" class="deal-card">
+        <div class="deal-icon-box" style="background: rgba(55,138,221,0.12);">📱</div>
+        <div class="deal-info">
+          <h4>Mobile Recharge — $10</h4>
+          <p>Mobile · All carriers</p>
+        </div>
+        <div class="deal-price-col">
+          <div class="deal-price">$9.10</div>
+          <div class="deal-old-price">$10.00</div>
+        </div>
+      </a>
+      <a href="https://www.g2g.com/trending/software" class="deal-card">
+        <div class="deal-icon-box" style="background: rgba(127,119,221,0.12);">💻</div>
+        <div class="deal-info">
+          <h4>VPN 1-Year License</h4>
+          <p>Software · Instant key</p>
+        </div>
+        <div class="deal-price-col">
+          <div class="deal-price">$11.99</div>
+          <div class="deal-old-price">$29.99</div>
+        </div>
+      </a>
+      <a href="https://www.g2g.com/trending/payment-cards" class="deal-card">
+        <div class="deal-icon-box" style="background: rgba(212,83,126,0.12);">💳</div>
+        <div class="deal-info">
+          <h4>Prepaid Visa $25</h4>
+          <p>Payment Cards · Global</p>
+        </div>
+        <div class="deal-price-col">
+          <div class="deal-price">$23.80</div>
+          <div class="deal-old-price">$25.00</div>
+        </div>
+      </a>
+      <a href="index.html#" class="deal-card">
+        <div class="deal-icon-box" style="background: rgba(232,93,38,0.12);">⚔️</div>
+        <div class="deal-info">
+          <h4>Diablo IV — Ancestral Items</h4>
+          <p>Game Items · Season 9</p>
+        </div>
+        <div class="deal-price-col">
+          <div class="deal-price">$3.50</div>
+          <div class="deal-old-price">$5.00</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- GAMEPAL / SELLERS CTA -->
+  <div class="section" style="padding-top: 0; padding-bottom: 4rem;">
+    <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem;">
+      <div>
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 10px;">👾 Gamepal</div>
+        <h2 style="font-family: &#39;Bebas Neue&#39;, sans-serif; font-size: 36px; letter-spacing: 1px; margin-bottom: 10px;">Play With a Pro</h2>
+        <p style="color: var(--muted); font-size: 15px; max-width: 400px;">Hire a Gamepal to join your session, carry your team, or just make the game more fun. Real players, instant availability.</p>
+      </div>
+      <div style="display: flex; gap: 12px; flex-shrink: 0;">
+        <a href="https://www.g2g.com/trending/gamepal" class="btn-primary" style="padding: 13px 28px; font-size: 14px;">Find a Gamepal →</a>
+        <a href="index.html#" style="display: inline-block; background: transparent; border: 1px solid var(--border); color: var(--text); padding: 13px 24px; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none;">Become a Seller</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="f-hud">
+    <div class="f-hc f-hc-tl"></div><div class="f-hc f-hc-tr"></div>
+    <div class="f-hc f-hc-bl"></div><div class="f-hc f-hc-br"></div>
+  </div>
+  <div class="footer-inner">
+
+    <!-- LOGO BANNER + SUPPORT -->
+    <div class="footer-banner">
+      <a class="footer-logo" href="index.html" aria-label="PlayBeat Digital home">
+        <span class="footer-logo-digital">Digital</span>
+        <div class="footer-logo-wordmark">
+          <span class="footer-logo-play">play</span><span class="footer-logo-beat">beat</span>
+        </div>
+        <div class="footer-logo-pvt">Digital Pvt Ltd</div>
+        <div class="footer-logo-line"></div>
+        <p class="footer-tagline">Driven by <span class="ft-play">Play</span>, Defined by <span class="ft-beat">beat.</span></p>
+      </a>
+      <div class="footer-support">
+        <span class="support-label">Support</span>
+        <a class="btn-support email" href="mailto:support@playbeat.digital">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          Email
+        </a>
+        <a class="btn-support whatsapp" href="https://wa.me/923390005715" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg>
+          WhatsApp
+        </a>
+        <a class="btn-support telegram" href="https://t.me/pdigi01" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+          Telegram
+        </a>
+      </div>
+    </div>
+
+    <!-- MAIN LINK GRID -->
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-col-title">Marketplace</h3>
+        <div class="footer-nav-grid">
+          <a href="index.html" class="footer-nav-link">Home</a>
+          <a href="games.html" class="footer-nav-link">Games</a>
+          <a href="gift-cards.html" class="footer-nav-link">Gift Cards</a>
+          <a href="software.html" class="footer-nav-link">Software</a>
+          <a href="ai-tools.html" class="footer-nav-link">AI Tools</a>
+          <a href="game-items.html" class="footer-nav-link">Game Items</a>
+          <a href="accounts.html" class="footer-nav-link">Accounts</a>
+          <a href="subscriptions.html" class="footer-nav-link">Subscriptions</a>
+          <a href="top-up.html" class="footer-nav-link">Top Up</a>
+          <a href="my-account.html" class="footer-nav-link">My Account</a>
+          <a href="trending.html" class="footer-nav-link special">🔥 Trending</a>
+          <a href="best-value.html" class="footer-nav-link special">💎 Best Value</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">Discover</h3>
+        <ul class="footer-link-list">
+          <li><a href="trending.html">🔥 Trending</a></li>
+          <li><a href="best-value.html">💎 Best Value</a></li>
+          <li><a href="outsource.html">Outsource</a></li>
+          <li><a href="our-team.html">Our Team</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">Legal</h3>
+        <ul class="footer-link-list">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="my-account.html">My Account</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">Newsletter</h3>
+        <p style="font-family:&#39;Exo 2&#39;,sans-serif;font-size:11.5px;color:#3d5a88;line-height:1.75;margin-bottom:14px;">Get exclusive deals, flash sales, and new arrivals straight to your inbox.</p>
+        <div style="display:flex;gap:0;border:1px solid rgba(245,166,35,0.22);border-radius:3px;overflow:hidden;">
+          <input type="email" placeholder="your@email.com" style="flex:1;background:rgba(8,20,44,.85);border:none;color:#e2ecff;font-family:&#39;Share Tech Mono&#39;,monospace;font-size:10px;letter-spacing:.8px;padding:9px 12px;outline:none;" onfocus="this.parentElement.style.borderColor=&#39;#f5a623&#39;" onblur="this.parentElement.style.borderColor=&#39;rgba(245,166,35,0.22)&#39;">
+          <button style="background:linear-gradient(135deg,#8a5400,#c07800,#f5a623);border:none;color:#020a16;padding:9px 14px;cursor:pointer;font-family:&#39;Share Tech Mono&#39;,monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;transition:filter .2s;white-space:nowrap;" onmouseover="this.style.filter=&#39;brightness(1.18)&#39;" onmouseout="this.style.filter=&#39;none&#39;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOCIAL + TRUST -->
+    <div class="footer-social-row">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span class="social-label">Follow Us</span>
+        <div class="social-icons">
+          <a class="social-btn x" href="https://twitter.com/playbeat" target="_blank" rel="noopener" aria-label="X / Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+          </a>
+          <a class="social-btn fb" href="https://facebook.com/playbeatdigital01" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+          </a>
+          <a class="social-btn ig" href="https://instagram.com/playbeatdigital01" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path></svg>
+          </a>
+          <a class="social-btn yt" href="https://youtube.com/playbeatdigital01" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+          </a>
+          <a class="social-btn discord" href="https://discord.gg/playbeat" target="_blank" rel="noopener" aria-label="Discord">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path></svg>
+          </a>
+          <a class="social-btn tiktok" href="https://tiktok.com/@playbeatdigital01" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.2 8.2 0 0 0 4.79 1.52V6.9a4.85 4.85 0 0 1-1.02-.21z"></path></svg>
+          </a>
+        </div>
+      </div>
+      <div class="trust-badges">
+        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>SSL Secured</span>
+        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>Instant Delivery</span>
+        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>Trusted Sellers</span>
+        <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Secure Payment</span>
+      </div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span id="yr">2026</span> <strong>PlayBeat Digital</strong> — All rights reserved. Prices in PKR.</p>
+      <nav class="footer-legal-links" aria-label="Legal">
+        <a href="privacy.html">Privacy</a><span aria-hidden="true">·</span>
+        <a href="terms.html">Terms</a><span aria-hidden="true">·</span>
+        <a href="refund.html">Refunds</a><span aria-hidden="true">·</span>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+<!-- SIGN UP MODAL -->
+<div id="signupModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; display:flex; align-items:center; justify-content:center;">
+  <div style="background:#0a0b0f; border:1px solid rgba(245,166,35,0.22); border-radius:20px; padding:40px; max-width:420px; width:90%; box-shadow:0 28px 80px rgba(0,0,0,0.5); backdrop-filter:blur(12px);">
+    <div style="text-align:center; margin-bottom:30px;">
+      <h2 style="margin:0 0 8px; font-size:28px; color:#f0ece4;">Join PlayBeat</h2>
+      <p style="margin:0; color:#7a9ac8; font-size:14px;">Create your account to start shopping</p>
+    </div>
+    
+    <form id="signupForm" style="display:grid; gap:16px;" onsubmit="submitSignup(event)">
+      <div>
+        <label style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">First Name *</label>
+        <input id="firstName" type="text" placeholder="John" required style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;">
+      </div>
+      
+      <div>
+        <label style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">Last Name *</label>
+        <input id="lastName" type="text" placeholder="Doe" required style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;">
+      </div>
+      
+      <div>
+        <label style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">Mobile Number *</label>
+        <input id="mobileNumber" type="tel" placeholder="+92 300 0000000" required style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;">
+      </div>
+      
+      <div>
+        <label style="display:block; font-size:12px; letter-spacing:1px; color:#7a9ac8; text-transform:uppercase; margin-bottom:6px;">Email Address *</label>
+        <input id="emailSignup" type="email" placeholder="your@email.com" required style="width:100%; border:1px solid rgba(245,166,35,0.22); background:rgba(8,20,44,0.95); color:#f4f7ff; border-radius:10px; padding:12px 14px; font-size:14px;">
+      </div>
+      
+      <div style="display:flex; gap:10px; margin-top:10px;">
+        <button type="submit" style="flex:1; background:linear-gradient(135deg,#8a5400,#c07800,#f5a623); border:none; color:#020a16; padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer; transition:filter .2s;">Create Account</button>
+        <button type="button" onclick="closeSignup()" style="flex:1; background:rgba(255,255,255,0.08); border:1px solid rgba(245,166,35,0.22); color:#7a9ac8; padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer;">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function showSignup() {
+    document.getElementById('signupModal').style.display = 'flex';
+    document.getElementById('firstName').focus();
+  }
+
+  function closeSignup() {
+    document.getElementById('signupModal').style.display = 'none';
+    document.getElementById('signupForm').reset();
+  }
+
+  function submitSignup(event) {
+    event.preventDefault();
+    
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const mobileNumber = document.getElementById('mobileNumber').value.trim();
+    const emailSignup = document.getElementById('emailSignup').value.trim();
+    
+    if (!firstName || !lastName || !mobileNumber || !emailSignup) {
+      alert('⚠ Please fill in all fields');
+      return;
+    }
+    
+    // Create new user object
+    const newUser = {
+      id: 'user_' + Date.now(),
+      firstName: firstName,
+      lastName: lastName,
+      mobileNumber: mobileNumber,
+      email: emailSignup,
+      registeredAt: new Date().toLocaleString(),
+      status: 'Active'
+    };
+    
+    // Get existing registered users
+    let registeredUsers = JSON.parse(localStorage.getItem('pb_registered_users')) || [];
+    
+    // Check if email already exists
+    if (registeredUsers.find(u => u.email === emailSignup)) {
+      alert('⚠ Email already registered! Please use Sign In instead.');
+      return;
+    }
+    
+    // Add new user
+    registeredUsers.push(newUser);
+    localStorage.setItem('pb_registered_users', JSON.stringify(registeredUsers));
+    
+    // Set current customer session
+    localStorage.setItem('pb_customer_email', emailSignup);
+    localStorage.setItem('pb_customer_name', firstName + ' ' + lastName);
+    localStorage.setItem('pb_customer_phone', mobileNumber);
+    
+    alert('✅ Welcome to PlayBeat, ' + firstName + '!\n\nAccount created successfully.\n\nName: ' + firstName + ' ' + lastName + '\nEmail: ' + emailSignup + '\nMobile: ' + mobileNumber + '\n\nStart shopping now!');
+    
+    closeSignup();
+  }
+
+  // Search functionality - for customers to find products
+  document.querySelector('.search-btn').addEventListener('click', function() {
+    const searchInput = document.querySelector('.search-input').value.trim();
+    const category = document.querySelector('.search-category').value;
+    if (searchInput) {
+      console.log('Search:', searchInput, 'Category:', category);
+      alert('🔍 Searching for: "' + searchInput + '"\n' + (category ? 'Category: ' + category : 'All Categories'));
+    } else {
+      alert('⚠ Please enter a search term');
+    }
+  });
+
+  // Search input - submit on Enter key
+  document.querySelector('.search-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      document.querySelector('.search-btn').click();
+    }
+  });
+
+  // Sign In button - customer login for checkout & order tracking
+  document.querySelector('.btn-login').addEventListener('click', function() {
+    const customerEmail = prompt('📧 Enter your email address to sign in:');
+    if (customerEmail) {
+      const registeredUsers = JSON.parse(localStorage.getItem('pb_registered_users')) || [];
+      const user = registeredUsers.find(u => u.email === customerEmail);
+      
+      if (user) {
+        localStorage.setItem('pb_customer_email', user.email);
+        localStorage.setItem('pb_customer_name', user.firstName + ' ' + user.lastName);
+        localStorage.setItem('pb_customer_phone', user.mobileNumber);
+        alert('✔ Logged in as ' + user.firstName + ' ' + user.lastName + '\n\nYou can now proceed to checkout and track your orders.');
+      } else {
+        alert('⚠ Email not found. Please create an account first.');
+      }
+    }
+  });
+
+  // Join PlayBeat button - new customer registration
+  document.querySelector('.btn-prime').addEventListener('click', function() {
+    showSignup();
+  });
+
+  // Wishlist button
+  document.querySelector('.btn-wish').addEventListener('click', function() {
+    const email = localStorage.getItem('pb_customer_email');
+    if (email) {
+      alert('❤️ Wishlist\n\nLogged in as: ' + email + '\n\nWishlist feature - Coming soon!');
+    } else {
+      const login = confirm('Sign in to access your wishlist?\n\nClick OK to login or join.');
+      if (login) {
+        const choice = confirm('Do you have an existing account?\n\nOK = Sign In | Cancel = Join');
+        if (choice) {
+          document.querySelector('.btn-login').click();
+        } else {
+          showSignup();
+        }
+      }
+    }
+  });
+</script>
+
+
+
+</body></html>
+

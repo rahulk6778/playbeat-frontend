@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayBeat - Digital Products & Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #020a16 0%, #0a1628 100%);
+      color: #e2ecff;
+      font-family: 'Exo 2', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(180deg, rgba(4, 14, 30, .98) 0%, rgba(7, 20, 40, .97) 100%);
+      border-bottom: 1px solid rgba(245, 166, 35, .22);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 1px 0 rgba(245, 166, 35, .10), 0 6px 48px rgba(0, 0, 0, .75);
+    }
+
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo strong {
+      color: #f5a623;
+    }
+
+    nav {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    nav a {
+      padding: 8px 14px;
+      color: #a9bbe7;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background: rgba(245, 166, 35, .15);
+      color: #f5a623;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search-box {
+      width: 240px;
+      padding: 8px 14px;
+      background: rgba(8, 20, 44, .88);
+      border: 1px solid rgba(245, 166, 35, .22);
+      border-radius: 6px;
+      color: #e2ecff;
+      font-size: 13px;
+    }
+
+    .search-box::placeholder {
+      color: #5d7db2;
+    }
+
+    .cart-icon,
+    .account-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(245, 166, 35, .15);
+      border: 1px solid rgba(245, 166, 35, .35);
+      color: #f5a623;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all .2s;
+    }
+
+    .cart-icon:hover,
+    .account-icon:hover {
+      background: rgba(245, 166, 35, .25);
+      border-color: rgba(245, 166, 35, .60);
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 40px 28px;
+    }
+
+    /* ── SECTION ── */
+    .product-section {
+      margin-bottom: 60px;
+      padding: 28px 24px 32px;
+      border-radius: 28px;
+      background: rgba(7, 17, 34, 0.78);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(2, 10, 22, .15) 0%, rgba(2, 10, 22, .65) 100%);
+      pointer-events: none;
+    }
+
+    .section-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid rgba(245, 166, 35, .35);
+      padding-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-emoji {
+      font-size: 32px;
+    }
+
+    .view-all {
+      margin-left: auto;
+      padding: 8px 16px;
+      background: rgba(245, 166, 35, .15);
+      border: 1px solid rgba(245, 166, 35, .35);
+      color: #f5a623;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all .2s;
+    }
+
+    .view-all:hover {
+      background: rgba(245, 166, 35, .25);
+      border-color: rgba(245, 166, 35, .60);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: linear-gradient(135deg, rgba(13, 29, 54, .8) 0%, rgba(8, 20, 44, .8) 100%);
+      border: 1px solid rgba(245, 166, 35, .15);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all .3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      border-color: rgba(245, 166, 35, .50);
+      box-shadow: 0 12px 40px rgba(245, 166, 35, .15);
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, rgba(50, 100, 180, .3) 0%, rgba(100, 50, 150, .3) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: rgba(245, 166, 35, .3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-image-placeholder {
+      font-size: 64px;
+    }
+
+    .product-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-category {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7a9ac8;
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      color: #e2ecff;
+    }
+
+    .product-type {
+      font-size: 11px;
+      color: #a9bbe7;
+      margin-bottom: 8px;
+    }
+
+    .product-pricing {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f5a623;
+    }
+
+    .price-original {
+      font-size: 12px;
+      color: #7a9ac8;
+      text-decoration: line-through;
+    }
+
+    .discount-badge {
+      font-size: 10px;
+      background: rgba(231, 76, 60, .25);
+      color: #ff6b6b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .product-offer {
+      font-size: 11px;
+      background: rgba(52, 152, 219, .2);
+      color: #3498db;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .product-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(245, 166, 35, .10);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      color: #7a9ac8;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      color: #e2ecff;
+      font-weight: 600;
+    }
+
+    /* ── PRODUCT ACTIONS ── */
+    .product-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .wishlist-btn {
+      padding: 8px;
+      background: rgba(231, 76, 60, .15);
+      border: 1px solid rgba(231, 76, 60, .35);
+      color: #ff6b6b;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .wishlist-btn:hover {
+      background: rgba(231, 76, 60, .25);
+      border-color: rgba(231, 76, 60, .60);
+    }
+
+    .wishlist-btn.active {
+      background: rgba(231, 76, 60, .4);
+      border-color: #ff6b6b;
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-cart {
+      padding: 8px 12px;
+      background: rgba(52, 152, 219, .15);
+      border: 1px solid rgba(52, 152, 219, .35);
+      color: #3498db;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all .2s;
+    }
+
+    .btn-cart:hover {
+      background: rgba(52, 152, 219, .25);
+      border-color: rgba(52, 152, 219, .60);
+    }
+
+    .btn-buy {
+      padding: 8px 12px;
+      background: linear-gradient(135deg, #f5a623 0%, #e8950a 100%);
+      border: none;
+      color: #071224;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      transition: all .2s;
+    }
+
+    .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 166, 35, .35);
+    }
+
+    .btn-buy:active {
+      transform: translateY(0);
+    }
+
+    /* ── LOADING STATE ── */
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: #7a9ac8;
+    }
+
+    .spinner {
+      border: 3px solid rgba(245, 166, 35, .15);
+      border-top: 3px solid #f5a623;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #7a9ac8;
+    }
+
+    .empty-state-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+      }
+
+      .section-title {
+        font-size: 22px;
+      }
+
+      .product-actions {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding: 20px 12px;
+      }
+    }
+
+    /* ── TOAST NOTIFICATION ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #f5a623;
+      color: #071224;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all .3s;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">Play<strong>Beat</strong></div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#subscriptions">Subscriptions</a>
+        <a href="#software">Software</a>
+        <a href="#games">Games</a>
+        <a href="#gift-cards">Gift Cards</a>
+        <a href="#ai-tools">AI Tools</a>
+        <a href="#accounts">Accounts</a>
+        <a href="#game-items">Game Items</a>
+        <a href="#top-up">Top Up</a>
+      </nav>
+      <div class="header-actions">
+        <input type="text" class="search-box" placeholder="Search products...">
+        <div class="cart-icon" title="Shopping Cart">🛒</div>
+        <div class="account-icon" title="Account">👤</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- HOME SECTION -->
+    <section class="product-section" id="home">
+      <div class="section-header">
+        <h2 class="section-title">Featured Products</h2>
+        <button class="view-all">View All</button>
+      </div>
+      <div class="products-grid" id="home-products">
+        <div class="loading">
+          <div class="spinner"></div>Loading products...
+        </div>
+      </div>
+    </section>
+
+    <!-- TRENDING SECTION -->
+    <section class="product-section" id="trending">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-emoji">🔥</span>Trending Now</h2>
+        <button class="view-all">View All</button>
+      </div>
+      <div class="products-grid" id="trending-products">
+        <div class="loading">
+          <div class="spinner"></div>Loading products...
+        </div>
+      </div>
+    </section>
+
+    <!-- GLOBAL SECTION -->
+    <section class="product-section" id="global">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-emoji">💎</span>Global Selection</h2>
+        <button class="view-all">View All</button>
+      </div>
+      <div class="products-grid" id="global-products">
+        <div class="loading">
+          <div class="spinner"></div>Loading products...
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE MARKETPLACE SECTION -->
+    <section class="product-section" id="marketplace">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-emoji">⚡</span>Live Marketplace</h2>
+        <button class="view-all">View All</button>
+      </div>
+      <div class="products-grid" id="marketplace-products">
+        <div class="loading">
+          <div class="spinner"></div>Loading products...
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API_BASE = 'http://localhost:3000/api';
+
+    // Show Toast Notification
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), duration);
+    }
+
+    // Load Products
+    async function loadProducts(section, containerId, title, queryString = null) {
+      try {
+        const url = queryString || `${API_BASE}/products?section=${encodeURIComponent(section)}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Failed to load products');
+
+        const products = await response.json();
+        renderProducts(products, containerId, title || section);
+      } catch (error) {
+        console.error(`Error loading ${section} products:`, error);
+        document.getElementById(containerId).innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">⚠️</div>
+            <p>Failed to load products. Please try again later.</p>
+          </div>
+        `;
+      }
+    }
+
+    async function fetchHomepageSections() {
+      try {
+        const response = await fetch(`${API_BASE}/homepage-sections`);
+        if (!response.ok) throw new Error('Failed to load homepage sections');
+        return await response.json();
+      } catch (error) {
+        console.warn('Could not fetch homepage section settings, falling back to defaults.', error);
+        return null;
+      }
+    }
+
+    function buildProductsQuery(sectionConfig) {
+      const params = new URLSearchParams();
+      if (Array.isArray(sectionConfig.sections) && sectionConfig.sections.length) {
+        params.set('sections', sectionConfig.sections.join(','));
+      }
+      if (Array.isArray(sectionConfig.categories) && sectionConfig.categories.length) {
+        params.set('categories', sectionConfig.categories.join(','));
+      }
+      if (!params.toString()) {
+        params.set('section', sectionConfig.id);
+      }
+      return `${API_BASE}/products?${params.toString()}`;
+    }
+
+    function applySectionBackground(sectionId, backgroundImage) {
+      const section = document.getElementById(sectionId);
+      if (!section || !backgroundImage) return;
+      section.style.backgroundImage = `url('${backgroundImage}')`;
+      section.style.backgroundSize = 'cover';
+      section.style.backgroundPosition = 'center';
+    }
+
+    // Render Product Cards
+    function renderProducts(products, containerId, section) {
+      const container = document.getElementById(containerId);
+
+      if (!products || products.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <p>No products available for ${section}</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = products.map(product => `
+        <div class="product-card" data-product-id="${product._id || product.id}">
+          <div class="product-image">
+            ${product.image ? `<img src="${product.image}" alt="${product.name}">` : '<div class="product-image-placeholder">📦</div>'}
+          </div>
+          <div class="product-content">
+            <div class="product-category">${product.category || 'Uncategorized'}</div>
+            <h3 class="product-name">${product.name}</h3>
+            <div class="product-type">${product.type || 'Standard'}</div>
+            
+            ${product.offer ? `<div class="product-offer">🎁 ${product.offer}</div>` : ''}
+            
+            <div class="product-pricing">
+              <span class="price">$${product.price.toFixed(2)}</span>
+              ${product.originalPrice ? `<span class="price-original">$${product.originalPrice.toFixed(2)}</span>` : ''}
+              ${product.discount ? `<span class="discount-badge">-${product.discount}%</span>` : ''}
+            </div>
+
+            <div class="product-meta">
+              <div class="meta-item">
+                <span class="meta-label">Amount</span>
+                <span class="meta-value">${product.amount || 'N/A'}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Expires</span>
+                <span class="meta-value">${product.expiry ? new Date(product.expiry).toLocaleDateString() : 'Permanent'}</span>
+              </div>
+            </div>
+
+            <div class="product-actions">
+              <button class="wishlist-btn" onclick="toggleWishlist(this, '${product._id || product.id}')">
+                ♡ Wishlist
+              </button>
+              <div class="action-buttons">
+                <button class="btn-cart" onclick="addToCart('${product._id || product.id}', '${product.name}')">
+                  Add to Cart
+                </button>
+                <button class="btn-buy" onclick="buyNow('${product._id || product.id}', '${product.name}')">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Wishlist Toggle
+    function toggleWishlist(button, productId) {
+      button.classList.toggle('active');
+      showToast(button.classList.contains('active') ? 'Added to wishlist' : 'Removed from wishlist');
+    }
+
+    // Add to Cart
+    function addToCart(productId, productName) {
+      showToast(`✓ "${productName}" added to cart!`);
+      // Implementation would send to backend/cart system
+    }
+
+    // Buy Now
+    function buyNow(productId, productName) {
+      showToast(`🛍️ Proceeding to checkout for "${productName}"...`);
+      // Implementation would redirect to checkout
+    }
+
+    // Initialize - Load all sections
+    document.addEventListener('DOMContentLoaded', async () => {
+      const homepageSections = await fetchHomepageSections();
+      if (homepageSections && homepageSections.length) {
+        homepageSections.forEach(section => {
+          if (section.backgroundImage) {
+            applySectionBackground(section.id, section.backgroundImage);
+          }
+          loadProducts(section.id, `${section.id}-products`, section.title, buildProductsQuery(section));
+        });
+      } else {
+        loadProducts('home', 'home-products', 'Featured Products');
+        loadProducts('trending', 'trending-products', 'Trending Now');
+        loadProducts('global', 'global-products', 'Global Selection');
+        loadProducts('marketplace', 'marketplace-products', 'Live Marketplace');
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayBeat - Inventory Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #020a16 0%, #0a1628 100%);
+      color: #e2ecff;
+      font-family: 'Exo 2', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .admin-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(180deg, rgba(8, 20, 44, .98) 0%, rgba(7, 14, 28, .98) 100%);
+      border-right: 1px solid rgba(245, 166, 35, .22);
+      padding: 24px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-brand {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-brand strong {
+      color: #f5a623;
+    }
+
+    .sidebar-subtitle {
+      font-size: 11px;
+      color: #7a9ac8;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-menu {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav-item {
+      padding: 12px 14px;
+      background: rgba(13, 29, 54, .4);
+      border: 1px solid rgba(245, 166, 35, .15);
+      border-radius: 8px;
+      color: #a9bbe7;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all .2s;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .nav-item:hover {
+      background: rgba(245, 166, 35, .15);
+      border-color: rgba(245, 166, 35, .35);
+      color: #f5a623;
+    }
+
+    .nav-item.active {
+      background: rgba(245, 166, 35, .25);
+      border-color: rgba(245, 166, 35, .60);
+      color: #f5a623;
+      font-weight: 700;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      flex: 1;
+      padding: 28px;
+      overflow-y: auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── STATS GRID ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(13, 29, 54, .8) 0%, rgba(8, 20, 44, .8) 100%);
+      border: 1px solid rgba(245, 166, 35, .15);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7a9ac8;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #f5a623;
+    }
+
+    /* ── SECTION TABS ── */
+    .section-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-tab {
+      padding: 10px 16px;
+      background: rgba(13, 29, 54, .4);
+      border: 1px solid rgba(245, 166, 35, .15);
+      border-radius: 8px;
+      color: #a9bbe7;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all .2s;
+    }
+
+    .section-tab:hover {
+      background: rgba(245, 166, 35, .15);
+      border-color: rgba(245, 166, 35, .35);
+    }
+
+    .section-tab.active {
+      background: rgba(245, 166, 35, .25);
+      border-color: rgba(245, 166, 35, .60);
+      color: #f5a623;
+    }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: linear-gradient(135deg, rgba(13, 29, 54, .8) 0%, rgba(8, 20, 44, .8) 100%);
+      border: 1px solid rgba(245, 166, 35, .15);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .form-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: #f5a623;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #7a9ac8;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 10px 12px;
+      background: rgba(8, 20, 44, .95);
+      border: 1px solid rgba(245, 166, 35, .22);
+      border-radius: 8px;
+      color: #e2ecff;
+      font-family: inherit;
+      font-size: 13px;
+      transition: border-color .2s;
+    }
+
+    input::placeholder,
+    select,
+    textarea::placeholder {
+      color: #5d7db2;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(245, 166, 35, .60);
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, .1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f5a623 0%, #e8950a 100%);
+      color: #071224;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 166, 35, .35);
+    }
+
+    .btn-secondary {
+      background: rgba(245, 166, 35, .15);
+      border: 1px solid rgba(245, 166, 35, .35);
+      color: #f5a623;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(245, 166, 35, .25);
+      border-color: rgba(245, 166, 35, .60);
+    }
+
+    .btn-danger {
+      background: rgba(231, 76, 60, .2);
+      border: 1px solid rgba(231, 76, 60, .35);
+      color: #ff6b6b;
+    }
+
+    .btn-danger:hover {
+      background: rgba(231, 76, 60, .3);
+      border-color: rgba(231, 76, 60, .60);
+    }
+
+    /* ── PRODUCT TABLE ── */
+    .table-section {
+      background: linear-gradient(135deg, rgba(13, 29, 54, .8) 0%, rgba(8, 20, 44, .8) 100%);
+      border: 1px solid rgba(245, 166, 35, .15);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .table-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(245, 166, 35, .15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .table-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f5a623;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      padding: 14px 16px;
+      background: rgba(8, 20, 44, .4);
+      border-bottom: 1px solid rgba(245, 166, 35, .15);
+      text-align: left;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #7a9ac8;
+      font-weight: 700;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(245, 166, 35, .08);
+      font-size: 13px;
+      color: #e2ecff;
+    }
+
+    tr:hover {
+      background: rgba(245, 166, 35, .05);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      background: rgba(52, 152, 219, .2);
+      color: #3498db;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag.trending {
+      background: rgba(231, 76, 60, .2);
+      color: #ff6b6b;
+    }
+
+    .tag.global {
+      background: rgba(155, 89, 182, .2);
+      color: #bb86fc;
+    }
+
+    .tag.marketplace {
+      background: rgba(52, 211, 153, .2);
+      color: #10b981;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 6px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all .2s;
+    }
+
+    .edit-btn {
+      background: rgba(52, 152, 219, .2);
+      color: #3498db;
+    }
+
+    .edit-btn:hover {
+      background: rgba(52, 152, 219, .35);
+    }
+
+    .delete-btn {
+      background: rgba(231, 76, 60, .2);
+      color: #ff6b6b;
+    }
+
+    .delete-btn:hover {
+      background: rgba(231, 76, 60, .35);
+    }
+
+    /* ── MODAL ── */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .7);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, rgba(13, 29, 54, .95) 0%, rgba(8, 20, 44, .95) 100%);
+      border: 1px solid rgba(245, 166, 35, .22);
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: #f5a623;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: #7a9ac8;
+      font-size: 24px;
+      cursor: pointer;
+      transition: color .2s;
+    }
+
+    .close-btn:hover {
+      color: #f5a623;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #f5a623;
+      color: #071224;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all .3s;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .admin-container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 16px;
+      }
+
+      .main-content {
+        padding: 16px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .nav-item {
+        flex: 1;
+        min-width: 100px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">Play<strong>Beat</strong></div>
+      <div class="sidebar-subtitle">Inventory Manager</div>
+      <nav class="nav-menu">
+        <div class="nav-item active" data-view="dashboard">📊 Dashboard</div>
+        <div class="nav-item" data-view="products">📦 Manage Products</div>
+        <div class="nav-item" data-view="orders">🧾 Orders</div>
+        <div class="nav-item" data-view="sections">🗂️ Sections</div>
+        <div class="nav-item" data-view="create">➕ Create Product</div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- DASHBOARD VIEW -->
+      <div id="dashboard-view" class="view">
+        <div class="top-bar">
+          <h1 class="page-title">Dashboard</h1>
+          <button class="btn btn-primary" onclick="refreshStats()">🔄 Refresh Stats</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Products</div>
+            <div class="stat-value" id="stat-total">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Inventory Value</div>
+            <div class="stat-value" id="stat-value">$0.00</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-value" id="stat-orders">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Earnings</div>
+            <div class="stat-value" id="stat-earnings">$0.00</div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-title">Products by Section</div>
+          <div id="section-stats" style="display: grid; gap: 12px;">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- MANAGE PRODUCTS VIEW -->
+      <div id="products-view" class="view" style="display: none;">
+        <div class="top-bar">
+          <h1 class="page-title">Manage Products</h1>
+          <div>
+            <select id="filter-section" class="form-group" style="width: 160px;">
+              <option value="">All Sections</option>
+              <option value="home">Home</option>
+              <option value="trending">Trending</option>
+              <option value="global">Global</option>
+              <option value="marketplace">Marketplace</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-section">
+          <div class="table-header">
+            <div class="table-title">All Products</div>
+            <button class="btn btn-danger" onclick="confirmClearAll()">🗑️ Clear All</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Category Image</th>
+                  <th>Buy</th>
+                  <th>Sell</th>
+                  <th>Profit</th>
+                  <th>Section</th>
+                  <th>Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-table">
+                <tr>
+                  <td colspan="8" style="text-align: center; color: #7a9ac8;">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDERS VIEW -->
+      <div id="orders-view" class="view" style="display: none;">
+        <div class="top-bar">
+          <h1 class="page-title">Orders</h1>
+          <button class="btn btn-primary" onclick="loadOrders()">🔄 Refresh Orders</button>
+        </div>
+
+        <div class="table-section">
+          <div class="table-header">
+            <div class="table-title">Customer Orders</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Customer</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Month</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: #7a9ac8;">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTIONS VIEW -->
+      <div id="sections-view" class="view" style="display: none;">
+        <div class="top-bar">
+          <h1 class="page-title">Sections</h1>
+          <button class="btn btn-primary" onclick="loadSections()">🔄 Refresh Sections</button>
+        </div>
+
+        <div class="form-section">
+          <div class="form-title">Sections Overview</div>
+          <div id="sections-grid"
+            style="display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            <!-- Section cards will be inserted here -->
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-title">Homepage Section Manager</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Section Title *</label>
+              <input type="text" id="section-title" placeholder="Featured Products">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Emoji</label>
+              <input type="text" id="section-emoji" placeholder="✨">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Section ID</label>
+              <input type="text" id="section-id" placeholder="home">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Categories</label>
+              <input type="text" id="section-categories" placeholder="Games, Gift Cards, Software">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subsections</label>
+              <div style="display:grid;gap:10px;">
+                <div style="display:flex;gap:10px;align-items:center;">
+                  <input type="text" id="section-subsection-input" placeholder="Add a subsection name" style="flex:1;">
+                  <button class="btn btn-primary" type="button" onclick="addSectionSubsection()">＋ Add</button>
+                </div>
+                <div id="section-subsections-container"
+                  style="background:rgba(8,20,44,.9);border:1px solid rgba(245,166,35,.12);border-radius:10px;padding:12px;">
+                  <small style="color:#7a9ac8;display:block;margin-bottom:10px;">Drag to reorder subsections.</small>
+                  <ul id="section-subsections-list" style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Background Image URL</label>
+              <input type="text" id="section-bg-image" placeholder="https://...">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" id="section-save-btn" onclick="submitSectionForm()">＋ Add Section</button>
+            <button class="btn btn-secondary" onclick="resetSectionForm()">↻ Reset</button>
+            <button class="btn btn-secondary" id="section-cancel-edit-btn" style="display:none;"
+              onclick="cancelSectionEdit()">✕ Cancel Edit</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-title">Saved Homepage Sections</div>
+          <div id="homepage-sections-list" style="display: grid; gap: 12px;"></div>
+        </div>
+      </div>
+
+      <!-- CREATE PRODUCT VIEW -->
+      <div id="create-view" class="view" style="display: none;">
+        <div class="top-bar">
+          <h1 class="page-title">Create New Product</h1>
+        </div>
+
+        <div class="form-section">
+          <div class="form-title">Product Information</div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Product Name *</label>
+              <input type="text" id="form-name" placeholder="e.g., Premium Gaming Pass">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <input type="text" id="form-category" placeholder="e.g., Games">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Type</label>
+              <input type="text" id="form-type" placeholder="e.g., Monthly, One-time">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Section *</label>
+              <select id="form-section">
+                <option value="home">Home</option>
+                <option value="trending">🔥 Trending</option>
+                <option value="global">💎 Global</option>
+                <option value="marketplace">⚡ Marketplace</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Price *</label>
+              <input type="number" id="form-price" placeholder="9.99" step="0.01" min="0">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Original Price</label>
+              <input type="number" id="form-original-price" placeholder="14.99" step="0.01" min="0">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Discount %</label>
+              <input type="number" id="form-discount" placeholder="0" min="0" max="100">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Amount/Quantity</label>
+              <input type="text" id="form-amount" placeholder="e.g., 1000 Coins, Unlimited">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Special Offer</label>
+              <input type="text" id="form-offer" placeholder="e.g., First month 50% off">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Promotion</label>
+              <input type="text" id="form-promotion" placeholder="e.g., Launch Special">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Buying Price *</label>
+              <input type="number" id="form-buying-price" placeholder="5.00" step="0.01" min="0">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Product Image</label>
+              <input type="file" id="form-image-file" accept="image/*">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category Image</label>
+              <input type="file" id="form-category-image-file" accept="image/*">
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Expiry Date</label>
+              <input type="date" id="form-expiry">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input type="text" id="form-image" placeholder="https://...">
+            </div>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="createProduct()">✓ Create Product</button>
+            <button class="btn btn-secondary" onclick="resetForm()">↻ Reset Form</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="modal" id="edit-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        Edit Product
+        <button class="close-btn" onclick="closeEditModal()">&times;</button>
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label">Product Name</label>
+        <input type="text" id="edit-name">
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label">Price</label>
+        <input type="number" id="edit-price" step="0.01">
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label">Buying Price</label>
+        <input type="number" id="edit-buying-price" step="0.01">
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label">Amount</label>
+        <input type="text" id="edit-amount">
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label">Section</label>
+        <select id="edit-section">
+          <option value="home">Home</option>
+          <option value="trending">Trending</option>
+          <option value="global">Global</option>
+          <option value="marketplace">Marketplace</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label">Category Image</label>
+        <input type="file" id="edit-category-image-file" accept="image/*">
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label">Product Image</label>
+        <input type="file" id="edit-image-file" accept="image/*">
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="saveEdit()">✓ Save Changes</button>
+        <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API_BASE = 'http://localhost:3000/api';
+    let currentEditId = null;
+    let allProducts = [];
+    let homepageSectionsData = [];
+    let editingSectionId = null;
+    let sectionSubsections = [];
+    let draggingSectionIndex = null;
+    let draggingSubsectionIndex = null;
+
+    // ═══════════════════════════════════════════════════════════
+    // UTILITY FUNCTIONS
+    // ═══════════════════════════════════════════════════════════
+
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), duration);
+    }
+
+    function switchView(viewName) {
+      document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+      document.getElementById(`${viewName}-view`).style.display = 'block';
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+
+      if (viewName === 'dashboard') {
+        refreshStats();
+      } else if (viewName === 'products') {
+        loadProducts();
+      } else if (viewName === 'orders') {
+        loadOrders();
+      } else if (viewName === 'sections') {
+        loadSections();
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // API FUNCTIONS
+    // ═══════════════════════════════════════════════════════════
+
+    async function getStats() {
+      try {
+        const response = await fetch(`${API_BASE}/stats`);
+        return await response.json();
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+        return null;
+      }
+    }
+
+    async function loadProducts(section = '') {
+      try {
+        const url = section
+          ? `${API_BASE}/products?section=${section}`
+          : `${API_BASE}/products`;
+        const response = await fetch(url);
+        allProducts = await response.json();
+        renderProductsTable();
+      } catch (error) {
+        console.error('Error loading products:', error);
+        showToast('❌ Failed to load products');
+      }
+    }
+
+    async function uploadProductImage(file) {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        const response = await fetch(`${API_BASE}/products/upload`, {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+        return data.fileUrl || null;
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        return null;
+      }
+    }
+
+    async function createProduct() {
+      const name = document.getElementById('form-name').value;
+      const price = document.getElementById('form-price').value;
+      const section = document.getElementById('form-section').value;
+      const buyingPrice = document.getElementById('form-buying-price').value;
+      const imageFile = document.getElementById('form-image-file').files[0];
+      const categoryImageFile = document.getElementById('form-category-image-file').files[0];
+
+      if (!name || !price || !section || !buyingPrice) {
+        showToast('⚠️ Please fill in required fields');
+        return;
+      }
+
+      let imageUrl = document.getElementById('form-image').value || null;
+      if (imageFile) {
+        imageUrl = await uploadProductImage(imageFile);
+        if (!imageUrl) {
+          showToast('❌ Image upload failed');
+          return;
+        }
+      }
+
+      let categoryImageUrl = null;
+      if (categoryImageFile) {
+        categoryImageUrl = await uploadProductImage(categoryImageFile);
+        if (!categoryImageUrl) {
+          showToast('❌ Category image upload failed');
+          return;
+        }
+      }
+
+      const product = {
+        name,
+        category: document.getElementById('form-category').value,
+        type: document.getElementById('form-type').value,
+        price: parseFloat(price),
+        sellingPrice: parseFloat(price),
+        buyingPrice: parseFloat(buyingPrice),
+        originalPrice: document.getElementById('form-original-price').value || null,
+        discount: parseInt(document.getElementById('form-discount').value) || 0,
+        amount: document.getElementById('form-amount').value,
+        offer: document.getElementById('form-offer').value,
+        promotion: document.getElementById('form-promotion').value,
+        expiry: document.getElementById('form-expiry').value || null,
+        image: imageUrl,
+        categoryImage: categoryImageUrl,
+        section
+      };
+
+      try {
+        const response = await fetch(`${API_BASE}/products`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(product)
+        });
+
+        if (response.ok) {
+          showToast('✓ Product created successfully!');
+          resetForm();
+          loadProducts();
+        } else {
+          showToast('❌ Failed to create product');
+        }
+      } catch (error) {
+        console.error('Error creating product:', error);
+        showToast('❌ Error creating product');
+      }
+    }
+
+    async function deleteProduct(id) {
+      try {
+        const response = await fetch(`${API_BASE}/products/${id}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          showToast('✓ Product deleted');
+          loadProducts();
+        }
+      } catch (error) {
+        console.error('Error deleting product:', error);
+        showToast('❌ Failed to delete product');
+      }
+    }
+
+    async function updateProduct(id, updates) {
+      try {
+        const response = await fetch(`${API_BASE}/products/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updates)
+        });
+
+        if (response.ok) {
+          showToast('✓ Product updated');
+          loadProducts();
+          closeEditModal();
+        }
+      } catch (error) {
+        console.error('Error updating product:', error);
+        showToast('❌ Failed to update product');
+      }
+    }
+
+    async function clearAllProducts() {
+      try {
+        const response = await fetch(`${API_BASE}/products/clear/all`, {
+          method: 'POST'
+        });
+
+        if (response.ok) {
+          showToast('✓ All products cleared');
+          loadProducts();
+        }
+      } catch (error) {
+        console.error('Error clearing products:', error);
+        showToast('❌ Failed to clear products');
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // UI FUNCTIONS
+    // ═══════════════════════════════════════════════════════════
+
+    async function refreshStats() {
+      const stats = await getStats();
+      if (stats) {
+        document.getElementById('stat-total').textContent = stats.totalProducts;
+        document.getElementById('stat-value').textContent = `$${stats.totalInventoryValue}`;
+        document.getElementById('stat-orders').textContent = stats.totalOrders;
+        document.getElementById('stat-earnings').textContent = `$${stats.totalEarnings}`;
+        document.getElementById('stat-categories').textContent = stats.categories;
+        document.getElementById('stat-sections').textContent = stats.sections.length;
+
+        const sectionStats = `
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+            <div style="padding: 12px; background: rgba(245,166,35,.1); border-radius: 8px;">
+              <div style="font-size: 11px; color: #7a9ac8; margin-bottom: 4px;">HOME</div>
+              <div style="font-size: 20px; font-weight: 800; color: #f5a623;">${stats.bySection.home}</div>
+            </div>
+            <div style="padding: 12px; background: rgba(245,166,35,.1); border-radius: 8px;">
+              <div style="font-size: 11px; color: #7a9ac8; margin-bottom: 4px;">🔥 TRENDING</div>
+              <div style="font-size: 20px; font-weight: 800; color: #f5a623;">${stats.bySection.trending}</div>
+            </div>
+            <div style="padding: 12px; background: rgba(245,166,35,.1); border-radius: 8px;">
+              <div style="font-size: 11px; color: #7a9ac8; margin-bottom: 4px;">💎 GLOBAL</div>
+              <div style="font-size: 20px; font-weight: 800; color: #f5a623;">${stats.bySection.global}</div>
+            </div>
+            <div style="padding: 12px; background: rgba(245,166,35,.1); border-radius: 8px;">
+              <div style="font-size: 11px; color: #7a9ac8; margin-bottom: 4px;">⚡ MARKETPLACE</div>
+              <div style="font-size: 20px; font-weight: 800; color: #f5a623;">${stats.bySection.marketplace}</div>
+            </div>
+          </div>
+        `;
+        document.getElementById('section-stats').innerHTML = sectionStats;
+      }
+    }
+
+    function renderSectionCards(stats, sections = []) {
+      const container = document.getElementById('sections-grid');
+      if (!stats) {
+        container.innerHTML = '<div style="color:#7a9ac8;">No section data available.</div>';
+        return;
+      }
+
+      const sectionCards = Array.isArray(sections) && sections.length
+        ? sections
+        : ['home', 'trending', 'global', 'marketplace'].map(id => ({
+          id,
+          title: id.charAt(0).toUpperCase() + id.slice(1),
+          emoji: id === 'trending' ? '🔥' : id === 'global' ? '💎' : id === 'marketplace' ? '⚡' : '🏠'
+        }));
+
+      container.innerHTML = sectionCards.map(section => {
+        const sectionId = section.id || section;
+        const count = stats.bySection && stats.bySection[sectionId] !== undefined ? stats.bySection[sectionId] : 0;
+        const label = section.title || sectionId.toUpperCase();
+        const icon = section.emoji || '📦';
+        return `
+          <div style="padding: 18px; background: rgba(8,20,44,.85); border: 1px solid rgba(245,166,35,.15); border-radius: 12px;">
+            <div style="font-size: 12px; color: #7a9ac8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">${label}</div>
+            <div style="font-size: 32px; font-weight: 800; color: #f5a623; margin-bottom: 8px;">${count}</div>
+            <div style="font-size: 12px; color: #e2ecff;">Total products in this section</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    let homepageSectionsData = [];
+    let editingSectionId = null;
+    let sectionSubsections = [];
+    let draggingSectionIndex = null;
+    let draggingSubsectionIndex = null;
+
+    async function fetchHomepageSections() {
+      try {
+        const response = await fetch(`${API_BASE}/homepage-sections`);
+        return await response.json();
+      } catch (error) {
+        console.error('Error fetching homepage sections:', error);
+        return [];
+      }
+    }
+
+    function getSectionFormValues() {
+      return {
+        title: document.getElementById('section-title').value.trim(),
+        emoji: document.getElementById('section-emoji').value.trim(),
+        id: document.getElementById('section-id').value.trim(),
+        categories: document.getElementById('section-categories').value.split(',').map(c => c.trim()).filter(Boolean),
+        backgroundImage: document.getElementById('section-bg-image').value.trim()
+      };
+    }
+
+    function renderSubsectionsList() {
+      const list = document.getElementById('section-subsections-list');
+      if (!list) return;
+
+      if (!sectionSubsections.length) {
+        list.innerHTML = '<li style="color:#7a9ac8;font-size:12px;">No subsections added yet.</li>';
+        return;
+      }
+
+      list.innerHTML = sectionSubsections.map((sub, index) => `
+        <li draggable="true" data-index="${index}" ondragstart="handleSubsectionDragStart(event)" ondragover="handleSubsectionDragOver(event)" ondrop="handleSubsectionDrop(event)" style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(245,166,35,.08);border-radius:10px;cursor:grab;">
+          <span style="font-size:13px;color:#e2ecff;">${sub}</span>
+          <button class="btn btn-secondary" type="button" style="padding:6px 10px;" onclick="removeSectionSubsection(${index})">✕</button>
+        </li>
+      `).join('');
+    }
+
+    function addSectionSubsection() {
+      const input = document.getElementById('section-subsection-input');
+      const value = input.value.trim();
+      if (!value) {
+        showToast('⚠️ Type a subsection name first');
+        return;
+      }
+      if (!sectionSubsections.includes(value)) {
+        sectionSubsections.push(value);
+      }
+      input.value = '';
+      renderSubsectionsList();
+    }
+
+    function removeSectionSubsection(index) {
+      sectionSubsections.splice(index, 1);
+      renderSubsectionsList();
+    }
+
+    function handleSubsectionDragStart(event) {
+      draggingSubsectionIndex = Number(event.currentTarget.dataset.index);
+    }
+
+    function handleSubsectionDragOver(event) {
+      event.preventDefault();
+    }
+
+    function handleSubsectionDrop(event) {
+      event.preventDefault();
+      const targetIndex = Number(event.currentTarget.dataset.index);
+      if (draggingSubsectionIndex === null || isNaN(targetIndex)) return;
+      const moved = sectionSubsections.splice(draggingSubsectionIndex, 1)[0];
+      sectionSubsections.splice(targetIndex, 0, moved);
+      draggingSubsectionIndex = null;
+      renderSubsectionsList();
+    }
+
+    function setSectionForm(section = null) {
+      editingSectionId = section ? section.id : null;
+      document.getElementById('section-title').value = section?.title || '';
+      document.getElementById('section-emoji').value = section?.emoji || '';
+      document.getElementById('section-id').value = section?.id || '';
+      document.getElementById('section-id').disabled = !!section;
+      document.getElementById('section-categories').value = section?.categories?.join(', ') || '';
+      document.getElementById('section-bg-image').value = section?.backgroundImage || '';
+      sectionSubsections = Array.isArray(section?.subsections) ? [...section.subsections] : [];
+      renderSubsectionsList();
+      document.getElementById('section-save-btn').textContent = section ? '💾 Save Section' : '＋ Add Section';
+      document.getElementById('section-cancel-edit-btn').style.display = section ? 'inline-flex' : 'none';
+    }
+
+    function resetSectionForm() {
+      document.getElementById('section-id').disabled = false;
+      setSectionForm(null);
+    }
+
+    async function submitSectionForm() {
+      const values = getSectionFormValues();
+      if (!values.title) {
+        showToast('⚠️ Section title is required');
+        return;
+      }
+
+      const payload = {
+        title: values.title,
+        emoji: values.emoji || null,
+        backgroundImage: values.backgroundImage || null,
+        categories: values.categories,
+        subsections: sectionSubsections
+      };
+
+      let response;
+      try {
+        if (editingSectionId) {
+          response = await fetch(`${API_BASE}/homepage-sections/${encodeURIComponent(editingSectionId)}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } else {
+          payload.id = values.id || values.title.toLowerCase().replace(/[^a-z0-9\-]/g, '-');
+          response = await fetch(`${API_BASE}/homepage-sections`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        }
+
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          showToast(`❌ ${error.error || 'Failed to save section'}`);
+          return;
+        }
+
+        showToast(editingSectionId ? '✓ Homepage section updated' : '✓ Homepage section created');
+        resetSectionForm();
+        loadSections();
+      } catch (error) {
+        console.error('Error saving homepage section:', error);
+        showToast('❌ Failed to save section');
+      }
+    }
+
+    async function editHomepageSection(id) {
+      const section = homepageSectionsData.find(sec => sec.id === id);
+      if (!section) return;
+      setSectionForm(section);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelSectionEdit() {
+      resetSectionForm();
+    }
+
+    async function deleteHomepageSection(id) {
+      if (!confirm('Delete this homepage section? This will remove it from the frontend section manager.')) return;
+      if (editingSectionId === id) {
+        cancelSectionEdit();
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/homepage-sections/${encodeURIComponent(id)}`, {
+          method: 'DELETE'
+        });
+        if (response.ok) {
+          showToast('✓ Homepage section deleted');
+          loadSections();
+        }
+      } catch (error) {
+        console.error('Error deleting homepage section:', error);
+        showToast('❌ Failed to delete section');
+      }
+    }
+
+    async function saveHomepageSectionOrder() {
+      try {
+        await fetch(`${API_BASE}/homepage-sections/order`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ order: homepageSectionsData.map(section => section.id) })
+        });
+      } catch (error) {
+        console.error('Error saving homepage section order:', error);
+      }
+    }
+
+    function renderHomepageSections(sections) {
+      const container = document.getElementById('homepage-sections-list');
+      if (!container) return;
+      homepageSectionsData = Array.isArray(sections) ? sections : [];
+
+      if (!homepageSectionsData.length) {
+        container.innerHTML = '<div style="color:#7a9ac8;">No homepage sections configured yet.</div>';
+        return;
+      }
+
+      container.innerHTML = homepageSectionsData.map((section, index) => {
+        const categories = Array.isArray(section.categories) ? section.categories.join(', ') : 'None';
+        const subsections = Array.isArray(section.subsections) ? section.subsections.join(', ') : 'None';
+        return `
+          <div draggable="true" data-index="${index}" ondragstart="handleSectionDragStart(event)" ondragover="handleSectionDragOver(event)" ondrop="handleSectionDrop(event)" style="padding: 16px; background: rgba(8,20,44,.9); border: 1px solid rgba(245,166,35,.12); border-radius: 12px; margin-bottom: 12px; cursor: grab;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+              <div>
+                <div style="font-size: 14px; color: #f5a623; font-weight: 700;">${section.emoji || '📦'} ${section.title}</div>
+                <div style="font-size: 12px; color: #7a9ac8;">ID: ${section.id}</div>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="btn btn-secondary" style="padding:8px 12px;" onclick="editHomepageSection('${section.id}')">Edit</button>
+                <button class="btn btn-danger" style="padding:8px 12px;" onclick="deleteHomepageSection('${section.id}')">Delete</button>
+              </div>
+            </div>
+            <div style="margin-top: 10px; font-size: 12px; color: #e2ecff;">Categories: ${categories}</div>
+            <div style="margin-top: 6px; font-size: 12px; color: #e2ecff;">Subsections: ${subsections}</div>
+            <div style="margin-top: 6px; font-size: 12px; color: #7a9ac8;">Background Image: ${section.backgroundImage ? '<a href="' + section.backgroundImage + '" target="_blank">Link</a>' : 'None'}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleSectionDragStart(event) {
+      draggingSectionIndex = Number(event.currentTarget.dataset.index);
+    }
+
+    function handleSectionDragOver(event) {
+      event.preventDefault();
+    }
+
+    async function handleSectionDrop(event) {
+      event.preventDefault();
+      const targetIndex = Number(event.currentTarget.dataset.index);
+      if (draggingSectionIndex === null || isNaN(targetIndex)) return;
+      const [moved] = homepageSectionsData.splice(draggingSectionIndex, 1);
+      homepageSectionsData.splice(targetIndex, 0, moved);
+      draggingSectionIndex = null;
+      renderHomepageSections(homepageSectionsData);
+      await saveHomepageSectionOrder();
+      showToast('✓ Section order updated');
+    }
+
+    async function loadSections() {
+      const [stats, homepageSections] = await Promise.all([getStats(), fetchHomepageSections()]);
+      renderSectionCards(stats, homepageSections);
+      renderHomepageSections(homepageSections);
+    }
+
+    function renderProductsTable() {
+      const table = document.getElementById('products-table');
+      if (allProducts.length === 0) {
+        table.innerHTML = '<tr><td colspan="9" style="text-align: center; color: #7a9ac8;">No products found</td></tr>';
+        return;
+      }
+
+      table.innerHTML = allProducts.map(p => {
+        const buyingPrice = parseFloat(p.buyingPrice || 0).toFixed(2);
+        const sellPrice = parseFloat(p.sellingPrice || p.price || 0).toFixed(2);
+        const profit = (parseFloat(p.sellingPrice || p.price || 0) - parseFloat(p.buyingPrice || 0)).toFixed(2);
+        const categoryImageHtml = p.categoryImage
+          ? `<img src="${p.categoryImage}" alt="Category image" style="width:40px;height:40px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,.08);">`
+          : '<span style="color:#7a9ac8;font-size:12px;">No image</span>';
+        return `
+        <tr>
+          <td><strong>${p.name}</strong></td>
+          <td>${p.category}</td>
+          <td>${categoryImageHtml}</td>
+          <td style="color: #7ad0be; font-weight: 700;">$${buyingPrice}</td>
+          <td style="color: #f5a623; font-weight: 700;">$${sellPrice}</td>
+          <td style="color: ${profit >= 0 ? '#7ad0be' : '#e16d6d'}; font-weight: 700;">$${profit}</td>
+          <td><span class="tag ${p.section}">${p.section.toUpperCase()}</span></td>
+          <td>${p.amount}</td>
+          <td>
+            <div class="action-btns">
+              <button class="edit-btn" onclick="openEditModal('${p.id}')">✎ Edit</button>
+              <button class="delete-btn" onclick="confirmDelete('${p.id}')">🗑️ Del</button>
+            </div>
+          </td>
+        </tr>
+      `;
+      }).join('');
+    }
+
+    async function loadOrders() {
+      try {
+        const response = await fetch(`${API_BASE}/orders`);
+        const orders = await response.json();
+        renderOrdersTable(orders);
+      } catch (error) {
+        console.error('Error loading orders:', error);
+        showToast('❌ Failed to load orders');
+      }
+    }
+
+    function renderOrdersTable(orders) {
+      const table = document.getElementById('orders-table');
+      if (!orders || orders.length === 0) {
+        table.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #7a9ac8;">No orders found</td></tr>';
+        return;
+      }
+
+      table.innerHTML = orders.map(order => `
+        <tr>
+          <td>${order.invoiceNumber}</td>
+          <td>${order.customerName}</td>
+          <td>${order.category}</td>
+          <td style="color: #f5a623; font-weight: 700;">$${parseFloat(order.totalAmount).toFixed(2)}</td>
+          <td>${order.status}</td>
+          <td>${order.month}</td>
+          <td>
+            <button class="edit-btn" onclick="changeOrderStatus('${order.id}', 'completed')">✅ Complete</button>
+            <button class="edit-btn" onclick="changeOrderStatus('${order.id}', 'pending')">⏳ Pending</button>
+            <button class="delete-btn" onclick="viewInvoice('${order.id}')">🧾 Invoice</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function changeOrderStatus(id, status) {
+      try {
+        const response = await fetch(`${API_BASE}/orders/${id}/status`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        if (response.ok) {
+          showToast(`✓ Order status updated to ${status}`);
+          loadOrders();
+          refreshStats();
+        }
+      } catch (error) {
+        console.error('Error updating order status:', error);
+        showToast('❌ Failed to update order status');
+      }
+    }
+
+    async function viewInvoice(id) {
+      try {
+        const response = await fetch(`${API_BASE}/orders/${id}/invoice`);
+        const data = await response.json();
+        const invoiceString = JSON.stringify(data.invoice, null, 2);
+        const newWindow = window.open('', '_blank');
+        if (newWindow) {
+          newWindow.document.write(`<pre>${invoiceString}</pre>`);
+          newWindow.document.title = `Invoice ${id}`;
+        }
+      } catch (error) {
+        console.error('Error loading invoice:', error);
+        showToast('❌ Failed to load invoice');
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('form-name').value = ''; document.getElementById('form-category').value = '';
+      document.getElementById('form-type').value = '';
+      document.getElementById('form-price').value = '';
+      document.getElementById('form-original-price').value = '';
+      document.getElementById('form-discount').value = '';
+      document.getElementById('form-amount').value = '';
+      document.getElementById('form-offer').value = '';
+      document.getElementById('form-promotion').value = '';
+      document.getElementById('form-expiry').value = '';
+      document.getElementById('form-image').value = '';
+      document.getElementById('form-image-file').value = '';
+      document.getElementById('form-category-image-file').value = '';
+      document.getElementById('form-section').value = 'home';
+    }
+
+    function openEditModal(id) {
+      const product = allProducts.find(p => p.id === id);
+      if (!product) return;
+
+      currentEditId = id;
+      document.getElementById('edit-name').value = product.name;
+      document.getElementById('edit-price').value = product.sellingPrice || product.price || 0;
+      document.getElementById('edit-buying-price').value = product.buyingPrice || 0;
+      document.getElementById('edit-amount').value = product.amount;
+      document.getElementById('edit-section').value = product.section;
+
+      document.getElementById('edit-modal').classList.add('active');
+    }
+
+    function closeEditModal() {
+      document.getElementById('edit-modal').classList.remove('active');
+      currentEditId = null;
+    }
+
+    async function saveEdit() {
+      if (!currentEditId) return;
+      const imageFile = document.getElementById('edit-image-file').files[0];
+      const categoryImageFile = document.getElementById('edit-category-image-file').files[0];
+      let imageUrl = null;
+      let categoryImageUrl = null;
+
+      if (imageFile) {
+        imageUrl = await uploadProductImage(imageFile);
+        if (!imageUrl) {
+          showToast('❌ Image upload failed');
+          return;
+        }
+      }
+
+      if (categoryImageFile) {
+        categoryImageUrl = await uploadProductImage(categoryImageFile);
+        if (!categoryImageUrl) {
+          showToast('❌ Category image upload failed');
+          return;
+        }
+      }
+
+      const updates = {
+        name: document.getElementById('edit-name').value,
+        sellingPrice: parseFloat(document.getElementById('edit-price').value),
+        buyingPrice: parseFloat(document.getElementById('edit-buying-price').value) || 0,
+        amount: document.getElementById('edit-amount').value,
+        section: document.getElementById('edit-section').value
+      };
+
+      if (imageUrl) {
+        updates.image = imageUrl;
+      }
+      if (categoryImageUrl) {
+        updates.categoryImage = categoryImageUrl;
+      }
+
+      updateProduct(currentEditId, updates);
+    }
+
+    function confirmDelete(id) {
+      if (confirm('Are you sure you want to delete this product?')) {
+        deleteProduct(id);
+      }
+    }
+
+    function confirmClearAll() {
+      if (confirm('⚠️ Are you SURE you want to delete ALL products? This cannot be undone!')) {
+        clearAllProducts();
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // EVENT LISTENERS
+    // ═══════════════════════════════════════════════════════════
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => switchView(item.dataset.view));
+      });
+
+      document.getElementById('filter-section').addEventListener('change', (e) => {
+        loadProducts(e.target.value);
+      });
+
+      refreshStats();
+    });
+  </script>
+</body>
+
+</html>

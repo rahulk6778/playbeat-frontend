@@ -1,0 +1,3505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayBeat Admin — Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #040913;
+      --bg2: #071224;
+      --bg3: #0d1a2e;
+      --bg4: #101e35;
+      --gold: #f5a623;
+      --gold2: #f9cc7a;
+      --gold3: #8a5400;
+      --cyan: #00d4ff;
+      --red: #ff4d4d;
+      --green: #1de898;
+      --purple: #a855f7;
+      --text: #e2ecff;
+      --muted: #3d5a88;
+      --border: rgba(245, 166, 35, .13);
+      --border2: rgba(245, 166, 35, .22);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 14px;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 220px;
+      min-height: 100vh;
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .sb-logo {
+      padding: 20px 18px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sb-logo-top {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .sb-wordmark {
+      display: flex;
+      align-items: baseline;
+      filter: drop-shadow(0 0 8px rgba(245, 166, 35, .3));
+    }
+
+    .sb-play {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    .sb-beat {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      background: linear-gradient(170deg, #f9cc7a, #f5a623);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245, 166, 35, .1);
+      border: 1px solid rgba(245, 166, 35, .2);
+      border-radius: 2px;
+      padding: 2px 7px;
+      margin-top: 5px;
+    }
+
+    .sb-badge-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+    }
+
+    .sb-badge span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      color: var(--gold2);
+    }
+
+    .sb-nav {
+      flex: 1;
+      padding: 10px 0;
+      overflow-y: auto;
+    }
+
+    .sb-section {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      padding: 14px 18px 6px;
+      text-transform: uppercase;
+    }
+
+    .sb-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 18px;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: .2s;
+      color: #7a9ac8;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .sb-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: .7;
+    }
+
+    .sb-item:hover {
+      color: var(--gold2);
+      background: rgba(245, 166, 35, .04);
+      border-left-color: rgba(245, 166, 35, .3);
+    }
+
+    .sb-item.active {
+      color: var(--gold);
+      background: rgba(245, 166, 35, .07);
+      border-left-color: var(--gold);
+    }
+
+    .sb-item.active svg {
+      opacity: 1;
+    }
+
+    .sb-badge-count {
+      margin-left: auto;
+      background: rgba(245, 166, 35, .15);
+      border: 1px solid rgba(245, 166, 35, .3);
+      color: var(--gold);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    .sb-footer {
+      padding: 14px 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sb-admin {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .sb-avatar {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--gold3), var(--gold));
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #020a16;
+      flex-shrink: 0;
+    }
+
+    .sb-admin-info {
+      min-width: 0;
+    }
+
+    .sb-admin-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sb-admin-role {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 1px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: linear-gradient(180deg, rgba(7, 18, 36, .98), rgba(13, 26, 46, .97));
+      border-bottom: 1px solid var(--border2);
+      padding: 0 28px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .topbar-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+
+    .topbar-path {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    .topbar-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-search {
+      display: flex;
+      align-items: center;
+      background: rgba(8, 20, 44, .85);
+      border: 1px solid var(--border2);
+      border-radius: 3px;
+      height: 32px;
+      overflow: hidden;
+    }
+
+    .tb-search input {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 12px;
+      padding: 0 10px;
+      height: 100%;
+      outline: none;
+      width: 180px;
+    }
+
+    .tb-search input::placeholder {
+      color: var(--muted);
+    }
+
+    .tb-search-btn {
+      padding: 0 10px;
+      height: 100%;
+      background: rgba(245, 166, 35, .08);
+      border-left: 1px solid var(--border);
+      cursor: pointer;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      border: none;
+    }
+
+    .tb-btn {
+      width: 32px;
+      height: 32px;
+      background: rgba(8, 20, 44, .85);
+      border: 1px solid var(--border2);
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #7a9ac8;
+      transition: .2s;
+      position: relative;
+    }
+
+    .tb-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .tb-notif {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 14px;
+      height: 14px;
+      background: var(--red);
+      border-radius: 50%;
+      font-size: 8px;
+      font-family: 'Share Tech Mono', monospace;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tb-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(29, 232, 152, .06);
+      border: 1px solid rgba(29, 232, 152, .2);
+      border-radius: 3px;
+      padding: 4px 10px;
+    }
+
+    .tb-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .4
+      }
+    }
+
+    .tb-status span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: var(--green);
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      flex: 1;
+      padding: 24px 28px;
+      overflow-y: auto;
+    }
+
+    /* SECTION PANELS */
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    /* ── KPI CARDS ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .kpi {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: .2s;
+    }
+
+    .kpi::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+    }
+
+    .kpi.gold::before {
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .kpi.cyan::before {
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+
+    .kpi.green::before {
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+    }
+
+    .kpi.red::before {
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+
+    .kpi.purple::before {
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+    }
+
+    .kpi:hover {
+      border-color: var(--border2);
+      background: linear-gradient(135deg, var(--bg4), var(--bg3));
+    }
+
+    .kpi-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .kpi-val {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .kpi-up {
+      color: var(--green);
+    }
+
+    .kpi-down {
+      color: var(--red);
+    }
+
+    .kpi-icon {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      opacity: .12;
+      font-size: 32px;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .sh {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .sh-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .sh-title span {
+      color: var(--gold);
+    }
+
+    .sh-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid var(--border2);
+      color: #7a9ac8;
+      background: rgba(8, 20, 44, .7);
+      padding: 6px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      border-color: var(--gold);
+      color: var(--gold2);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold3), #c07800, var(--gold));
+      border-color: var(--gold);
+      color: #020a16;
+      font-weight: 700;
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.15);
+      color: #020a16;
+    }
+
+    .btn-danger {
+      border-color: rgba(255, 77, 77, .4);
+      color: var(--red);
+      background: rgba(255, 77, 77, .05);
+    }
+
+    .btn-danger:hover {
+      border-color: var(--red);
+      background: rgba(255, 77, 77, .12);
+    }
+
+    .btn-green {
+      border-color: rgba(29, 232, 152, .4);
+      color: var(--green);
+      background: rgba(29, 232, 152, .05);
+    }
+
+    .btn-green:hover {
+      border-color: var(--green);
+      background: rgba(29, 232, 152, .12);
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .table-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .table-head-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .tbl {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .tbl th {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tbl th:hover {
+      color: var(--gold2);
+    }
+
+    .tbl td {
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(245, 166, 35, .06);
+      font-size: 12.5px;
+      vertical-align: middle;
+    }
+
+    .tbl tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tbl tr:hover td {
+      background: rgba(245, 166, 35, .025);
+    }
+
+    .tbl .mono {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-green {
+      background: rgba(29, 232, 152, .1);
+      border: 1px solid rgba(29, 232, 152, .25);
+      color: var(--green);
+    }
+
+    .badge-gold {
+      background: rgba(245, 166, 35, .1);
+      border: 1px solid rgba(245, 166, 35, .25);
+      color: var(--gold);
+    }
+
+    .badge-red {
+      background: rgba(255, 77, 77, .1);
+      border: 1px solid rgba(255, 77, 77, .25);
+      color: var(--red);
+    }
+
+    .badge-cyan {
+      background: rgba(0, 212, 255, .1);
+      border: 1px solid rgba(0, 212, 255, .25);
+      color: var(--cyan);
+    }
+
+    .badge-purple {
+      background: rgba(168, 85, 247, .1);
+      border: 1px solid rgba(168, 85, 247, .25);
+      color: var(--purple);
+    }
+
+    .badge-gray {
+      background: rgba(61, 90, 136, .15);
+      border: 1px solid rgba(61, 90, 136, .3);
+      color: #7a9ac8;
+    }
+
+    .badge-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* ── CHARTS ── */
+    .chart-row {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .chart-box {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px 18px;
+    }
+
+    .chart-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 120px;
+    }
+
+    .bar-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .bar {
+      width: 100%;
+      border-radius: 2px 2px 0 0;
+      min-height: 4px;
+      position: relative;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .bar:hover {
+      filter: brightness(1.3);
+    }
+
+    .bar-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: .5px;
+    }
+
+    .bar-val {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      color: var(--gold2);
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .donut-legend {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .dl-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dl-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .dl-label {
+      font-size: 11px;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .dl-val {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ── ACTIVITY FEED ── */
+    .activity-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .af-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(245, 166, 35, .06);
+    }
+
+    .af-item:last-child {
+      border-bottom: none;
+    }
+
+    .af-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    .af-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .af-msg {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .af-msg strong {
+      color: var(--gold2);
+    }
+
+    .af-time {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── INVENTORY SPECIFIC ── */
+    .inv-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .inv-filter {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+      padding: 5px 12px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .inv-filter:hover,
+    .inv-filter.active {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .stock-bar {
+      width: 80px;
+      height: 6px;
+      background: rgba(255, 255, 255, .08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .stock-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    /* ── CUSTOMERS ── */
+    .cust-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #020a16;
+      flex-shrink: 0;
+    }
+
+    /* ── ORDERS ── */
+    .order-detail {
+      background: rgba(8, 20, 44, .6);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px;
+      margin-top: 8px;
+    }
+
+    /* ── ANALYTICS ── */
+    .analytics-kpi {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    /* ── MINI SPARKLINE ── */
+    .sparkline {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 24px;
+    }
+
+    .spark {
+      width: 4px;
+      border-radius: 1px;
+      background: var(--gold);
+      opacity: .5;
+    }
+
+    .spark:last-child {
+      opacity: 1;
+    }
+
+    /* ── MODALS ── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 10, 22, .85);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 24px;
+      min-width: 380px;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+    }
+
+    .modal-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .form-field {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      background: rgba(8, 20, 44, .85);
+      border: 1px solid var(--border2);
+      border-radius: 3px;
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 13px;
+      padding: 8px 12px;
+      outline: none;
+      transition: .2s;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(245, 166, 35, .1);
+    }
+
+    .form-select option {
+      background: var(--bg2);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 18px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      padding: 12px 16px;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: .3s;
+      pointer-events: none;
+      max-width: 300px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      font-size: 16px;
+    }
+
+    .toast-msg {
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .toast-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 0 0 0 4px;
+      width: 100%;
+      animation: none;
+    }
+
+    .toast.show .toast-bar {
+      animation: tbshrink 3.2s linear forwards;
+    }
+
+    @keyframes tbshrink {
+      to {
+        width: 0
+      }
+    }
+
+    /* ── SETTINGS ── */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+    }
+
+    .settings-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sn-item {
+      padding: 8px 12px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: .15s;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+    }
+
+    .sn-item:hover {
+      color: var(--gold2);
+      background: rgba(245, 166, 35, .04);
+    }
+
+    .sn-item.active {
+      color: var(--gold);
+      background: rgba(245, 166, 35, .07);
+      border-color: rgba(245, 166, 35, .15);
+    }
+
+    .settings-section {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(245, 166, 35, .06);
+    }
+
+    .setting-row:last-child {
+      border-bottom: none;
+    }
+
+    .setting-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .setting-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .setting-desc {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .toggle {
+      width: 40px;
+      height: 22px;
+      background: rgba(61, 90, 136, .3);
+      border-radius: 11px;
+      position: relative;
+      cursor: pointer;
+      transition: .25s;
+      flex-shrink: 0;
+      border: 1px solid rgba(61, 90, 136, .4);
+    }
+
+    .toggle.on {
+      background: rgba(245, 166, 35, .3);
+      border-color: rgba(245, 166, 35, .4);
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #7a9ac8;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: .25s;
+    }
+
+    .toggle.on::after {
+      left: 20px;
+      background: var(--gold);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1100px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chart-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:768px) {
+      .sidebar {
+        width: 56px;
+      }
+
+      .sb-item span,
+      .sb-logo-top,
+      .sb-play,
+      .sb-beat,
+      .sb-badge,
+      .sb-admin-info,
+      .sb-section {
+        display: none;
+      }
+
+      .sb-item {
+        justify-content: center;
+        padding: 12px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ── SEARCH HIGHLIGHT ── */
+    .hl {
+      background: rgba(245, 166, 35, .25);
+      border-radius: 1px;
+    }
+
+    /* ── PAGINATION ── */
+    .pag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .pag-btn {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s;
+    }
+
+    .pag-btn:hover,
+    .pag-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .pag-info {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    /* ── QUICK STATS ROW ── */
+    .qs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .qs {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 16px;
+    }
+
+    .qs-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .qs-val {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ── PROGRESS BARS ── */
+    .prog-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .prog-label {
+      font-size: 11px;
+      color: var(--text);
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .prog-bar {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, .07);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .prog-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .prog-val {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── HEADER LINE ── */
+    header.topbar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold3), var(--gold), var(--gold3), transparent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-top">Admin Panel</div>
+      <div class="sb-wordmark">
+        <span class="sb-play">Play</span><span class="sb-beat">Beat</span>
+      </div>
+      <div class="sb-badge">
+        <div class="sb-badge-dot"></div>
+        <span>Live · v2.4.1</span>
+      </div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-section">Core</div>
+      <div class="sb-item active" onclick="nav('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        <span>Dashboard</span>
+      </div>
+      <div class="sb-item" onclick="nav('orders')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+          <rect x="9" y="3" width="6" height="4" rx="1" />
+          <path d="M9 12h6M9 16h4" />
+        </svg>
+        <span>Orders</span>
+        <span class="sb-badge-count" id="badge-orders">12</span>
+      </div>
+      <div class="sb-item" onclick="nav('inventory')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        <span>Inventory</span>
+      </div>
+      <div class="sb-item" onclick="nav('customers')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+        </svg>
+        <span>Customers</span>
+      </div>
+
+      <div class="sb-section">Finance</div>
+      <div class="sb-item" onclick="nav('analytics')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+        <span>Analytics</span>
+      </div>
+      <div class="sb-item" onclick="nav('payouts')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="5" width="20" height="14" rx="2" />
+          <line x1="2" y1="10" x2="22" y2="10" />
+        </svg>
+        <span>Payouts</span>
+      </div>
+
+      <div class="sb-section">Store</div>
+      <div class="sb-item" onclick="nav('products')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        <span>Products</span>
+      </div>
+      <div class="sb-item" onclick="nav('coupons')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
+          <line x1="7" y1="7" x2="7.01" y2="7" />
+        </svg>
+        <span>Coupons</span>
+      </div>
+
+      <div class="sb-section">System</div>
+      <div class="sb-item" onclick="nav('settings')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+        </svg>
+        <span>Settings</span>
+      </div>
+    </nav>
+
+    <div class="sb-footer">
+      <div class="sb-admin">
+        <div class="sb-avatar">AD</div>
+        <div class="sb-admin-info">
+          <div class="sb-admin-name">Admin</div>
+          <div class="sb-admin-role">Super Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar" style="position:relative;">
+      <div>
+        <div class="topbar-title" id="topbar-title">Dashboard</div>
+        <div class="topbar-path" id="topbar-path">PlayBeat Admin · Overview</div>
+      </div>
+      <div class="topbar-right">
+        <div class="tb-search">
+          <input type="text" placeholder="Search orders, customers..." id="global-search"
+            oninput="globalSearch(this.value)">
+          <button class="tb-search-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </button>
+        </div>
+        <div class="tb-status">
+          <div class="tb-dot"></div><span>All Systems OK</span>
+        </div>
+        <button class="tb-btn" onclick="openModal('modal-notify')" title="Notifications">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <span class="tb-notif">3</span>
+        </button>
+        <button class="tb-btn" onclick="exportData()" title="Export">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+          </svg>
+        </button>
+        <button class="tb-btn" onclick="adminLogout()" title="Logout">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+            <path d="M16 17l5-5-5-5" />
+            <path d="M21 12H9" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ═══ CONTENT ═══ -->
+    <div class="content">
+
+      <!-- ════ DASHBOARD ════ -->
+      <div class="panel active" id="panel-dashboard">
+        <div class="kpi-grid">
+          <div class="kpi gold">
+            <div class="kpi-label">Total Revenue</div>
+            <div class="kpi-val">$84,320</div>
+            <div class="kpi-sub"><span class="kpi-up">↑ 18.4%</span><span style="color:var(--muted)">vs last
+                month</span></div>
+            <div class="kpi-icon">💰</div>
+          </div>
+          <div class="kpi green">
+            <div class="kpi-label">Orders Today</div>
+            <div class="kpi-val">247</div>
+            <div class="kpi-sub"><span class="kpi-up">↑ 32 from yesterday</span></div>
+            <div class="kpi-icon">📦</div>
+          </div>
+          <div class="kpi cyan">
+            <div class="kpi-label">Active Customers</div>
+            <div class="kpi-val">5,841</div>
+            <div class="kpi-sub"><span class="kpi-up">↑ 3.2%</span><span style="color:var(--muted)">this week</span>
+            </div>
+            <div class="kpi-icon">👤</div>
+          </div>
+          <div class="kpi red">
+            <div class="kpi-label">Pending Delivery</div>
+            <div class="kpi-val">12</div>
+            <div class="kpi-sub"><span class="kpi-down">Needs attention</span></div>
+            <div class="kpi-icon">⚠️</div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <!-- Revenue Bar Chart -->
+          <div class="chart-box">
+            <div class="chart-title">Revenue — Last 7 Days</div>
+            <div class="bar-chart">
+              <div class="bar-wrap">
+                <div class="bar"
+                  style="height:55%;background:linear-gradient(180deg,rgba(245,166,35,.7),rgba(245,166,35,.3))">
+                  <span class="bar-val">$9.2k</span>
+                </div>
+                <div class="bar-label">Mon</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar"
+                  style="height:72%;background:linear-gradient(180deg,rgba(245,166,35,.7),rgba(245,166,35,.3))">
+                  <span class="bar-val">$12.1k</span>
+                </div>
+                <div class="bar-label">Tue</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar"
+                  style="height:60%;background:linear-gradient(180deg,rgba(245,166,35,.7),rgba(245,166,35,.3))">
+                  <span class="bar-val">$10.3k</span>
+                </div>
+                <div class="bar-label">Wed</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar"
+                  style="height:88%;background:linear-gradient(180deg,rgba(245,166,35,.8),rgba(245,166,35,.4))">
+                  <span class="bar-val">$15.7k</span>
+                </div>
+                <div class="bar-label">Thu</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar" style="height:95%;background:linear-gradient(180deg,var(--gold),rgba(245,166,35,.5))">
+                  <span class="bar-val">$18.4k</span>
+                </div>
+                <div class="bar-label">Fri</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar"
+                  style="height:78%;background:linear-gradient(180deg,rgba(245,166,35,.7),rgba(245,166,35,.3))">
+                  <span class="bar-val">$13.1k</span>
+                </div>
+                <div class="bar-label">Sat</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar"
+                  style="height:62%;background:linear-gradient(180deg,rgba(245,166,35,.7),rgba(245,166,35,.3))">
+                  <span class="bar-val">$10.8k</span>
+                </div>
+                <div class="bar-label">Sun</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category Donut -->
+          <div class="chart-box">
+            <div class="chart-title">Sales by Category</div>
+            <div class="donut-wrap">
+              <svg width="100" height="100" viewBox="0 0 36 36" style="flex-shrink:0;">
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3.5" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--gold)" stroke-width="3.5"
+                  stroke-dasharray="38 62" stroke-dashoffset="25" style="transition:.5s;" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--cyan)" stroke-width="3.5"
+                  stroke-dasharray="24 76" stroke-dashoffset="-13" style="transition:.5s;" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--green)" stroke-width="3.5"
+                  stroke-dasharray="18 82" stroke-dashoffset="-37" style="transition:.5s;" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--purple)" stroke-width="3.5"
+                  stroke-dasharray="12 88" stroke-dashoffset="-55" style="transition:.5s;" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#ff4d4d" stroke-width="3.5"
+                  stroke-dasharray="8 92" stroke-dashoffset="-67" style="transition:.5s;" />
+                <text x="18" y="20" text-anchor="middle" font-family="Orbitron" font-size="5" font-weight="700"
+                  fill="#e2ecff">$84k</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:var(--gold)"></div>
+                  <div class="dl-label">Gift Cards</div>
+                  <div class="dl-val">38%</div>
+                </div>
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:var(--cyan)"></div>
+                  <div class="dl-label">Accounts</div>
+                  <div class="dl-val">24%</div>
+                </div>
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:var(--green)"></div>
+                  <div class="dl-label">Game Items</div>
+                  <div class="dl-val">18%</div>
+                </div>
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:var(--purple)"></div>
+                  <div class="dl-label">Top-Up</div>
+                  <div class="dl-val">12%</div>
+                </div>
+                <div class="dl-item">
+                  <div class="dl-dot" style="background:var(--red)"></div>
+                  <div class="dl-label">Other</div>
+                  <div class="dl-val">8%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Orders + Activity -->
+        <div class="chart-row">
+          <div class="table-wrap">
+            <div class="table-head">
+              <span class="table-head-title">Recent Orders</span>
+              <button class="btn" onclick="nav('orders')">View All →</button>
+            </div>
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="dash-recent-orders"></tbody>
+            </table>
+          </div>
+          <div class="chart-box">
+            <div class="chart-title">Live Activity</div>
+            <div class="activity-feed" id="activity-feed"></div>
+          </div>
+        </div>
+
+        <!-- Top Products -->
+        <div class="table-wrap">
+          <div class="table-head">
+            <span class="table-head-title">Top Products This Week</span>
+            <button class="btn" onclick="nav('products')">Manage Products →</button>
+          </div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Units Sold</th>
+                <th>Revenue</th>
+                <th>Stock</th>
+                <th>Trend</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600;">Steam Wallet $50</td>
+                <td><span class="badge badge-gold">Gift Cards</span></td>
+                <td class="mono">842</td>
+                <td class="mono" style="color:var(--gold);">$40,416</td>
+                <td>
+                  <div class="stock-bar">
+                    <div class="stock-fill" style="width:78%;background:var(--green);"></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="sparkline">
+                    <div class="spark" style="height:40%"></div>
+                    <div class="spark" style="height:60%"></div>
+                    <div class="spark" style="height:50%"></div>
+                    <div class="spark" style="height:80%"></div>
+                    <div class="spark" style="height:95%"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Valorant Rare Bundle</td>
+                <td><span class="badge badge-purple">Game Items</span></td>
+                <td class="mono">634</td>
+                <td class="mono" style="color:var(--gold);">$6,334</td>
+                <td>
+                  <div class="stock-bar">
+                    <div class="stock-fill" style="width:45%;background:var(--gold);"></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="sparkline">
+                    <div class="spark" style="height:30%"></div>
+                    <div class="spark" style="height:55%"></div>
+                    <div class="spark" style="height:70%"></div>
+                    <div class="spark" style="height:65%"></div>
+                    <div class="spark" style="height:90%"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">PS Plus 12-Month</td>
+                <td><span class="badge badge-cyan">Subscriptions</span></td>
+                <td class="mono">421</td>
+                <td class="mono" style="color:var(--gold);">$25,260</td>
+                <td>
+                  <div class="stock-bar">
+                    <div class="stock-fill" style="width:90%;background:var(--green);"></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="sparkline">
+                    <div class="spark" style="height:50%"></div>
+                    <div class="spark" style="height:45%"></div>
+                    <div class="spark" style="height:65%"></div>
+                    <div class="spark" style="height:75%"></div>
+                    <div class="spark" style="height:80%"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Minecraft Java Edition</td>
+                <td><span class="badge badge-green">Games</span></td>
+                <td class="mono">312</td>
+                <td class="mono" style="color:var(--gold);">$8,424</td>
+                <td>
+                  <div class="stock-bar">
+                    <div class="stock-fill" style="width:15%;background:var(--red);"></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="sparkline">
+                    <div class="spark" style="height:70%"></div>
+                    <div class="spark" style="height:60%"></div>
+                    <div class="spark" style="height:45%"></div>
+                    <div class="spark" style="height:50%"></div>
+                    <div class="spark" style="height:60%"></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════ ORDERS ════ -->
+      <div class="panel" id="panel-orders">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Order Management</div>
+          <div class="sh-actions">
+            <select class="form-select" style="width:130px;padding:5px 10px;font-size:11px;"
+              onchange="filterOrders(this.value)">
+              <option value="all">All Status</option>
+              <option value="completed">Completed</option>
+              <option value="pending">Pending</option>
+              <option value="processing">Processing</option>
+              <option value="refunded">Refunded</option>
+              <option value="failed">Failed</option>
+            </select>
+            <button class="btn btn-gold" onclick="openModal('modal-new-order')">+ New Order</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr);">
+          <div class="kpi gold" style="padding:12px 14px;">
+            <div class="kpi-label">Total Orders</div>
+            <div class="kpi-val" style="font-size:18px;">4,821</div>
+          </div>
+          <div class="kpi green" style="padding:12px 14px;">
+            <div class="kpi-label">Completed</div>
+            <div class="kpi-val" style="font-size:18px;color:var(--green);">4,502</div>
+          </div>
+          <div class="kpi" style="padding:12px 14px;">
+            <div class="kpi-label">Processing</div>
+            <div class="kpi-val" style="font-size:18px;color:var(--cyan);">247</div>
+          </div>
+          <div class="kpi red" style="padding:12px 14px;">
+            <div class="kpi-label">Pending</div>
+            <div class="kpi-val" style="font-size:18px;color:var(--gold);">12</div>
+          </div>
+          <div class="kpi" style="padding:12px 14px;">
+            <div class="kpi-label">Refunded</div>
+            <div class="kpi-val" style="font-size:18px;color:var(--red);">60</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head">
+            <span class="table-head-title">All Orders</span>
+            <div style="display:flex;gap:8px;">
+              <input type="text" class="form-input" style="width:200px;padding:5px 10px;font-size:11px;"
+                placeholder="Search order ID, customer..." id="order-search" oninput="searchOrders(this.value)">
+              <button class="btn" onclick="exportData()">Export CSV</button>
+            </div>
+          </div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th onclick="sortTable('orders','id')">Order ID ↕</th>
+                <th onclick="sortTable('orders','customer')">Customer ↕</th>
+                <th onclick="sortTable('orders','product')">Product ↕</th>
+                <th onclick="sortTable('orders','amount')">Amount ↕</th>
+                <th onclick="sortTable('orders','method')">Payment</th>
+                <th onclick="sortTable('orders','status')">Status ↕</th>
+                <th onclick="sortTable('orders','date')">Date ↕</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody"></tbody>
+          </table>
+          <div class="pag">
+            <button class="pag-btn" onclick="orderPage(-1)">‹</button>
+            <button class="pag-btn active" id="pg-1" onclick="goOrderPage(1)">1</button>
+            <button class="pag-btn" id="pg-2" onclick="goOrderPage(2)">2</button>
+            <button class="pag-btn" id="pg-3" onclick="goOrderPage(3)">3</button>
+            <button class="pag-btn" onclick="orderPage(1)">›</button>
+            <span class="pag-info" id="order-pag-info"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ INVENTORY ════ -->
+      <div class="panel" id="panel-inventory">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Inventory Management</div>
+          <div class="sh-actions">
+            <button class="btn btn-gold" onclick="openModal('modal-add-product')">+ Add Product</button>
+            <button class="btn" onclick="exportData()">Export</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi gold">
+            <div class="kpi-label">Total SKUs</div>
+            <div class="kpi-val">184</div>
+            <div class="kpi-sub"><span style="color:var(--muted);">across 8 categories</span></div>
+          </div>
+          <div class="kpi red">
+            <div class="kpi-label">Low Stock</div>
+            <div class="kpi-val" style="color:var(--red);">7</div>
+            <div class="kpi-sub"><span class="kpi-down">Restock needed</span></div>
+          </div>
+          <div class="kpi green">
+            <div class="kpi-label">In Stock</div>
+            <div class="kpi-val" style="color:var(--green);">171</div>
+            <div class="kpi-sub"><span class="kpi-up">92.9% availability</span></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Inventory Value</div>
+            <div class="kpi-val">$228k</div>
+            <div class="kpi-sub"><span style="color:var(--muted);">at cost price</span></div>
+          </div>
+        </div>
+
+        <div class="inv-filters">
+          <button class="inv-filter active" onclick="filterInv(this,'all')">All</button>
+          <button class="inv-filter" onclick="filterInv(this,'gift-cards')">Gift Cards</button>
+          <button class="inv-filter" onclick="filterInv(this,'games')">Games</button>
+          <button class="inv-filter" onclick="filterInv(this,'accounts')">Accounts</button>
+          <button class="inv-filter" onclick="filterInv(this,'game-items')">Game Items</button>
+          <button class="inv-filter" onclick="filterInv(this,'subscriptions')">Subscriptions</button>
+          <button class="inv-filter" onclick="filterInv(this,'top-up')">Top-Up</button>
+          <button class="inv-filter" onclick="filterInv(this,'software')">Software</button>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head">
+            <span class="table-head-title">Product Inventory</span>
+            <input type="text" class="form-input" style="width:200px;padding:5px 10px;font-size:11px;"
+              placeholder="Search products..." id="inv-search" oninput="searchInventory(this.value)">
+          </div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Cost</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Stock Level</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inv-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════ CUSTOMERS ════ -->
+      <div class="panel" id="panel-customers">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Customer Management</div>
+          <div class="sh-actions">
+            <button class="btn btn-gold" onclick="openModal('modal-add-customer')">+ Add Customer</button>
+            <button class="btn" onclick="exportData()">Export</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi gold">
+            <div class="kpi-label">Total Customers</div>
+            <div class="kpi-val">5,841</div>
+          </div>
+          <div class="kpi green">
+            <div class="kpi-label">Active (30d)</div>
+            <div class="kpi-val" style="color:var(--green);">2,341</div>
+          </div>
+          <div class="kpi cyan">
+            <div class="kpi-label">VIP Members</div>
+            <div class="kpi-val" style="color:var(--gold);">312</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Avg. Order Value</div>
+            <div class="kpi-val">$34.20</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head">
+            <span class="table-head-title">All Customers</span>
+            <div style="display:flex;gap:8px;">
+              <select class="form-select" style="width:130px;padding:5px 10px;font-size:11px;"
+                onchange="filterCustomers(this.value)">
+                <option value="all">All Tiers</option>
+                <option value="vip">VIP</option>
+                <option value="regular">Regular</option>
+                <option value="new">New</option>
+              </select>
+              <input type="text" class="form-input" style="width:200px;padding:5px 10px;font-size:11px;"
+                placeholder="Search customers..." oninput="searchCustomers(this.value)">
+            </div>
+          </div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>Total Spent</th>
+                <th>Orders</th>
+                <th>Tier</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="cust-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════ ANALYTICS ════ -->
+      <div class="panel" id="panel-analytics">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Analytics & Reports</div>
+          <div class="sh-actions">
+            <select class="form-select" style="width:130px;padding:5px 10px;font-size:11px;">
+              <option>Last 30 Days</option>
+              <option>Last 7 Days</option>
+              <option>This Year</option>
+              <option>Custom Range</option>
+            </select>
+            <button class="btn btn-gold" onclick="exportData()">Export Report</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi gold">
+            <div class="kpi-label">Gross Revenue</div>
+            <div class="kpi-val">$84,320</div>
+            <div class="kpi-sub"><span class="kpi-up">↑ 18.4%</span></div>
+          </div>
+          <div class="kpi green">
+            <div class="kpi-label">Net Profit</div>
+            <div class="kpi-val">$31,240</div>
+            <div class="kpi-sub"><span class="kpi-up">↑ 22.1%</span></div>
+          </div>
+          <div class="kpi cyan">
+            <div class="kpi-label">Conversion Rate</div>
+            <div class="kpi-val">3.8%</div>
+            <div class="kpi-sub"><span class="kpi-up">↑ 0.4pp</span></div>
+          </div>
+          <div class="kpi purple">
+            <div class="kpi-label">Avg Session Val</div>
+            <div class="kpi-val">$41.60</div>
+            <div class="kpi-sub"><span class="kpi-up">↑ 5.2%</span></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-box">
+            <div class="chart-title">Monthly Revenue — 2025</div>
+            <div class="bar-chart" style="height:140px;">
+              <div class="bar-wrap">
+                <div class="bar" style="height:45%;background:rgba(245,166,35,.4);"><span class="bar-val">$42k</span>
+                </div>
+                <div class="bar-label">Jan</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar" style="height:52%;background:rgba(245,166,35,.4);"><span class="bar-val">$49k</span>
+                </div>
+                <div class="bar-label">Feb</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar" style="height:60%;background:rgba(245,166,35,.5);"><span class="bar-val">$56k</span>
+                </div>
+                <div class="bar-label">Mar</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar" style="height:55%;background:rgba(245,166,35,.4);"><span class="bar-val">$52k</span>
+                </div>
+                <div class="bar-label">Apr</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar" style="height:70%;background:rgba(245,166,35,.55);"><span class="bar-val">$66k</span>
+                </div>
+                <div class="bar-label">May</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar" style="height:88%;background:rgba(245,166,35,.7);"><span class="bar-val">$84k</span>
+                </div>
+                <div class="bar-label">Jun</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-box">
+            <div class="chart-title">Traffic Sources</div>
+            <div style="margin-top:8px;">
+              <div class="prog-row">
+                <div class="prog-label">Organic</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:42%;background:var(--green);"></div>
+                </div>
+                <div class="prog-val">42%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Direct</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:28%;background:var(--gold);"></div>
+                </div>
+                <div class="prog-val">28%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Referral</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:18%;background:var(--cyan);"></div>
+                </div>
+                <div class="prog-val">18%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Social</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:9%;background:var(--purple);"></div>
+                </div>
+                <div class="prog-val">9%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Email</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:3%;background:var(--red);"></div>
+                </div>
+                <div class="prog-val">3%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-box">
+            <div class="chart-title">Top Selling Categories</div>
+            <div style="margin-top:8px;">
+              <div class="prog-row">
+                <div class="prog-label">Gift Cards</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:38%;background:var(--gold);"></div>
+                </div>
+                <div class="prog-val">38%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Accounts</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:24%;background:var(--cyan);"></div>
+                </div>
+                <div class="prog-val">24%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Game Items</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:18%;background:var(--purple);"></div>
+                </div>
+                <div class="prog-val">18%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Top-Up</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:12%;background:var(--green);"></div>
+                </div>
+                <div class="prog-val">12%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">Software</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:8%;background:var(--red);"></div>
+                </div>
+                <div class="prog-val">8%</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-box">
+            <div class="chart-title">Customer Geography</div>
+            <div style="margin-top:8px;">
+              <div class="prog-row">
+                <div class="prog-label">🇺🇸 USA</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:31%;background:var(--cyan);"></div>
+                </div>
+                <div class="prog-val">31%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">🇬🇧 UK</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:14%;background:var(--cyan);"></div>
+                </div>
+                <div class="prog-val">14%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">🇩🇪 Germany</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:11%;background:var(--cyan);"></div>
+                </div>
+                <div class="prog-val">11%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">🇵🇰 Pakistan</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:9%;background:var(--cyan);"></div>
+                </div>
+                <div class="prog-val">9%</div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">🌍 Other</div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:35%;background:var(--muted);opacity:.5;"></div>
+                </div>
+                <div class="prog-val">35%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ PAYOUTS ════ -->
+      <div class="panel" id="panel-payouts">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Payouts & Finance</div>
+          <div class="sh-actions">
+            <button class="btn btn-gold" onclick="openModal('modal-payout')">+ Process Payout</button>
+          </div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi gold">
+            <div class="kpi-label">Available Balance</div>
+            <div class="kpi-val">$31,240</div>
+          </div>
+          <div class="kpi green">
+            <div class="kpi-label">Paid Out (MTD)</div>
+            <div class="kpi-val">$53,080</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Pending</div>
+            <div class="kpi-val" style="color:var(--gold);">$4,200</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Fees (MTD)</div>
+            <div class="kpi-val" style="color:var(--red);">$2,847</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head"><span class="table-head-title">Transaction History</span></div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>TX ID</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="payouts-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════ PRODUCTS ════ -->
+      <div class="panel" id="panel-products">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Product Catalogue</div>
+          <div class="sh-actions">
+            <button class="btn btn-gold" onclick="openModal('modal-add-product')">+ Add Product</button>
+            <button class="btn" onclick="exportData()">Export</button>
+          </div>
+        </div>
+        <div class="inv-filters">
+          <button class="inv-filter active" onclick="filterInv(this,'all')">All Categories</button>
+          <button class="inv-filter" onclick="filterInv(this,'gift-cards')">Gift Cards</button>
+          <button class="inv-filter" onclick="filterInv(this,'games')">Games</button>
+          <button class="inv-filter" onclick="filterInv(this,'accounts')">Accounts</button>
+          <button class="inv-filter" onclick="filterInv(this,'subscriptions')">Subscriptions</button>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head"><span class="table-head-title">All Products</span></div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="prod-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════ COUPONS ════ -->
+      <div class="panel" id="panel-coupons">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Coupon & Promo Codes</div>
+          <div class="sh-actions">
+            <button class="btn btn-gold" onclick="openModal('modal-add-coupon')">+ Create Coupon</button>
+          </div>
+        </div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="kpi gold">
+            <div class="kpi-label">Active Coupons</div>
+            <div class="kpi-val">14</div>
+          </div>
+          <div class="kpi green">
+            <div class="kpi-label">Total Redemptions</div>
+            <div class="kpi-val">1,284</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Discount Given</div>
+            <div class="kpi-val" style="color:var(--red);">$8,421</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head"><span class="table-head-title">Coupon Codes</span></div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Min Order</th>
+                <th>Uses</th>
+                <th>Expires</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="coupon-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ════ SETTINGS ════ -->
+      <div class="panel" id="panel-settings">
+        <div class="sh">
+          <div class="sh-title"><span>◆</span> Settings</div>
+        </div>
+        <div class="settings-grid">
+          <div class="settings-nav">
+            <div class="sn-item active" onclick="settingsNav(this,'general')">General</div>
+            <div class="sn-item" onclick="settingsNav(this,'payments')">Payments</div>
+            <div class="sn-item" onclick="settingsNav(this,'notifications')">Notifications</div>
+            <div class="sn-item" onclick="settingsNav(this,'security')">Security</div>
+            <div class="sn-item" onclick="settingsNav(this,'integrations')">Integrations</div>
+          </div>
+          <div>
+            <div class="settings-section" id="settings-general">
+              <div style="margin-bottom:16px;">
+                <div class="form-label">Store Name</div>
+                <input class="form-input" value="PlayBeat Digital">
+              </div>
+              <div class="form-row" style="margin-bottom:16px;">
+                <div>
+                  <div class="form-label">Support Email</div><input class="form-input" value="support@playbeat.gg">
+                </div>
+                <div>
+                  <div class="form-label">Default Currency</div><select class="form-select">
+                    <option>USD $</option>
+                    <option>EUR €</option>
+                    <option>GBP £</option>
+                  </select>
+                </div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Maintenance Mode</div>
+                  <div class="setting-desc">Take the store offline for maintenance</div>
+                </div>
+                <div class="toggle" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Auto-Delivery</div>
+                  <div class="setting-desc">Automatically deliver digital products on payment confirmation</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Guest Checkout</div>
+                  <div class="setting-desc">Allow purchases without creating an account</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div style="margin-top:16px;"><button class="btn btn-gold"
+                  onclick="showToast('✅','Settings saved successfully!')">Save Changes</button></div>
+            </div>
+            <div class="settings-section" id="settings-payments" style="display:none;">
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Stripe</div>
+                  <div class="setting-desc">Credit/debit cards via Stripe</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">PayPal</div>
+                  <div class="setting-desc">PayPal checkout integration</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Crypto (USDT/BTC)</div>
+                  <div class="setting-desc">Accept crypto payments via Coinbase Commerce</div>
+                </div>
+                <div class="toggle" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Platform Fee</div>
+                  <div class="setting-desc">Fee charged to sellers on each transaction</div>
+                </div>
+                <div style="font-family:'Share Tech Mono';font-size:12px;color:var(--gold);">3.5%</div>
+              </div>
+            </div>
+            <div class="settings-section" id="settings-notifications" style="display:none;">
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">New Order Email</div>
+                  <div class="setting-desc">Email alert for every new order</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Low Stock Alert</div>
+                  <div class="setting-desc">Notify when product stock falls below threshold</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Refund Requests</div>
+                  <div class="setting-desc">Instant alert for refund requests</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Daily Sales Report</div>
+                  <div class="setting-desc">Automated daily revenue summary at midnight</div>
+                </div>
+                <div class="toggle" onclick="toggleSetting(this)"></div>
+              </div>
+            </div>
+            <div class="settings-section" id="settings-security" style="display:none;">
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Two-Factor Auth</div>
+                  <div class="setting-desc">Require 2FA for admin login</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Login IP Whitelist</div>
+                  <div class="setting-desc">Restrict admin access to specific IPs</div>
+                </div>
+                <div class="toggle" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Session Timeout</div>
+                  <div class="setting-desc">Auto logout after 30 minutes inactivity</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div style="margin-top:14px;"><button class="btn btn-danger"
+                  onclick="showToast('🔑','Password reset email sent!')">Change Admin Password</button></div>
+            </div>
+            <div class="settings-section" id="settings-integrations" style="display:none;">
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Discord Webhook</div>
+                  <div class="setting-desc">Post order notifications to Discord channel</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Google Analytics</div>
+                  <div class="setting-desc">GA4 tracking integration</div>
+                </div>
+                <div class="toggle on" onclick="toggleSetting(this)"></div>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <div class="setting-name">Mailchimp</div>
+                  <div class="setting-desc">Sync customers to Mailchimp lists</div>
+                </div>
+                <div class="toggle" onclick="toggleSetting(this)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+
+  <!-- ═══════════════ MODALS ═══════════════ -->
+
+  <!-- Order Detail Modal -->
+  <div class="modal-backdrop" id="modal-order-detail">
+    <div class="modal" style="min-width:480px;">
+      <button class="modal-close" onclick="closeModal('modal-order-detail')">✕</button>
+      <div class="modal-title">Order Detail</div>
+      <div id="order-detail-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" onclick="updateOrderStatus('refunded')">Refund</button>
+        <button class="btn btn-green" onclick="updateOrderStatus('completed')">Mark Delivered</button>
+        <button class="btn" onclick="closeModal('modal-order-detail')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Order Modal -->
+  <div class="modal-backdrop" id="modal-new-order">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-new-order')">✕</button>
+      <div class="modal-title">Create Manual Order</div>
+      <div class="form-field">
+        <div class="form-label">Customer Email</div><input class="form-input" placeholder="customer@email.com">
+      </div>
+      <div class="form-field">
+        <div class="form-label">Product</div><select class="form-select">
+          <option>Steam Wallet $50</option>
+          <option>Valorant Rare Bundle</option>
+          <option>PS Plus 12-Month</option>
+          <option>Minecraft Java</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Amount ($)</div><input class="form-input" type="number" value="48.50">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Payment Method</div><select class="form-select">
+            <option>Manual</option>
+            <option>Stripe</option>
+            <option>PayPal</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Notes</div><input class="form-input" placeholder="Internal notes...">
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeModal('modal-new-order')">Cancel</button>
+        <button class="btn btn-gold" onclick="createOrder()">Create Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Product Modal -->
+  <div class="modal-backdrop" id="modal-add-product">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-add-product')">✕</button>
+      <div class="modal-title">Add Product</div>
+      <div class="form-field">
+        <div class="form-label">Product Name</div><input id="productName" class="form-input"
+          placeholder="e.g. Steam Wallet $100">
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Category</div><select id="productCategory" class="form-select">
+            <option>Gift Cards</option>
+            <option>Games</option>
+            <option>Accounts</option>
+            <option>Game Items</option>
+            <option>Subscriptions</option>
+            <option>Software</option>
+            <option>AI Tools</option>
+            <option>Top Up</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <div class="form-label">Section</div><select id="productSection" class="form-select">
+            <option value="home">Home / Featured Products</option>
+            <option value="trending">Trending Now</option>
+            <option value="global">Global Selection</option>
+            <option value="marketplace">Live Marketplace</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">SKU</div><input id="productSKU" class="form-input" placeholder="PB-GC-001">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Cost Price ($)</div><input id="productCostPrice" class="form-input" type="number"
+            placeholder="0.00">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Sell Price ($)</div><input id="productSellPrice" class="form-input" type="number"
+            placeholder="0.00">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Initial Stock</div><input id="productStock" class="form-input" type="number"
+            placeholder="100">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Product Image</div><input id="productImage" class="form-input" type="file"
+            accept="image/*">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeModal('modal-add-product')">Cancel</button>
+        <button class="btn btn-gold" onclick="addProduct()">Add Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Customer Modal -->
+  <div class="modal-backdrop" id="modal-add-customer">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-add-customer')">✕</button>
+      <div class="modal-title">Add Customer</div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">First Name</div><input class="form-input" placeholder="John">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Last Name</div><input class="form-input" placeholder="Doe">
+        </div>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Email</div><input class="form-input" placeholder="john@email.com">
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Country</div><input class="form-input" placeholder="USA">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Tier</div><select class="form-select">
+            <option>Regular</option>
+            <option>VIP</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeModal('modal-add-customer')">Cancel</button>
+        <button class="btn btn-gold" onclick="addCustomer()">Add Customer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Coupon Modal -->
+  <div class="modal-backdrop" id="modal-add-coupon">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-add-coupon')">✕</button>
+      <div class="modal-title">Create Coupon</div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Code</div><input class="form-input" placeholder="SUMMER25" id="new-coupon-code">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Type</div><select class="form-select" id="new-coupon-type">
+            <option value="percent">Percentage</option>
+            <option value="fixed">Fixed ($)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Value</div><input class="form-input" type="number" placeholder="20"
+            id="new-coupon-val">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Min Order ($)</div><input class="form-input" type="number" placeholder="0"
+            id="new-coupon-min">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <div class="form-label">Max Uses</div><input class="form-input" type="number" placeholder="100"
+            id="new-coupon-max">
+        </div>
+        <div class="form-field">
+          <div class="form-label">Expires</div><input class="form-input" type="date" id="new-coupon-exp">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeModal('modal-add-coupon')">Cancel</button>
+        <button class="btn btn-gold" onclick="addCoupon()">Create Coupon</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications Modal -->
+  <div class="modal-backdrop" id="modal-notify">
+    <div class="modal" style="min-width:360px;max-width:400px;">
+      <button class="modal-close" onclick="closeModal('modal-notify')">✕</button>
+      <div class="modal-title">Notifications</div>
+      <div class="activity-feed">
+        <div class="af-item">
+          <div class="af-icon" style="background:rgba(255,77,77,.15);">⚠️</div>
+          <div class="af-body">
+            <div class="af-msg"><strong>Low Stock Alert</strong> — Minecraft Java Edition has only 8 units left.</div>
+            <div class="af-time">2 min ago</div>
+          </div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon" style="background:rgba(245,166,35,.15);">🛒</div>
+          <div class="af-body">
+            <div class="af-msg"><strong>New Order</strong> — #PB-004821 placed by zaid.k for $48.50</div>
+            <div class="af-time">14 min ago</div>
+          </div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon" style="background:rgba(29,232,152,.15);">💳</div>
+          <div class="af-body">
+            <div class="af-msg"><strong>Payment Received</strong> — $128.00 via Stripe from m.ali@email.com</div>
+            <div class="af-time">28 min ago</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-gold"
+          onclick="closeModal('modal-notify');showToast('✅','All notifications cleared!')">Clear All</button></div>
+    </div>
+  </div>
+
+  <!-- Payout Modal -->
+  <div class="modal-backdrop" id="modal-payout">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-payout')">✕</button>
+      <div class="modal-title">Process Payout</div>
+      <div class="form-field">
+        <div class="form-label">Amount ($)</div><input class="form-input" type="number" placeholder="0.00">
+      </div>
+      <div class="form-field">
+        <div class="form-label">Method</div><select class="form-select">
+          <option>Bank Transfer</option>
+          <option>PayPal</option>
+          <option>Crypto (USDT)</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Reference</div><input class="form-input" placeholder="Internal reference...">
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeModal('modal-payout')">Cancel</button>
+        <button class="btn btn-gold" onclick="processPayout()">Process Payout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <div class="toast-icon" id="toast-icon">✅</div>
+    <div class="toast-msg" id="toast-msg"></div>
+    <div class="toast-bar"></div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════
+    // DATA STORE
+    // ═══════════════════════════════════
+    const COLORS = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'];
+
+    const ORDERS_DEMO = [
+      { id: 'PB-004821', customer: 'Zaid Khan', email: 'zaid.k@email.com', product: 'Steam Wallet $50', amount: 48.50, method: 'Stripe', status: 'completed', date: '2025-06-01', country: 'PK' },
+      { id: 'PB-004820', customer: 'Alex Morgan', email: 'alex.m@email.com', product: 'Valorant Rare Bundle', amount: 9.99, method: 'PayPal', status: 'completed', date: '2025-06-01', country: 'US' },
+      { id: 'PB-004819', customer: 'Emma Wilson', email: 'emma.w@email.com', product: 'PS Plus 12-Month', amount: 59.99, method: 'Stripe', status: 'processing', date: '2025-06-01', country: 'GB' },
+      { id: 'PB-004818', customer: 'Liam Chen', email: 'liam.c@email.com', product: 'Minecraft Java Edition', amount: 26.95, method: 'Crypto', status: 'completed', date: '2025-05-31', country: 'US' },
+      { id: 'PB-004817', customer: 'Sofia Russo', email: 'sofia.r@email.com', product: 'Adobe CC 1-Month', amount: 54.99, method: 'Stripe', status: 'refunded', date: '2025-05-31', country: 'DE' },
+      { id: 'PB-004816', customer: 'Omar Farooq', email: 'omar.f@email.com', product: 'Fortnite V-Bucks 5000', amount: 31.99, method: 'PayPal', status: 'completed', date: '2025-05-31', country: 'PK' },
+      { id: 'PB-004815', customer: 'Hannah Scott', email: 'hannah.s@email.com', product: 'Xbox Game Pass 3-Month', amount: 29.99, method: 'Stripe', status: 'pending', date: '2025-05-30', country: 'AU' },
+      { id: 'PB-004814', customer: 'Raj Patel', email: 'raj.p@email.com', product: 'Steam Wallet $20', amount: 19.50, method: 'PayPal', status: 'completed', date: '2025-05-30', country: 'IN' },
+      { id: 'PB-004813', customer: 'Lucas Durand', email: 'lucas.d@email.com', product: 'CS2 Prime Status', amount: 14.99, method: 'Stripe', status: 'completed', date: '2025-05-29', country: 'FR' },
+      { id: 'PB-004812', customer: 'Amina Syed', email: 'amina.s@email.com', product: 'Discord Nitro 1-Year', amount: 99.99, method: 'Crypto', status: 'processing', date: '2025-05-29', country: 'PK' },
+      { id: 'PB-004811', customer: 'Carlos Vega', email: 'carlos.v@email.com', product: 'Roblox 10,000 Robux', amount: 99.99, method: 'PayPal', status: 'completed', date: '2025-05-28', country: 'MX' },
+      { id: 'PB-004810', customer: 'Yuki Tanaka', email: 'yuki.t@email.com', product: 'PlayStation Gift Card $50', amount: 50.00, method: 'Stripe', status: 'failed', date: '2025-05-28', country: 'JP' },
+      { id: 'PB-004809', customer: 'Fatima Ali', email: 'fatima.a@email.com', product: 'Spotify Premium 1-Year', amount: 79.99, method: 'PayPal', status: 'completed', date: '2025-05-27', country: 'PK' },
+      { id: 'PB-004808', customer: 'Tom Richards', email: 'tom.r@email.com', product: 'Steam Wallet $100', amount: 95.00, method: 'Stripe', status: 'completed', date: '2025-05-27', country: 'US' },
+      { id: 'PB-004807', customer: 'Nina Kovac', email: 'nina.k@email.com', product: 'Apex Legends Coins 6700', amount: 39.99, method: 'Crypto', status: 'pending', date: '2025-05-26', country: 'DE' },
+    ];
+
+    const INVENTORY_DEMO = [
+      { sku: 'PB-GC-001', name: 'Steam Wallet $50', cat: 'gift-cards', cost: 46.00, price: 48.50, stock: 142, status: 'active' },
+      { sku: 'PB-GC-002', name: 'Steam Wallet $20', cat: 'gift-cards', cost: 18.50, price: 19.50, stock: 88, status: 'active' },
+      { sku: 'PB-GC-003', name: 'PlayStation Gift Card $50', cat: 'gift-cards', cost: 48.00, price: 50.00, stock: 34, status: 'active' },
+      { sku: 'PB-GC-004', name: 'Xbox Gift Card $25', cat: 'gift-cards', cost: 23.50, price: 24.50, stock: 6, status: 'low' },
+      { sku: 'PB-GM-001', name: 'Minecraft Java Edition', cat: 'games', cost: 24.00, price: 26.95, stock: 8, status: 'low' },
+      { sku: 'PB-GM-002', name: 'CS2 Prime Status', cat: 'games', cost: 13.00, price: 14.99, stock: 200, status: 'active' },
+      { sku: 'PB-GI-001', name: 'Valorant Rare Bundle', cat: 'game-items', cost: 8.00, price: 9.99, stock: 55, status: 'active' },
+      { sku: 'PB-GI-002', name: 'Fortnite V-Bucks 5000', cat: 'game-items', cost: 29.00, price: 31.99, stock: 120, status: 'active' },
+      { sku: 'PB-AC-001', name: 'Valorant Account — Radiant', cat: 'accounts', cost: 60.00, price: 89.99, stock: 14, status: 'active' },
+      { sku: 'PB-AC-002', name: 'Netflix Premium Account', cat: 'accounts', cost: 12.00, price: 18.99, stock: 3, status: 'low' },
+      { sku: 'PB-SB-001', name: 'PS Plus 12-Month', cat: 'subscriptions', cost: 55.00, price: 59.99, stock: 190, status: 'active' },
+      { sku: 'PB-SB-002', name: 'Xbox Game Pass 3-Month', cat: 'subscriptions', cost: 27.00, price: 29.99, stock: 76, status: 'active' },
+      { sku: 'PB-SB-003', name: 'Spotify Premium 1-Year', cat: 'subscriptions', cost: 74.00, price: 79.99, stock: 0, status: 'out' },
+      { sku: 'PB-TU-001', name: 'Fortnite V-Bucks 1000', cat: 'top-up', cost: 7.00, price: 7.99, stock: 500, status: 'active' },
+      { sku: 'PB-TU-002', name: 'Roblox 10,000 Robux', cat: 'top-up', cost: 95.00, price: 99.99, stock: 28, status: 'active' },
+      { sku: 'PB-SW-001', name: 'Adobe CC 1-Month', cat: 'software', cost: 48.00, price: 54.99, stock: 10, status: 'active' },
+    ];
+
+    const CUSTOMERS_DEMO = [
+      { name: 'Zaid Khan', email: 'zaid.k@email.com', country: '🇵🇰 PK', spent: 842.50, orders: 24, tier: 'vip', joined: '2023-03-12' },
+      { name: 'Alex Morgan', email: 'alex.m@email.com', country: '🇺🇸 US', spent: 341.20, orders: 9, tier: 'regular', joined: '2024-01-05' },
+      { name: 'Emma Wilson', email: 'emma.w@email.com', country: '🇬🇧 GB', spent: 624.99, orders: 18, tier: 'vip', joined: '2023-08-19' },
+      { name: 'Liam Chen', email: 'liam.c@email.com', country: '🇺🇸 US', spent: 189.45, orders: 7, tier: 'regular', joined: '2024-04-22' },
+      { name: 'Sofia Russo', email: 'sofia.r@email.com', country: '🇩🇪 DE', spent: 512.00, orders: 14, tier: 'regular', joined: '2023-11-30' },
+      { name: 'Omar Farooq', email: 'omar.f@email.com', country: '🇵🇰 PK', spent: 1204.75, orders: 38, tier: 'vip', joined: '2022-09-01' },
+      { name: 'Hannah Scott', email: 'hannah.s@email.com', country: '🇦🇺 AU', spent: 78.99, orders: 2, tier: 'new', joined: '2025-05-10' },
+      { name: 'Raj Patel', email: 'raj.p@email.com', country: '🇮🇳 IN', spent: 289.00, orders: 11, tier: 'regular', joined: '2024-02-14' },
+      { name: 'Lucas Durand', email: 'lucas.d@email.com', country: '🇫🇷 FR', spent: 445.30, orders: 12, tier: 'regular', joined: '2023-07-08' },
+      { name: 'Amina Syed', email: 'amina.s@email.com', country: '🇵🇰 PK', spent: 399.96, orders: 4, tier: 'regular', joined: '2024-11-20' },
+    ];
+
+    const COUPONS_DEMO = [
+      { code: 'WELCOME15', type: 'percent', value: 15, min: 0, uses: 284, max: 1000, expires: '2025-12-31', status: 'active' },
+      { code: 'SUMMER25', type: 'percent', value: 25, min: 20, uses: 142, max: 500, expires: '2025-08-31', status: 'active' },
+      { code: 'FLAT10', type: 'fixed', value: 10, min: 50, uses: 89, max: 200, expires: '2025-07-15', status: 'active' },
+      { code: 'VIP50', type: 'percent', value: 50, min: 100, uses: 34, max: 100, expires: '2025-06-30', status: 'active' },
+      { code: 'FLASH20', type: 'fixed', value: 20, min: 80, uses: 200, max: 200, expires: '2025-05-31', status: 'expired' },
+      { code: 'NEWUSER', type: 'percent', value: 10, min: 0, uses: 535, max: 9999, expires: '2025-12-31', status: 'active' },
+    ];
+
+    const PAYOUTS_DEMO = [
+      { id: 'TX-8821', type: 'Sale', amount: '+$48.50', method: 'Stripe', status: 'settled', date: '2025-06-01' },
+      { id: 'TX-8820', type: 'Sale', amount: '+$9.99', method: 'PayPal', status: 'settled', date: '2025-06-01' },
+      { id: 'TX-8819', type: 'Payout', amount: '-$5,000.00', method: 'Bank Transfer', status: 'processing', date: '2025-05-31' },
+      { id: 'TX-8818', type: 'Refund', amount: '-$54.99', method: 'Stripe', status: 'settled', date: '2025-05-31' },
+      { id: 'TX-8817', type: 'Sale', amount: '+$31.99', method: 'PayPal', status: 'settled', date: '2025-05-30' },
+      { id: 'TX-8816', type: 'Fee', amount: '-$12.60', method: 'Platform', status: 'settled', date: '2025-05-30' },
+      { id: 'TX-8815', type: 'Sale', amount: '+$99.99', method: 'Crypto', status: 'pending', date: '2025-05-29' },
+    ];
+
+    let ORDERS = [...ORDERS_DEMO];
+    let INVENTORY = [...INVENTORY_DEMO];
+    let CUSTOMERS = [...CUSTOMERS_DEMO];
+    let COUPONS = [...COUPONS_DEMO];
+    let PAYOUTS = [...PAYOUTS_DEMO];
+
+    const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000/api' : '/api';
+
+    async function apiFetch(path, options = {}) {
+      const resp = await fetch(API_BASE + path, {
+        headers: { 'Content-Type': 'application/json' },
+        ...options,
+        body: options.body ? JSON.stringify(options.body) : undefined,
+      });
+      if (!resp.ok) {
+        const error = await resp.json().catch(() => ({}));
+        throw new Error(error.error || 'Request failed');
+      }
+      return resp.json();
+    }
+
+    function applyProductMapping(products) {
+      return products.map(p => ({
+        sku: String(p.id),
+        name: p.name || p.title || 'Untitled',
+        cat: (p.category || 'other').toString().toLowerCase(),
+        cost: parseFloat(p.buyingPrice || p.price || 0) || 0,
+        price: parseFloat(p.sellingPrice || p.price || 0) || 0,
+        stock: typeof p.stock === 'number' ? p.stock : 50,
+        status: typeof p.stock === 'number' ? (p.stock > 20 ? 'active' : p.stock > 0 ? 'low' : 'out') : 'active'
+      }));
+    }
+
+    async function loadAdminData() {
+      try {
+        const [orders, products] = await Promise.all([
+          apiFetch('/orders'),
+          apiFetch('/products')
+        ]);
+        if (Array.isArray(orders)) {
+          ORDERS = orders.map(o => ({
+            id: o.id || o.orderId || 'N/A',
+            customer: o.customerName || o.customer || 'Guest',
+            email: o.email || '',
+            product: Array.isArray(o.items) ? o.items.map(i => i.name || i.productName).join(', ') : o.product || 'Product',
+            amount: parseFloat(o.amount || 0),
+            method: o.paymentMethod || 'Unknown',
+            status: o.status || 'processing',
+            date: new Date(o.createdAt || o.date || Date.now()).toISOString().slice(0, 10),
+            country: o.country || 'PK'
+          }));
+        }
+        if (Array.isArray(products)) {
+          INVENTORY = applyProductMapping(products);
+        }
+      } catch (error) {
+        showToast('⚠️', `Admin data load failed: ${error.message}`);
+      }
+    }
+
+    async function refreshAdminData() {
+      await loadAdminData();
+      filteredOrders = [...ORDERS];
+      orderPage_ = 1;
+      const ordersBadge = document.getElementById('badge-orders');
+      if (ordersBadge) ordersBadge.textContent = ORDERS.length;
+      renderDashboard();
+      renderOrders();
+      renderInventory();
+    }
+
+    function requireAdminAuth() {
+      const auth = localStorage.getItem('pb_admin_auth');
+      if (!auth) {
+        window.location.href = 'admin (2).html';
+        return false;
+      }
+      return true;
+    }
+
+    function adminLogout() {
+      localStorage.removeItem('pb_admin_auth');
+      window.location.href = 'admin (2).html';
+    }
+
+    // ═══════════════════════════════════
+    // NAVIGATION
+    // ═══════════════════════════════════
+    let currentPanel = 'dashboard';
+
+    function nav(panel) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + panel).classList.add('active');
+      document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      const titles = {
+        dashboard: 'Dashboard', orders: 'Orders', inventory: 'Inventory', customers: 'Customers',
+        analytics: 'Analytics', payouts: 'Payouts', products: 'Products', coupons: 'Coupons', settings: 'Settings'
+      };
+      document.getElementById('topbar-title').textContent = titles[panel] || panel;
+      document.getElementById('topbar-path').textContent = 'PlayBeat Admin · ' + (titles[panel] || panel);
+      currentPanel = panel;
+    }
+
+    function settingsNav(el, section) {
+      document.querySelectorAll('.sn-item').forEach(i => i.classList.remove('active'));
+      el.classList.add('active');
+      ['general', 'payments', 'notifications', 'security', 'integrations'].forEach(s => {
+        const el = document.getElementById('settings-' + s);
+        if (el) el.style.display = s === section ? '' : 'none';
+      });
+    }
+
+    // ═══════════════════════════════════
+    // MODAL
+    // ═══════════════════════════════════
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      document.getElementById(id).style.display = 'flex';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+      document.getElementById(id).style.display = 'none';
+    }
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('modal-backdrop')) closeModal(e.target.id);
+    });
+
+    // ═══════════════════════════════════
+    // TOAST
+    // ═══════════════════════════════════
+    let toastT;
+    function showToast(icon, msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-icon').textContent = icon;
+      document.getElementById('toast-msg').textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastT);
+      toastT = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    // ═══════════════════════════════════
+    // ORDERS TABLE
+    // ═══════════════════════════════════
+    let orderPage_ = 1;
+    let filteredOrders = [...ORDERS];
+    const PAGE_SIZE = 6;
+
+    function renderOrders() {
+      const tbody = document.getElementById('orders-tbody');
+      if (!tbody) return;
+      const start = (orderPage_ - 1) * PAGE_SIZE;
+      const slice = filteredOrders.slice(start, start + PAGE_SIZE);
+      tbody.innerHTML = slice.map(o => `
+    <tr>
+      <td class="mono" style="color:var(--gold2);">${o.id}</td>
+      <td>${o.customer}</td>
+      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${o.product}</td>
+      <td class="mono" style="color:var(--green);">$${o.amount.toFixed(2)}</td>
+      <td>${o.method}</td>
+      <td>${statusBadge(o.status)}</td>
+      <td class="mono" style="color:var(--muted);">${o.date}</td>
+      <td>
+        <button class="btn" style="padding:3px 8px;font-size:8px;" onclick="viewOrder('${o.id}')">View</button>
+        <button class="btn btn-danger" style="padding:3px 8px;font-size:8px;margin-left:4px;" onclick="deleteItem('order','${o.id}')">×</button>
+      </td>
+    </tr>
+  `).join('');
+      document.getElementById('order-pag-info').textContent = `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, filteredOrders.length)} of ${filteredOrders.length}`;
+      [1, 2, 3].forEach(n => {
+        const btn = document.getElementById('pg-' + n);
+        if (btn) btn.classList.toggle('active', n === orderPage_);
+      });
+    }
+
+    function orderPage(dir) { orderPage_ = Math.max(1, Math.min(3, orderPage_ + dir)); renderOrders(); }
+    function goOrderPage(n) { orderPage_ = n; renderOrders(); }
+
+    function filterOrders(status) {
+      filteredOrders = status === 'all' ? [...ORDERS] : ORDERS.filter(o => o.status === status);
+      orderPage_ = 1;
+      renderOrders();
+    }
+
+    function searchOrders(q) {
+      q = q.toLowerCase();
+      filteredOrders = ORDERS.filter(o =>
+        o.id.toLowerCase().includes(q) || o.customer.toLowerCase().includes(q) || o.product.toLowerCase().includes(q)
+      );
+      orderPage_ = 1;
+      renderOrders();
+    }
+
+    function viewOrder(id) {
+      const o = ORDERS.find(x => x.id === id);
+      if (!o) return;
+      document.getElementById('order-detail-body').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+      <div><div class="form-label">Order ID</div><div class="mono" style="color:var(--gold2);font-size:13px;">${o.id}</div></div>
+      <div><div class="form-label">Status</div>${statusBadge(o.status)}</div>
+      <div><div class="form-label">Customer</div><div style="font-size:13px;">${o.customer}</div></div>
+      <div><div class="form-label">Email</div><div style="font-size:12px;color:var(--muted);">${o.email}</div></div>
+      <div><div class="form-label">Product</div><div style="font-size:13px;">${o.product}</div></div>
+      <div><div class="form-label">Amount</div><div class="mono" style="color:var(--green);font-size:14px;">$${o.amount.toFixed(2)}</div></div>
+      <div><div class="form-label">Payment</div><div style="font-size:13px;">${o.method}</div></div>
+      <div><div class="form-label">Date</div><div class="mono" style="color:var(--muted);font-size:12px;">${o.date}</div></div>
+    </div>
+    <div style="background:rgba(8,20,44,.6);border:1px solid var(--border);border-radius:3px;padding:10px 12px;">
+      <div class="form-label" style="margin-bottom:6px;">Delivery Timeline</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+        <span style="color:var(--green);">● Order Placed</span>
+        <span style="color:var(--muted);">──</span>
+        <span style="color:${o.status !== 'pending' ? 'var(--green)' : 'var(--muted)'};">● Payment ${o.status !== 'pending' ? 'Confirmed' : 'Pending'}</span>
+        <span style="color:var(--muted);">──</span>
+        <span style="color:${o.status === 'completed' ? 'var(--green)' : 'var(--muted)'};">● ${o.status === 'completed' ? 'Delivered ✓' : 'Awaiting Delivery'}</span>
+      </div>
+    </div>
+  `;
+      openModal('modal-order-detail');
+    }
+
+    let _currentViewOrder = null;
+    function viewOrder(id) {
+      _currentViewOrder = id;
+      const o = ORDERS.find(x => x.id === id);
+      if (!o) return;
+      document.getElementById('order-detail-body').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+      <div><div class="form-label">Order ID</div><div class="mono" style="color:var(--gold2);font-size:13px;">${o.id}</div></div>
+      <div><div class="form-label">Status</div>${statusBadge(o.status)}</div>
+      <div><div class="form-label">Customer</div><div style="font-size:13px;">${o.customer}</div></div>
+      <div><div class="form-label">Email</div><div style="font-size:12px;color:var(--muted);">${o.email}</div></div>
+      <div><div class="form-label">Product</div><div style="font-size:13px;">${o.product}</div></div>
+      <div><div class="form-label">Amount</div><div class="mono" style="color:var(--green);font-size:14px;">$${o.amount.toFixed(2)}</div></div>
+      <div><div class="form-label">Payment</div><div style="font-size:13px;">${o.method}</div></div>
+      <div><div class="form-label">Date</div><div class="mono" style="color:var(--muted);font-size:12px;">${o.date}</div></div>
+    </div>
+    <div style="background:rgba(8,20,44,.6);border:1px solid var(--border);border-radius:3px;padding:10px 12px;">
+      <div class="form-label" style="margin-bottom:6px;">Delivery Timeline</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:11px;flex-wrap:wrap;">
+        <span style="color:var(--green);">● Order Placed</span>
+        <span style="color:var(--muted);">──</span>
+        <span style="color:${o.status !== 'pending' ? 'var(--green)' : 'var(--muted)'};">● Payment ${o.status !== 'pending' ? 'Confirmed' : 'Pending'}</span>
+        <span style="color:var(--muted);">──</span>
+        <span style="color:${o.status === 'completed' ? 'var(--green)' : 'var(--muted)'};">● ${o.status === 'completed' ? 'Delivered ✓' : 'Awaiting Delivery'}</span>
+      </div>
+    </div>
+  `;
+      openModal('modal-order-detail');
+    }
+
+    async function updateOrderStatus(newStatus) {
+      if (!_currentViewOrder) return;
+      try {
+        await apiFetch('/order-status', {
+          method: 'POST',
+          body: { orderId: _currentViewOrder, status: newStatus }
+        });
+        const o = ORDERS.find(x => x.id === _currentViewOrder);
+        if (o) { o.status = newStatus; }
+        renderOrders();
+        renderDashboard();
+        showToast(newStatus === 'completed' ? '✅' : '↩️', `Order ${newStatus === 'completed' ? 'marked as delivered' : 'updated'} successfully.`);
+      } catch (error) {
+        showToast('⚠️', error.message);
+      }
+      closeModal('modal-order-detail');
+    }
+
+    function createOrder() {
+      closeModal('modal-new-order');
+      showToast('🛒', 'Manual order created successfully!');
+    }
+
+    async function deleteItem(type, id) {
+      if (type === 'product') {
+        try {
+          await apiFetch('/products/' + encodeURIComponent(id), { method: 'DELETE' });
+          await refreshAdminData();
+          showToast('🗑️', 'Product removed.');
+          return;
+        } catch (error) {
+          showToast('⚠️', error.message);
+          return;
+        }
+      }
+      showToast('🗑️', `${type.charAt(0).toUpperCase() + type.slice(1)} removed.`);
+    }
+
+    // ═══════════════════════════════════
+    // INVENTORY TABLE
+    // ═══════════════════════════════════
+    let invFilter_ = 'all';
+    let invSearch_ = '';
+
+    function renderInventory() {
+      ['inv-tbody', 'prod-tbody'].forEach(tbodyId => {
+        const tbody = document.getElementById(tbodyId);
+        if (!tbody) return;
+        const data = INVENTORY.filter(i =>
+          (invFilter_ === 'all' || i.cat === invFilter_) &&
+          (i.name.toLowerCase().includes(invSearch_) || i.sku.toLowerCase().includes(invSearch_))
+        );
+        const isInv = tbodyId === 'inv-tbody';
+        tbody.innerHTML = data.map(i => {
+          const pct = Math.min(100, Math.round(i.stock / 2));
+          const sc = i.stock > 20 ? 'var(--green)' : i.stock > 5 ? 'var(--gold)' : 'var(--red)';
+          const margin = ((i.price - i.cost) / i.price * 100).toFixed(0);
+          if (isInv) return `
+        <tr>
+          <td class="mono" style="color:var(--muted);font-size:10px;">${i.sku}</td>
+          <td style="font-weight:600;">${i.name}</td>
+          <td>${catBadge(i.cat)}</td>
+          <td class="mono">$${i.cost.toFixed(2)}</td>
+          <td class="mono" style="color:var(--gold);">$${i.price.toFixed(2)}</td>
+          <td class="mono" style="color:${sc};">${i.stock}</td>
+          <td><div class="stock-bar" style="width:100px;"><div class="stock-fill" style="width:${pct}%;background:${sc};"></div></div></td>
+          <td>${stockBadge(i.status)}</td>
+          <td>
+            <button class="btn" style="padding:3px 8px;font-size:8px;" onclick="showToast('✏️','Edit product: ${i.name}')">Edit</button>
+            <button class="btn btn-gold" style="padding:3px 8px;font-size:8px;margin-left:4px;" onclick="restockItem('${i.sku}')">Restock</button>
+          </td>
+        </tr>`;
+          else return `
+        <tr>
+          <td class="mono" style="color:var(--muted);font-size:10px;">${i.sku}</td>
+          <td style="font-weight:600;">${i.name}</td>
+          <td>${catBadge(i.cat)}</td>
+          <td class="mono" style="color:var(--gold);">$${i.price.toFixed(2)}</td>
+          <td class="mono" style="color:${sc};">${i.stock}</td>
+          <td>${stockBadge(i.status)}</td>
+          <td>
+            <button class="btn" style="padding:3px 8px;font-size:8px;" onclick="showToast('✏️','Editing: ${i.name}')">Edit</button>
+            <button class="btn btn-danger" style="padding:3px 8px;font-size:8px;margin-left:4px;" onclick="deleteItem('product','${i.sku}')">×</button>
+          </td>
+        </tr>`;
+        }).join('');
+      });
+    }
+
+    function filterInv(el, cat) {
+      document.querySelectorAll('.inv-filter').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      invFilter_ = cat;
+      renderInventory();
+    }
+    function searchInventory(q) { invSearch_ = q.toLowerCase(); renderInventory(); }
+    function restockItem(sku) {
+      const i = INVENTORY.find(x => x.sku === sku);
+      if (i) { i.stock += 100; renderInventory(); showToast('📦', `Restocked ${i.name} (+100 units)`); }
+    }
+    async function uploadProductImage(file) {
+      if (!file) return null;
+      const formData = new FormData();
+      formData.append('image', file);
+      const response = await fetch(API_BASE + '/products/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || 'Image upload failed');
+      }
+      return result.fileUrl;
+    }
+
+    async function addProduct() {
+      const name = document.getElementById('productName').value.trim();
+      const category = document.getElementById('productCategory').value.trim();
+      const section = document.getElementById('productSection').value || 'home';
+      const sku = document.getElementById('productSKU').value.trim();
+      const costPrice = parseFloat(document.getElementById('productCostPrice').value) || 0;
+      const sellPrice = parseFloat(document.getElementById('productSellPrice').value) || 0;
+      const stock = parseInt(document.getElementById('productStock').value, 10) || 0;
+      const imageFile = document.getElementById('productImage').files[0];
+
+      if (!name || !sellPrice || !category || !section) {
+        showToast('⚠️', 'Name, category, section, and sell price are required.');
+        return;
+      }
+
+      let imageUrl = null;
+      if (imageFile) {
+        try {
+          imageUrl = await uploadProductImage(imageFile);
+        } catch (error) {
+          showToast('⚠️', `Image upload failed: ${error.message}`);
+          return;
+        }
+      }
+
+      try {
+        await apiFetch('/products', {
+          method: 'POST',
+          body: {
+            sku: sku || null,
+            name,
+            category,
+            type: 'Standard',
+            price: sellPrice,
+            sellingPrice: sellPrice,
+            buyingPrice: costPrice,
+            originalPrice: null,
+            discount: 0,
+            amount: stock || 'N/A',
+            expiry: null,
+            offer: null,
+            section,
+            image: imageUrl,
+            promotion: null
+          }
+        });
+        await refreshAdminData();
+        closeModal('modal-add-product');
+        showToast('✅', 'Product added to inventory!');
+      } catch (error) {
+        showToast('⚠️', error.message);
+      }
+    }
+
+    // ═══════════════════════════════════
+    // CUSTOMERS TABLE
+    // ═══════════════════════════════════
+    let custFilter_ = 'all';
+
+    function renderCustomers() {
+      const tbody = document.getElementById('cust-tbody');
+      if (!tbody) return;
+      const data = CUSTOMERS.filter(c => custFilter_ === 'all' || c.tier === custFilter_);
+      tbody.innerHTML = data.map((c, i) => {
+        const initials = c.name.split(' ').map(n => n[0]).join('');
+        const col = COLORS[i % COLORS.length];
+        return `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:9px;">
+          <div class="cust-avatar" style="background:${col};">${initials}</div>
+          <div>
+            <div style="font-weight:600;font-size:12px;">${c.name}</div>
+          </div>
+        </div>
+      </td>
+      <td style="color:var(--muted);font-size:11px;">${c.email}</td>
+      <td>${c.country}</td>
+      <td class="mono" style="color:var(--gold);">$${c.spent.toFixed(2)}</td>
+      <td class="mono">${c.orders}</td>
+      <td>${tierBadge(c.tier)}</td>
+      <td class="mono" style="color:var(--muted);font-size:11px;">${c.joined}</td>
+      <td>
+        <button class="btn" style="padding:3px 8px;font-size:8px;" onclick="showToast('👤','Viewing ${c.name}')">View</button>
+        <button class="btn btn-danger" style="padding:3px 8px;font-size:8px;margin-left:4px;" onclick="deleteItem('customer','${c.email}')">×</button>
+      </td>
+    </tr>`;
+      }).join('');
+    }
+    function filterCustomers(t) { custFilter_ = t; renderCustomers(); }
+    function searchCustomers(q) {
+      q = q.toLowerCase();
+      const tbody = document.getElementById('cust-tbody');
+      if (!tbody) return;
+      const data = CUSTOMERS.filter(c => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q));
+      CUSTOMERS.length > 0 && renderCustomers();
+    }
+    function addCustomer() {
+      closeModal('modal-add-customer');
+      showToast('✅', 'Customer added successfully!');
+    }
+
+    // ═══════════════════════════════════
+    // COUPONS TABLE
+    // ═══════════════════════════════════
+    function renderCoupons() {
+      const tbody = document.getElementById('coupon-tbody');
+      if (!tbody) return;
+      tbody.innerHTML = COUPONS.map(c => `
+    <tr>
+      <td class="mono" style="color:var(--gold2);font-size:12px;letter-spacing:1px;">${c.code}</td>
+      <td>${c.type === 'percent' ? 'Percentage' : 'Fixed Amount'}</td>
+      <td class="mono" style="color:var(--green);">${c.type === 'percent' ? c.value + '%' : '$' + c.value}</td>
+      <td class="mono">${c.min > 0 ? '$' + c.min : 'None'}</td>
+      <td class="mono">${c.uses}${c.max < 9999 ? '/' + c.max : ''}</td>
+      <td class="mono" style="color:var(--muted);font-size:11px;">${c.expires}</td>
+      <td>${c.status === 'active' ? '<span class="badge badge-green"><span class="badge-dot"></span>Active</span>' : '<span class="badge badge-gray">Expired</span>'}</td>
+      <td>
+        <button class="btn" style="padding:3px 8px;font-size:8px;" onclick="toggleCoupon('${c.code}')">Toggle</button>
+        <button class="btn btn-danger" style="padding:3px 8px;font-size:8px;margin-left:4px;" onclick="deleteItem('coupon','${c.code}')">×</button>
+      </td>
+    </tr>
+  `).join('');
+    }
+
+    function addCoupon() {
+      const code = document.getElementById('new-coupon-code').value;
+      if (!code) { showToast('⚠️', 'Please enter a coupon code'); return; }
+      COUPONS.unshift({
+        code: code.toUpperCase(),
+        type: document.getElementById('new-coupon-type').value,
+        value: parseFloat(document.getElementById('new-coupon-val').value) || 10,
+        min: parseFloat(document.getElementById('new-coupon-min').value) || 0,
+        uses: 0,
+        max: parseInt(document.getElementById('new-coupon-max').value) || 100,
+        expires: document.getElementById('new-coupon-exp').value || '2025-12-31',
+        status: 'active'
+      });
+      renderCoupons();
+      closeModal('modal-add-coupon');
+      showToast('✅', `Coupon ${code.toUpperCase()} created!`);
+    }
+
+    function toggleCoupon(code) {
+      const c = COUPONS.find(x => x.code === code);
+      if (c) { c.status = c.status === 'active' ? 'expired' : 'active'; renderCoupons(); showToast('🔄', `Coupon ${code} ${c.status}.`); }
+    }
+
+    // ═══════════════════════════════════
+    // PAYOUTS TABLE
+    // ═══════════════════════════════════
+    function renderPayouts() {
+      const tbody = document.getElementById('payouts-tbody');
+      if (!tbody) return;
+      tbody.innerHTML = PAYOUTS.map(p => `
+    <tr>
+      <td class="mono" style="color:var(--gold2);">${p.id}</td>
+      <td>${p.type}</td>
+      <td class="mono" style="color:${p.amount.startsWith('+') ? 'var(--green)' : 'var(--red)'};">${p.amount}</td>
+      <td>${p.method}</td>
+      <td>${p.status === 'settled' ? '<span class="badge badge-green"><span class="badge-dot"></span>Settled</span>' : p.status === 'processing' ? '<span class="badge badge-cyan">Processing</span>' : '<span class="badge badge-gold">Pending</span>'}</td>
+      <td class="mono" style="color:var(--muted);">${p.date}</td>
+    </tr>
+  `).join('');
+    }
+
+    function processPayout() {
+      closeModal('modal-payout');
+      showToast('💸', 'Payout initiated successfully!');
+    }
+
+    // ═══════════════════════════════════
+    // DASHBOARD
+    // ═══════════════════════════════════
+    function renderDashboard() {
+      const tbody = document.getElementById('dash-recent-orders');
+      if (!tbody) return;
+      tbody.innerHTML = ORDERS.slice(0, 5).map(o => `
+    <tr>
+      <td class="mono" style="color:var(--gold2);font-size:11px;">${o.id}</td>
+      <td style="font-size:12px;">${o.customer}</td>
+      <td style="font-size:11px;color:var(--muted);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${o.product}</td>
+      <td class="mono" style="color:var(--green);">$${o.amount.toFixed(2)}</td>
+      <td>${statusBadge(o.status)}</td>
+    </tr>
+  `).join('');
+
+      const feed = document.getElementById('activity-feed');
+      if (feed) {
+        const activities = [
+          { icon: '🛒', bg: 'rgba(245,166,35,.15)', msg: '<strong>New order</strong> #PB-004821 — Zaid Khan · $48.50', time: '2 min ago' },
+          { icon: '✅', bg: 'rgba(29,232,152,.15)', msg: '<strong>Delivered</strong> #PB-004820 — Steam Wallet $50', time: '8 min ago' },
+          { icon: '👤', bg: 'rgba(0,212,255,.15)', msg: '<strong>New customer</strong> Hannah Scott registered', time: '22 min ago' },
+          { icon: '⚠️', bg: 'rgba(255,77,77,.15)', msg: '<strong>Low stock</strong> — Minecraft Java: 8 units left', time: '41 min ago' },
+          { icon: '💳', bg: 'rgba(168,85,247,.15)', msg: '<strong>Refund</strong> processed for Sofia Russo · $54.99', time: '1h ago' },
+        ];
+        feed.innerHTML = activities.map(a => `
+      <div class="af-item">
+        <div class="af-icon" style="background:${a.bg};">${a.icon}</div>
+        <div class="af-body">
+          <div class="af-msg">${a.msg}</div>
+          <div class="af-time">${a.time}</div>
+        </div>
+      </div>
+    `).join('');
+      }
+    }
+
+    // ═══════════════════════════════════
+    // HELPERS
+    // ═══════════════════════════════════
+    function statusBadge(s) {
+      const map = {
+        completed: '<span class="badge badge-green"><span class="badge-dot"></span>Completed</span>',
+        processing: '<span class="badge badge-cyan">Processing</span>',
+        pending: '<span class="badge badge-gold"><span class="badge-dot"></span>Pending</span>',
+        refunded: '<span class="badge badge-gray">Refunded</span>',
+        failed: '<span class="badge badge-red">Failed</span>',
+      };
+      return map[s] || s;
+    }
+
+    function stockBadge(s) {
+      const map = {
+        active: '<span class="badge badge-green"><span class="badge-dot"></span>In Stock</span>',
+        low: '<span class="badge badge-gold"><span class="badge-dot"></span>Low Stock</span>',
+        out: '<span class="badge badge-red">Out of Stock</span>',
+      };
+      return map[s] || s;
+    }
+
+    function catBadge(c) {
+      const map = {
+        'gift-cards': '<span class="badge badge-gold">Gift Cards</span>',
+        'games': '<span class="badge badge-green">Games</span>',
+        'accounts': '<span class="badge badge-cyan">Accounts</span>',
+        'game-items': '<span class="badge badge-purple">Game Items</span>',
+        'subscriptions': '<span class="badge badge-cyan">Subscriptions</span>',
+        'top-up': '<span class="badge badge-gray">Top-Up</span>',
+        'software': '<span class="badge badge-gray">Software</span>',
+      };
+      return map[c] || c;
+    }
+
+    function tierBadge(t) {
+      const map = {
+        vip: '<span class="badge badge-gold">⭐ VIP</span>',
+        regular: '<span class="badge badge-gray">Regular</span>',
+        new: '<span class="badge badge-green">New</span>',
+      };
+      return map[t] || t;
+    }
+
+    function sortTable(table, col) {
+      showToast('↕️', `Sorted by ${col}`);
+    }
+
+    function exportData() {
+      showToast('📥', 'Export started — CSV will download shortly.');
+    }
+
+    function globalSearch(q) {
+      if (q.length > 2) showToast('🔍', `Searching for "${q}"...`);
+    }
+
+    function toggleSetting(el) {
+      el.classList.toggle('on');
+      showToast('⚙️', `Setting ${el.classList.contains('on') ? 'enabled' : 'disabled'}.`);
+    }
+
+    // ═══════════════════════════════════
+    // LIVE TICKER — simulated real-time
+    // ═══════════════════════════════════
+    const liveMsgs = [
+      () => showToast('🛒', `New order #PB-0${Math.floor(4900 + Math.random() * 100)} received!`),
+      () => showToast('✅', 'Order delivered automatically via auto-delivery.'),
+      () => showToast('👤', 'New customer registered from Germany.'),
+    ];
+    let tickIdx = 0;
+    setInterval(() => {
+      if (Math.random() > 0.65) {
+        liveMsgs[tickIdx % liveMsgs.length]();
+        tickIdx++;
+      }
+    }, 18000);
+
+    // ═══════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (requireAdminAuth()) {
+        await refreshAdminData();
+        renderCustomers();
+        renderCoupons();
+        renderPayouts();
+      }
+    });
+  </script>
+</body>
+
+</html>

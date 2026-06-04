@@ -1,0 +1,1 @@
+This directory stores uploaded images and files. Keep it writable by the server. If empty, uploads will be created at runtime.

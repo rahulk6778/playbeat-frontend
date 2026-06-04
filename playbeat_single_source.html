@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayBeat Unified Admin + Storefront</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #060d1f 0%, #0c1833 100%);
+            color: #eef2ff;
+        }
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(5, 12, 28, .92);
+            backdrop-filter: blur(16px);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: -.02em;
+        }
+
+        .note {
+            margin: 6px 0 0;
+            color: #a5b4fc;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 600px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+            background: rgba(255, 255, 255, .08);
+            color: #eef2ff;
+        }
+
+        .tab.active {
+            background: #f5a623;
+            color: #071520;
+        }
+
+        main {
+            display: grid;
+            grid-template-rows: 1fr;
+            min-height: calc(100vh - 76px);
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            height: 100%;
+            display: block;
+            background: #071224;
+        }
+
+        iframe.hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>PlayBeat Unified Admin + Storefront</h1>
+            <p class="note">This single source wrapper keeps the primary backend and homepage files active while
+                removing duplicate admin variants.</p>
+        </div>
+        <div class="tabs">
+            <button class="tab active" data-target="store-frame">Storefront</button>
+            <button class="tab" data-target="admin-frame">Admin Backend</button>
+        </div>
+    </header>
+    <main>
+        <iframe id="store-frame" src="index.html"></iframe>
+        <iframe id="admin-frame" class="hidden" src="backend.html"></iframe>
+    </main>
+    <script>
+        const buttons = document.querySelectorAll('.tab');
+        const frames = {
+            'store-frame': document.getElementById('store-frame'),
+            'admin-frame': document.getElementById('admin-frame')
+        };
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                Object.values(frames).forEach(frame => frame.classList.add('hidden'));
+                frames[button.dataset.target].classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html>
