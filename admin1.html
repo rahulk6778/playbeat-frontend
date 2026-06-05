@@ -2842,7 +2842,7 @@
     let COUPONS = [...COUPONS_DEMO];
     let PAYOUTS = [...PAYOUTS_DEMO];
 
-    const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000/api' : '/api';
+    const API_BASE = window.location.protocol === 'file:' ? 'https://playbeat.onrender.com/api' : '/api';
 
     async function apiFetch(path, options = {}) {
       const resp = await fetch(API_BASE + path, {
